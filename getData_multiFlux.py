@@ -91,8 +91,67 @@ def update( flux ):
     with open(filename, 'w') as outfile:
         json.dump(loaded_data, outfile)
 
+# -- to parse the desciption --
+from HTMLParser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
+# ---
+
+def getdata(filename):
+    #filename = './data_rss/rss_save_leMonde.json'
+
+    print filename
+    loaded_data = json.loads(open(filename).read())
+
+    mydata = []
+    for post in loaded_data.itervalues():
+
+        mypost = {}
+        if 'date' in post:
+            mypost['date'] = post['pubDate']
+
+        mypost['title'] = post['title']
+
+        if 'description' in post:
+            if post['description']:
+                mypost['description'] = strip_tags( post['description'] )
+        elif 'summary' in post:
+            if u'#text' in post['summary']:
+                mypost['description'] = strip_tags( post['summary'][u'#text'] )
+
+        mydata.append( mypost )
+
+    return mydata
 
 
+#  -- GO --
 for journal in Journaux:
     update( journal )
+
+# -- parse and save --
+d = []
+for journal in Journaux:
+    d.extend( getdata( data_dir + journal['file'] ) )
+    
+print len( d) 
+
+# save JSON
+json_file = data_dir + 'all_title.json'
+with open(json_file, 'w') as outfile:
+    json.dump(d, outfile)
+
+
 

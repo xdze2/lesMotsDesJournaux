@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Bin Packing Algorithm</title>
+  <link href='css/demo.css' rel='stylesheet' type='text/css' media='screen' />
+  <script src='js/jquery.js'>        </script>
+  <script src='js/packer.js'>        </script>
+  <script src='js/demo.js'>          </script>
+
+	<script src="js/jquery.mousewheel.min.js"></script>
+	<script>
+     
+            //https://www.designedbyaturtle.co.uk/2012/horizontal-scrolling-with-jquery/
+		$(document).ready(function() {
+                   var mydiv = $('body');
+			mydiv.scrollLeft( -100000 ) ; //mydiv.prop('scrollWidth'));
+
+			mydiv.mousewheel(function(e, delta) {
+				// multiplying by 40 is the sensitivity, 
+				// increase to scroll faster.
+				this.scrollLeft -= (delta * 80);
+				e.preventDefault();
+			});
+            var mydiv = $('#scroll');
+            mydiv.scrollTop(mydiv.prop('scrollHeight'));
+
+
+		});
+	</script>
+
+</head>
+<body>
+  <div id="packing">
+    <canvas id="canvas">
+      <div id="unsupported">
+        Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+      </div>
+    </canvas>
+  </div>
+
+</body>
+</html>
+

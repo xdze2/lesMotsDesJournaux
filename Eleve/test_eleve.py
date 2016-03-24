@@ -16,7 +16,8 @@ storage = MemoryStorage()
 
 # Then the training itself:
 n = 0
-for sentence in data:
+for post in data:
+      sentence = post['formatedtext']
       mots = sentence.split(' ')
       n += len( mots )
       storage.add_sentence(  mots )
@@ -29,7 +30,8 @@ s = Segmenter(storage)
 # segment up to 4-grams, if we used the same storage as before.
 
 nuplets_count = {}
-for phrase in data:
+for post in data:
+      phrase = post['formatedtext']
       segmentedPhrase = s.segment( phrase.split(' ') )
       for nuplet in segmentedPhrase:
             while '' in nuplet: nuplet.remove( '' )

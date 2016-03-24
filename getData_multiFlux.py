@@ -13,48 +13,53 @@ import os
 import collections
 
 # In[168]:
-Journaux = []
 
 data_dir = './data_rss/'
 
-filename = 'rss_save_leMonde.json'
+Journaux = []
+
+name = 'leMonde'
 url = 'http://www.lemonde.fr/rss/une.xml'
 getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
-filename = 'rss_save_Liberation.json'
+name = 'Liberation'
 url = 'http://rss.liberation.fr/rss/latest/'
 getEntry = lambda x:x['feed']['entry']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
-filename = 'rss_save_LeFigaro.json'
+name = 'LeFigaro'
 url = 'http://rss.lefigaro.fr/lefigaro/laune?format=xml'
 getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
-filename = 'rss_save_courrierinternational.json'
+name = 'courrierinternational'
 url = 'http://www.courrierinternational.com/feed/category/6260/rss.xml'
 getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
-filename = 'rss_save_lesechos.json'
+name = 'lesechos'
 url = 'http://www.lesechos.fr/rss/rss_articles_journal.xml'
 getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
 
-filename = 'rss_save_lepoint.json'
+name = 'lepoint'
 url = 'http://www.lepoint.fr/24h-infos/rss.xml'
 getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'file':filename, 'url':url, 'getEntry':getEntry} )
+Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
+def getFilename(name):
+
+    filename = data_dir + 'rss_save_' + name + '.json'
+    return filename
 
 def update( flux ):
     url = flux['url']
-    filename = data_dir + flux['file']
+    name = flux['name']
+    filename = getFilename( name )
     getEntry = flux['getEntry']
-    
-    print filename
+
     # load
     if os.path.isfile(filename):
         with open(filename, 'r') as file:
@@ -69,7 +74,7 @@ def update( flux ):
 
     parsed_data =  xmltodict.parse( data.content )
     parsed_data = getEntry(parsed_data)
-    
+
     new_dict = {}
     for d in parsed_data:
         if d.has_key('guid'):
@@ -85,7 +90,7 @@ def update( flux ):
 
     loaded_data.update( new_dict )
 
-    print -n_avant+len( loaded_data ), ' added, ', len( loaded_data ), ' total'
+    print name, -n_avant+len( loaded_data ), ' added, ', len( loaded_data ), ' total'
 
     # save
     with open(filename, 'w') as outfile:
@@ -110,7 +115,9 @@ def strip_tags(html):
 
 # ---
 
-def getdata(filename):
+
+
+def getdata(filename, src):
     #filename = './data_rss/rss_save_leMonde.json'
 
     print filename
@@ -118,11 +125,11 @@ def getdata(filename):
 
     mydata = []
     for post in loaded_data.itervalues():
-
+        
         mypost = {}
         if 'date' in post:
             mypost['date'] = post['pubDate']
-
+        mypost['source'] = src
         mypost['title'] = post['title']
 
         if 'description' in post:
@@ -142,9 +149,11 @@ for journal in Journaux:
     update( journal )
 
 # -- parse and save --
+print '\n Consolide:'
 d = []
 for journal in Journaux:
-    d.extend( getdata( data_dir + journal['file'] ) )
+    filename = getFilename( journal['name'] )
+    d.extend( getdata(filename, journal['name'])  )
     
 print len( d) 
 

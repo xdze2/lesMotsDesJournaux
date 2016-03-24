@@ -48,3 +48,8 @@ output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets if x[1] >1 ]
 
 print( '; '.join( output) )
 
+
+# save JSON
+json_file = './data_nuplets.json'
+with open(json_file, 'w') as outfile:
+    json.dump(nuplets_count, outfile)

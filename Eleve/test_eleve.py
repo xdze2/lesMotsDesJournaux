@@ -32,7 +32,9 @@ nuplets_count = {}
 for phrase in data:
       segmentedPhrase = s.segment( phrase.split(' ') )
       for nuplet in segmentedPhrase:
+            while '' in nuplet: nuplet.remove( '' )
             if len( nuplet )>1:
+                              
                   nuplet = ' '.join( nuplet )
 
                   # enleve l'apostrophe du debut

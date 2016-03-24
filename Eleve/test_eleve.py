@@ -17,8 +17,9 @@ storage = MemoryStorage()
 # Then the training itself:
 n = 0
 for sentence in data:
-      n += len( sentence )
-      storage.add_sentence( sentence )
+      mots = sentence.split(' ')
+      n += len( mots )
+      storage.add_sentence(  mots )
 
 print( 'nombre de mots: %i ' % n )
 
@@ -29,7 +30,7 @@ s = Segmenter(storage)
 
 nuplets_count = {}
 for phrase in data:
-      segmentedPhrase = s.segment( phrase )
+      segmentedPhrase = s.segment( phrase.split(' ') )
       for nuplet in segmentedPhrase:
             if len( nuplet )>1:
                   nuplet = ' '.join( nuplet )

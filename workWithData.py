@@ -1,13 +1,22 @@
 
 # coding: utf-8
 
-# In[154]:
+# In[ ]:
 
 import json
 import re
 
 
-# -------- html tag remover -------------------------
+# In[ ]:
+
+def printSorted(dico, n = 200 ):
+    myDico_sorted = sorted(dico.iteritems(), key = lambda x:x[1], reverse=True)
+    for m, c in myDico_sorted[:n]:
+        print '%s (%0.2f) ' % (m, c),
+
+
+# In[ ]:
+
 from HTMLParser import HTMLParser
 
 class MLStripper(HTMLParser):
@@ -24,14 +33,16 @@ def strip_tags(html):
     s.feed(html)
     return s.get_data()
 
-# --------------------------------------------
-# ------------------
-# Load "liste des mots"
 
-filename = './data_dico/liste_mots.txt'
+# In[ ]:
+
+# Load "liste des mots"
+import codecs
+
+filename = './data_dico/liste_mots_utf8.txt'
 # cf: http://www.lexique.org/listes/liste_mots.txt
 # load
-with open(filename) as f:
+with codecs.open(filename, encoding='utf-8') as f:
     listemots = f.readlines()
   
 for i, mot in enumerate( listemots ):
@@ -43,10 +54,12 @@ for i, mot in enumerate( listemots ):
 dicoFr = { x[0]:x[1] for x in listemots }
 
 
+# In[ ]:
+
 def cleanAndSplit( texte ):
     #texte = texte.lower()
 
-    myRe = u"[:’',.«»?! ()\[\]…”\"]+"
+    myRe = u"[:’',.«»?! ()\[\]…”\"0-9]+"
     texte = re.sub(myRe, u' ', texte)
     texte = texte.replace(u'\xa0', u' ')
     texte = texte.replace(u'-', u' ')
@@ -54,25 +67,21 @@ def cleanAndSplit( texte ):
     
     for i, mot in enumerate( L ):
         if mot.lower() in dicoFr:
-            L[i] = mot.lower()
-    
+            L[i] = mot.lower()   
+            
     return L
 
 
-# In[155]:
-
-filename = './data_rss/rss_save_leMonde.json'
-#filename = 'rss_save_lepoint.json'
+# In[ ]:
 
 # load
+filename = './data_rss/rss_save_leMonde.json'
+
 loaded_data = json.loads(open(filename).read())
 print 'nbr articles: ', len( loaded_data )
 
-
 # Work with DATE
-
 from datetime import datetime
-
 
 def jour_de_la_semaine(i):
     d = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
@@ -88,13 +97,12 @@ for k, post in loaded_data.iteritems():
     loaded_data[k]['date'] = date
 
 
-# ------+--+- Count Global -+--------------
+# In[ ]:
+
 words_count = {}
 
 for post in loaded_data.itervalues():
-    
     title = post['title']
-    
     description = post['description']
     if description:
         description = strip_tags( description )
@@ -109,226 +117,174 @@ for post in loaded_data.itervalues():
         elif len( mot ) > 2:
             words_count[mot ] = 1
 
-n_mots_globaux = float( len( words_count ) )
+n_mots_globaux = len( words_count )
 
 print 'nbr mots: ', n_mots_globaux
 
 
-words_sorted = sorted(words_count.iteritems(), key = lambda x:x[1], reverse=True)
-# print words_sorted
+# In[ ]:
 
-print '--- words count global ---'
-
-for mot, c in words_sorted[:50]:
-    print '%s (%0.1f/k), ' % (mot, 1e3*c), 
-
-print '-------'
+printSorted(words_count, 100)
 
 
+### Norme avec DicoFr
+
+# In[ ]:
+
+black_liste =  ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi' ]
+black_liste.extend( ['samedi', 'dimanche', 'jusqu', 'aujourd', 'France', 'mars', 'week', 'end', 'Etat', 'Etats'] )
 
 
-## Avec la liste des pays
-#filename = 'sql-pays.csv'
-#with open(filename) as f:
-#    data = f.readlines()
-#    
-#listePays = []    
-#for line in data:
-#    line = line.split(',')
-#    pays = line[4].replace(u'"', u'')
-#    listePays.append( pays.lower() )
-    
-black_liste =  ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche', 'jusqu', 'aujourd', 'France', 'mars']
-
+# In[ ]:
 
 words_count_dicoFr = {}
-notInDicoFr = []
+notInDicoFr = {}
 for m, c in words_count.iteritems():
-    if m in black_liste or re.match(r'[0-9]+', m):
+    if m in black_liste :
         continue
     elif m in dicoFr : # and c*n_mots > 1:
         score = float( c )/float( n_mots_globaux )  / (dicoFr[m]*1e-6)
         words_count_dicoFr[m] = score
     else:
-        score = float( c ) 
-        notInDicoFr.append( (m, score) )
+        score =  c 
+        notInDicoFr[m] = score
         
 words_sorted_dicoFr = sorted(words_count_dicoFr.iteritems(), key = lambda x:x[1], reverse=True)
+notInDicoFr_sorted = sorted(notInDicoFr.iteritems(), key = lambda x:x[1], reverse=True)
 
 
-print '--- words count / dicoFr ---'
-print '--- Les mots du journalisme ---'
-for m, c in words_sorted_dicoFr[:500]:
-    print '%s (%0.2f), ' % (m, c), 
+# In[ ]:
 
-print ' ' 
+printSorted(words_count_dicoFr, 100)
 
 
-notInDicoFr_sorted = sorted(notInDicoFr, key = lambda x:x[1], reverse=True)
-print '--- not in dicoFr ---', len(notInDicoFr_sorted)
-for m, c in notInDicoFr_sorted:
-#    print '%s (%0.2f), ' % (m, c*1e3), 
-    print '%s, ' %m, 
-print ' '
+# In[ ]:
 
-# Define un masque
-LesMotsDuJournalismes = []
+printSorted(notInDicoFr)
 
-for m, c in notInDicoFr:
-    if c>1:
-        LesMotsDuJournalismes.append( m )
-for m, c in words_sorted_dicoFr[:500]:
-        LesMotsDuJournalismes.append( m )
-        
-print len(  LesMotsDuJournalismes )
 
-# ----------- Count Local -+--------------
-#def count_local(i):
-#    words_count_local = {}
-#        
-#    post = loaded_data.values()[i]
-#        
-#    title = post['title']
-#    
-#    description = post['description']
-#    description = strip_tags( description )
-#    
-#  
-#    L = cleanAndSplit( title+' '+description ) 
-#    
-#    for mot in L:
-#        if words_count_local.has_key( mot ):
-#            words_count_local[mot ] += 1
-#        elif len( mot ) > 2:
-#            words_count_local[mot ] = 1
-#    
-#    
-#    n_mots = float( len( words_count_local ) )
-#    print '> nbr mots: ', n_mots
-#    
-#
-#    for mot, c_loc in  words_count_local.iteritems():
-#        if mot in LesMotsDuJournalismes:
-#            score = float( c_loc ) /  n_mots / words_count[mot] * n_mots_globaux        
-#            words_count_local[mot] = score
-#    
-#    local_sorted = sorted(words_count_local.iteritems(), key = lambda x:x[1], reverse=True)
-#    
-#    return local_sorted
-# 
-#
-##    for m, c in local_sorted:
-##        print '%s (%0.2f), ' % (m, c),
-#i = 2
-#count_local(i)
+# In[ ]:
 
-#def count_post( post ):
-#    words_count_local = {}
-#    description = post['description']
-#    description = strip_tags( description )
-#    title = post['title']
-#    L = cleanAndSplit( title+' '+description )
-#    
-#    for mot in L:
-#        if words_count_local.has_key( mot ):
-#            words_count_local[mot ] += 1
-#        elif len( mot ) > 2:
-#            words_count_local[mot ] = 1
-#            
-#    n_mots = float( len( words_count_local ) )
-      
-      
-# --- By day ---
-# liste des jours
-     
-jours_dispo = []
-for post in loaded_data.itervalues():
-    d = post['date'].date()
-    if d not in jours_dispo:
-        jours_dispo.append( d )
+# norme: max not in dico = max in dico
+
+max_notInDico = notInDicoFr_sorted[0][1] 
+max_inDico = words_sorted_dicoFr[0][1] 
+
+print max_notInDico, max_inDico
+
+
+# In[ ]:
+
+# Merge
+myDico = {}
+
+for mot, c in notInDicoFr.iteritems():
+    myDico[mot] = float(c) / float( max_notInDico *3  )
     
-jours_dispo.sort(reverse=True)
-
-#print jours_dispo
-
+for mot, c in words_count_dicoFr.iteritems():
+    myDico[mot] = float(c) / float( max_inDico )
 
 
+# In[ ]:
 
-def count_by_day(myDay):
-    words_day_count = {}
-        
-    for post in loaded_data.itervalues():
-        d = post['date'].date()
-        if d == myDay:       
-            title = post['title']
-            
-            description = post['description']
-            description = strip_tags( description )
-              
-            L = cleanAndSplit( title+' '+description ) 
-            
-            for mot in L:
-                if words_day_count.has_key( mot ):
-                    words_day_count[mot ] += 1
-                elif len( mot ) > 2:
-                    words_day_count[mot ] = 1
-        else:
-            continue
-        
-        
-    n_mots_day = float( len( words_day_count ) )
-   
-    # norme:
-    ratio= n_mots_day * float(  n_mots_globaux ) 
-    words_day_count_final = {}
-    for mot, c_loc in  words_day_count.iteritems():
-        if mot in LesMotsDuJournalismes:
-            score = float( c_loc ) * float( words_count[mot] ) / ratio
-            words_day_count_final[mot] = score
-    
-    day_sorted = sorted(words_day_count_final.iteritems(), key = lambda x:x[1], reverse=True)
-    
-    return day_sorted
+printSorted( myDico )
 
+
+#### jour par jour
+
+# In[ ]:
+
+mois = u'janvier février mars avril mai juin juillet août septembre octobre novembre décembre'
+mois = mois.split(' ')
 def writeDay( d ):
     i = d.weekday()
     jour = str( d.day )
     if jour == '1': jour = '1er'
-    return jour_de_la_semaine(i)+' '+jour
+    return jour_de_la_semaine(i)+' '+jour+' '+mois[d.month]
 
 
-print '> By day:'
+# In[ ]:
 
-score_max = 0
-data_json = []
-for d in jours_dispo:
-    day_sorted = count_by_day( d )
-    #{"size": 1, "label": "adieu"},
-    mots = []
-    for m, c in day_sorted:
-        size = c
-        if c > score_max:
-            score_max = c
-        dico = {'size':size, 'label':m  }
-        mots.append( dico )
-        
-    data_json.append({ 'mots':mots, 'day':writeDay( d )  })
+posts_by_day = {}
+for post in loaded_data.itervalues():
+    d = post['date'].date()
+   
+    title = post['title']
+    description = post['description']
+    if description:
+        description = strip_tags( description )
+    else:
+        description = ''
+    texte = title+' '+description
     
-    print '\n'
-    print '-- ', jour_de_la_semaine(d.weekday()), ' ', d, ' --'
-    nMax = len( day_sorted )
-    for m, c in day_sorted[:min(nMax, 80)]:
-        print '%s/%0.5f, ' % (m, c), 
+    if d not in posts_by_day:
+        posts_by_day[d] = [ texte ]
+    else:
+        posts_by_day[d].append( texte )
 
-print score_max
 
-#norme:
-for d in data_json:
-    for mot in d['mots']:
-        mot['size'] = mot['size']/score_max*8.0
+# le nombre de mot par jour est pas trop significatif ...
 
+# In[ ]:
+
+count_by_days = {}
+for day, textes in posts_by_day.iteritems():
+    count_day = {}
+    for titre in textes:
+        L = cleanAndSplit( titre ) 
+
+        for mot in L:
+            if mot in myDico:
+                count_day[mot] = myDico[mot]
+                
+    count_by_days[day] = count_day
+
+
+# In[ ]:
+
+for k in count_by_days.iterkeys():
+    print '\n// '+writeDay( k )+' //'
+    printSorted( count_by_days[k], 30 )
+
+
+# In[ ]:
+
+#norme by day
+
+
+# In[ ]:
+
+sizeMax = 6
+data_json = []
+count_by_days_sorted = sorted( count_by_days.iteritems(), key=lambda x:x[0] )
+for k, mots_day in count_by_days_sorted:
+    day_sorted = sorted( mots_day.iteritems(), key= lambda x:x[1], reverse=True )[:20]
+    maxScore = day_sorted[0][1]
+    minScore = day_sorted[-1][1]
+    
+    liste_day = []
+    for mot, score in day_sorted:    
+        score_layout = 1 + round( float(sizeMax-1)/float(maxScore-minScore)*(score-minScore)   )
+        node = {'label':mot, 'size':score_layout}
+        liste_day.append( node )
+    
+    data_json.append({ 'mots':liste_day, 'day':writeDay( k )  })
+
+
+# In[ ]:
 
 # save JSON
 json_file = './web/data.json'
 with open(json_file, 'w') as outfile:
     json.dump(data_json, outfile)
+
+
+# In[ ]:
+
+
+
+
+# In[ ]:
+
+
+

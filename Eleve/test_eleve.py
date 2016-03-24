@@ -1,4 +1,7 @@
 import json
+import re
+
+# https://github.com/kodexlab/eleve
 
 # save JSON
 filename = 'data4eleve.json'
@@ -30,6 +33,10 @@ for phrase in data:
       for nuplet in segmentedPhrase:
             if len( nuplet )>1:
                   nuplet = ' '.join( nuplet )
+
+                  # enleve l'apostrophe du debut
+                  nuplet = re.sub(r"^[LldDsS][’']", u'', nuplet) 
+
                   if nuplet in nuplets_count:
                         nuplets_count[ nuplet ] += 1
                   else:
@@ -37,7 +44,7 @@ for phrase in data:
 
 sorted_nuplets = sorted( nuplets_count.items(), key=lambda x:x[1], reverse=True )
 
-output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets ]
+output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets if x[1] >1 ]
 
 print( '; '.join( output) )
 

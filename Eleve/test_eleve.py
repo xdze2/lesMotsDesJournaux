@@ -38,7 +38,7 @@ for phrase in data:
                   nuplet = ' '.join( nuplet )
 
                   # enleve l'apostrophe du debut
-                  nuplet = re.sub(r"^[LldDsS][’']", u'', nuplet) 
+                  nuplet = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet) 
 
                   if nuplet in nuplets_count:
                         nuplets_count[ nuplet ] += 1

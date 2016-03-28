@@ -29,30 +29,38 @@ from eleve import Segmenter
 s = Segmenter(storage)
 # segment up to 4-grams, if we used the same storage as before.
 
-nuplets_count = {}
+
+nuplets_set = set()
 for post in data:
-      phrase = post['formatedtext']
-      segmentedPhrase = s.segment( phrase.split(' ') )
-      for nuplet in segmentedPhrase:
-            while '' in nuplet: nuplet.remove( '' )
-            if len( nuplet )>1:
+    phrase = post['formatedtext']
+    segmentedPhrase = s.segment( phrase.split(' ') )
 
-                  nuplet = ' '.join( nuplet )
+    for nuplet in segmentedPhrase:
+        while '' in nuplet: nuplet.remove( '' )
 
-                  # enleve l'apostrophe du debut
-                  nuplet = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet)
+        if len( nuplet )>1:
+            nuplet = ' '.join( nuplet )
 
-                  if nuplet in nuplets_count:
-                        nuplets_count[ nuplet ] += 1
-                  else:
-                        nuplets_count[ nuplet ] = 1
+            # enleve l'apostrophe du debut:
+            nuplet_apoless = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet)
 
+            nuplets_set.add( nuplet_apoless )
+
+# Count global:
+nuplets_count = {}
+seuil = 3
+
+all_text = ' '.join( [post['formatedtext'] for post in data] )
+for nuplet in nuplets_set:
+     c = all_text.count( nuplet )
+     if c > seuil:
+         nuplets_count[ nuplet ] = c
+         
 sorted_nuplets = sorted( nuplets_count.items(), key=lambda x:x[1], reverse=True )
 
-output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets if x[1] >1 ]
+output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets ]# if x[1] > 1 ]
 
 print( '; '.join( output) )
-
 
 # save JSON
 json_file = './data_nuplets.json'

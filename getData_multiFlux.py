@@ -66,7 +66,7 @@ def update( flux ):
             loaded_data = json.load(file)
     else:
         loaded_data = {}
-        
+
     n_avant = len( loaded_data )
 
     # query
@@ -125,10 +125,15 @@ def getdata(filename, src):
 
     mydata = []
     for post in loaded_data.itervalues():
-        
+
         mypost = {}
         if 'date' in post:
+            mypost['date'] = post['date']
+        elif 'pubDate' in post:
             mypost['date'] = post['pubDate']
+        elif 'updated' in post:
+            mypost['date'] = post['updated']
+
         mypost['source'] = src
         mypost['title'] = post['title']
 
@@ -150,17 +155,35 @@ for journal in Journaux:
 
 # -- parse and save --
 print '\n Consolide:'
-d = []
+alldata = []
 for journal in Journaux:
     filename = getFilename( journal['name'] )
-    d.extend( getdata(filename, journal['name'])  )
-    
-print len( d) 
+    alldata.extend( getdata(filename, journal['name'])  )
+
+print len( alldata )
+
+
+# Work with DATE
+from datetime import datetime
+import re
+
+for post in alldata:
+    txt_date = post['date']
+    txt_date = txt_date.replace(u'GMT', u'')
+    txt_date = re.sub('\+[0-9]{4}', u'', txt_date) # !! not the real hour ..
+    txt_date = txt_date.strip()
+
+    try:
+        date = datetime.strptime(txt_date, '%a,  %d %b %Y %H:%M:%S')
+    except:
+        txt_date = re.sub('\+0[0-9]:00$', u'', txt_date) # !! not the real hour ..
+        try:
+            date = datetime.strptime(txt_date, '%Y-%m-%dT%H:%M:%S')
+        except:
+            print txt_date
+    post['date'] = date.isoformat()
 
 # save JSON
 json_file = data_dir + 'all_title.json'
 with open(json_file, 'w') as outfile:
-    json.dump(d, outfile)
-
-
-
+    json.dump(alldata, outfile)

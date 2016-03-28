@@ -48,14 +48,14 @@ for post in data:
 
 # Count global:
 nuplets_count = {}
-seuil = 3
+seuil = 2
 
 all_text = ' '.join( [post['formatedtext'] for post in data] )
 for nuplet in nuplets_set:
      c = all_text.count( nuplet )
      if c > seuil:
          nuplets_count[ nuplet ] = c
-         
+
 sorted_nuplets = sorted( nuplets_count.items(), key=lambda x:x[1], reverse=True )
 
 output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets ]# if x[1] > 1 ]

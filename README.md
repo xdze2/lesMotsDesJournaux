@@ -23,3 +23,8 @@ save data4Eleve.json
 find nuplet
 count global... Seuil>3
 save nuplets_count
+
+/ afterEleve
+  count, merge, dicoDuSignifiant...
+
+/count by day...

@@ -44,7 +44,7 @@ filename = './data_dico/liste_mots_utf8.txt'
 # load
 with codecs.open(filename, encoding='utf-8') as f:
     listemots = f.readlines()
-  
+
 for i, mot in enumerate( listemots ):
     a = mot.split('\t')
     freq = float(a[1])
@@ -64,11 +64,11 @@ def cleanAndSplit( texte ):
     texte = texte.replace(u'\xa0', u' ')
     texte = texte.replace(u'-', u' ')
     L = texte.split(' ')
-    
+
     for i, mot in enumerate( L ):
         if mot.lower() in dicoFr:
-            L[i] = mot.lower()   
-            
+            L[i] = mot.lower()
+
     return L
 
 
@@ -86,13 +86,13 @@ from datetime import datetime
 def jour_de_la_semaine(i):
     d = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
     return d[i]
-    
+
 for k, post in loaded_data.iteritems():
     txt_date = post['pubDate']
     txt_date = txt_date.replace(u'GMT', u'')
     txt_date = re.sub('\+[0-9]{4}', u'', txt_date) # !! not the real hour ..
     txt_date = re.sub(r'\s+$', '', txt_date)
-    
+
     date = datetime.strptime(txt_date, '%a,  %d %b %Y %H:%M:%S')
     loaded_data[k]['date'] = date
 
@@ -108,9 +108,9 @@ for post in loaded_data.itervalues():
         description = strip_tags( description )
     else:
         description = ''
-        
-    L = cleanAndSplit( title+' '+description ) 
-    
+
+    L = cleanAndSplit( title+' '+description )
+
     for mot in L:
         if words_count.has_key( mot ):
             words_count[mot ] += 1
@@ -146,9 +146,9 @@ for m, c in words_count.iteritems():
         score = float( c )/float( n_mots_globaux )  / (dicoFr[m]*1e-6)
         words_count_dicoFr[m] = score
     else:
-        score =  c 
+        score =  c
         notInDicoFr[m] = score
-        
+
 words_sorted_dicoFr = sorted(words_count_dicoFr.iteritems(), key = lambda x:x[1], reverse=True)
 notInDicoFr_sorted = sorted(notInDicoFr.iteritems(), key = lambda x:x[1], reverse=True)
 
@@ -167,8 +167,8 @@ printSorted(notInDicoFr)
 
 # norme: max not in dico = max in dico
 
-max_notInDico = notInDicoFr_sorted[0][1] 
-max_inDico = words_sorted_dicoFr[0][1] 
+max_notInDico = notInDicoFr_sorted[0][1]
+max_inDico = words_sorted_dicoFr[0][1]
 
 print max_notInDico, max_inDico
 
@@ -180,7 +180,7 @@ myDico = {}
 
 for mot, c in notInDicoFr.iteritems():
     myDico[mot] = float(c) / float( max_notInDico *3  )
-    
+
 for mot, c in words_count_dicoFr.iteritems():
     myDico[mot] = float(c) / float( max_inDico )
 
@@ -208,7 +208,7 @@ def writeDay( d ):
 posts_by_day = {}
 for post in loaded_data.itervalues():
     d = post['date'].date()
-   
+
     title = post['title']
     description = post['description']
     if description:
@@ -216,7 +216,7 @@ for post in loaded_data.itervalues():
     else:
         description = ''
     texte = title+' '+description
-    
+
     if d not in posts_by_day:
         posts_by_day[d] = [ texte ]
     else:
@@ -231,12 +231,12 @@ count_by_days = {}
 for day, textes in posts_by_day.iteritems():
     count_day = {}
     for titre in textes:
-        L = cleanAndSplit( titre ) 
+        L = cleanAndSplit( titre )
 
         for mot in L:
             if mot in myDico:
                 count_day[mot] = myDico[mot]
-                
+
     count_by_days[day] = count_day
 
 
@@ -261,13 +261,13 @@ for k, mots_day in count_by_days_sorted:
     day_sorted = sorted( mots_day.iteritems(), key= lambda x:x[1], reverse=True )[:20]
     maxScore = day_sorted[0][1]
     minScore = day_sorted[-1][1]
-    
+
     liste_day = []
-    for mot, score in day_sorted:    
+    for mot, score in day_sorted:
         score_layout = 1 + round( float(sizeMax-1)/float(maxScore-minScore)*(score-minScore)   )
         node = {'label':mot, 'size':score_layout}
         liste_day.append( node )
-    
+
     data_json.append({ 'mots':liste_day, 'day':writeDay( k )  })
 
 
@@ -285,6 +285,3 @@ with open(json_file, 'w') as outfile:
 
 
 # In[ ]:
-
-
-

@@ -1,19 +1,19 @@
-
 # coding: utf-8
 
-# download rss feed
+# Download rss feed
 # and archive it
 
-# In[167]:
 
 import xmltodict
 import requests
 import json
 import os
 import collections
+import re
 
-# In[168]:
+print(' --- Get Data ---')
 
+# ---- conf. ---
 data_dir = './data_rss/'
 
 Journaux = []
@@ -49,8 +49,8 @@ url = 'http://www.lepoint.fr/24h-infos/rss.xml'
 getEntry = lambda x:x['rss']['channel']['item']
 Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
+# ------------------------
 def getFilename(name):
-
     filename = data_dir + 'rss_save_' + name + '.json'
     return filename
 
@@ -77,12 +77,12 @@ def update( flux ):
 
     new_dict = {}
     for d in parsed_data:
-        if d.has_key('guid'):
+        if 'guid' in d:
             if isinstance(d['guid'], collections.Hashable):
                 key = d['guid']
             else:
                 key = d['guid']['#text']
-        elif d.has_key('id'):
+        elif 'id' in d:
             key = d['id']
         else:
             key = d['title']
@@ -90,41 +90,32 @@ def update( flux ):
 
     loaded_data.update( new_dict )
 
-    print name, -n_avant+len( loaded_data ), ' added, ', len( loaded_data ), ' total'
+    delta = len( loaded_data )-n_avant
+    print(  '%s : %i added , %i total' % (name, delta, len( loaded_data ) ) )
 
     # save
     with open(filename, 'w') as outfile:
         json.dump(loaded_data, outfile)
+        print( '  data saved in %s'%filename )
 
-# -- to parse the desciption --
-from HTMLParser import HTMLParser
 
-class MLStripper(HTMLParser):
-    def __init__(self):
-        self.reset()
-        self.fed = []
-    def handle_data(self, d):
-        self.fed.append(d)
-    def get_data(self):
-        return ''.join(self.fed)
 
-def strip_tags(html):
-    s = MLStripper()
-    s.feed(html)
-    return s.get_data()
+# -- Remove HTML Tags --
 
+def strip_tags(data):
+    p = re.compile(r'<.*?>')
+    return p.sub('', data)
 # ---
-
 
 
 def getdata(filename, src):
     #filename = './data_rss/rss_save_leMonde.json'
 
-    print filename
+    print(  filename )
     loaded_data = json.loads(open(filename).read())
 
     mydata = []
-    for post in loaded_data.itervalues():
+    for post in loaded_data.values():
 
         mypost = {}
         if 'date' in post:
@@ -154,18 +145,17 @@ for journal in Journaux:
     update( journal )
 
 # -- parse and save --
-print '\n Consolide:'
+print(  '\n Consolide:' )
 alldata = []
 for journal in Journaux:
     filename = getFilename( journal['name'] )
     alldata.extend( getdata(filename, journal['name'])  )
 
-print len( alldata )
-
+print(  '  nombre de posts: %i'%len( alldata ) )
 
 # Work with DATE
 from datetime import datetime
-import re
+
 
 for post in alldata:
     txt_date = post['date']
@@ -180,10 +170,14 @@ for post in alldata:
         try:
             date = datetime.strptime(txt_date, '%Y-%m-%dT%H:%M:%S')
         except:
-            print txt_date
+            print(  txt_date )
     post['date'] = date.isoformat()
 
 # save JSON
 json_file = data_dir + 'all_title.json'
 with open(json_file, 'w') as outfile:
     json.dump(alldata, outfile)
+    print( ' Parsed data saved in %s'%json_file )
+
+
+print('\n ')

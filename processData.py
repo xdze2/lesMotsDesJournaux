@@ -1,18 +1,13 @@
 import json
 import re
 
+import dataExtern
 # see https://github.com/kodexlab/eleve
 
 print(' --- Process Data ---')
 # --- Data for ELeVE ---
 
-blacklist = [u'LE SCAN SPORT', u'EN IMAGES', u'LE SCAN POLITIQUE', u'LE SCAN TÉLÉ', u'LIRE AUSSI' ]
-blacklist.extend( [u'LE SCAN TÉLÉ', u'LE SCAN ÉCO', u'LE SCAN ECO' , u"Toute l'actualité", u"Le Point", u'INFO LE FIGARO'] )
-blacklist.extend( ['Le Monde', 'EN DIRECT', 'CARTE INTERACTIVE', 'FIGAROVOX TRIBUNE', u'VIDÉOS'] )
-blacklist.extend( ['MILLIONS DE DOLLARS', 'INTERVIEW', 'ENTRETIEN', u'VIDÉO', 'INFOGRAPHIE'] )
-blacklist.extend( ['FIGAROVOX', 'TRIBUNE', 'REPORTAGE'] )
-blacklist.extend( ['entre eux', 'Top 14', 'Zapping du Point'] )
-
+blacklist = dataExtern.getBlacklistBeforeEleve()
 def cleanIt( texte ):
     # Rq: l'ordre est important ...
 
@@ -36,7 +31,7 @@ def cleanIt( texte ):
 
     return texte
 
-# load
+# -- load --
 filename = './data_rss/all_title.json'
 alldata = json.loads(open(filename).read())
 
@@ -63,14 +58,6 @@ for post in alldata:
 delta = len(alldata) - len( data )
 print( 'nbr posts perdu: %i ' %  delta )
 
-# -- save JSON --
-json_file = filename
-with open(json_file, 'w') as outfile:
-    json.dump(data, outfile)
-
-print( ' [formatedtext] saved in %s'%json_file )
-
-
 #  --- ELeVE ---
 print( '   - ELeVE -')
 
@@ -92,40 +79,48 @@ from eleve import Segmenter
 s = Segmenter(storage)
 # segment up to 4-grams, if we used the same storage as before.
 
-
-nuplets_set = set()
+nuplets_count = {}
 for post in data:
     phrase = post['formatedtext']
     segmentedPhrase = s.segment( phrase.split(' ') )
 
+    nuplet_set = set()
     for nuplet in segmentedPhrase:
         while '' in nuplet: nuplet.remove( '' )
 
-        if len( nuplet )>1:
+        if len( nuplet ) > 1:
             nuplet = ' '.join( nuplet )
 
-            # enleve l'apostrophe du debut:
+            # enleve l'apostrophe du debut si besoin:
             nuplet_apoless = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet)
 
-            nuplets_set.add( nuplet_apoless )
+            nuplet_set.add( nuplet_apoless )
 
-# Count global:
-nuplets_count = {}
-seuil = 3
-print( ' // freq. min pour garder un Nuplet: %i' % seuil )
+    # -- count local & global
+    if 'count' not in post:  post['count'] = {}
 
-all_text = ' '.join( [post['formatedtext'] for post in data] )
-for nuplet in nuplets_set:
-     c = all_text.count( nuplet )
-     if c > seuil:
-         nuplets_count[ nuplet ] = c
+    for nuplet in nuplet_set:
+        c = post['formatedtext'].count( nuplet )
 
+        # remove nuplet from formatedtext to count 1-uplets
+        post['formatedtext'] = post['formatedtext'].replace(  nuplet, u'<>' )
+
+        post['count'].update( {nuplet:c} )
+
+        # count global
+        if nuplet in nuplets_count:
+            nuplets_count[nuplet] += c
+        else:
+            nuplets_count[nuplet] = c
+
+#seuil = 3
+#print( ' // freq. min pour garder un Nuplet: %i' % seuil )
+
+# --  print Nuplets
 sorted_nuplets = sorted( nuplets_count.items(), key=lambda x:x[1], reverse=True )
+output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets[:100] ]
 
-output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets ]# if x[1] > 1 ]
-
-print( '; '.join( output) )
-
+print( '; '.join( output ) )
 print('\n')
 
 # save JSON
@@ -134,3 +129,53 @@ with open(json_file, 'w') as outfile:
     json.dump(nuplets_count, outfile)
 
 print( ' Nuplets saved in %s'%json_file )
+
+
+# -- save JSON --
+json_file = filename
+with open(json_file, 'w') as outfile:
+    json.dump(data, outfile)
+
+print( ' [formatedtext]&[count] saved in %s'%json_file )
+
+# ---------- After ELeVE ----------
+print( '   - After ELeVE -')
+
+dicoFr = dataExtern.getDicoFr()
+
+blacklist = dataExtern.getBlacklistAfterEleve()
+
+
+# count words
+words_count = {}
+for post in data:
+    mots = post['formatedtext'].split(' ')
+
+    for mot in mots:
+        mot = re.sub(u"[Aa]ujourd.hui",  '', mot)
+        mot = re.sub(u"jusqu.([àa]|en)",  '', mot)
+
+        mot = re.sub(u"(^|\s)[LldDsSnNcCjJ]['`’]", "", mot)
+        mot = re.sub(u"(^|\s)qu['`’]", "", mot)
+        mot = re.sub(r"[0-9\.\(\)]", u'', mot)
+        mot = re.sub(r"-$", u'', mot)
+        mot = re.sub(r"\s", u'', mot)
+
+        if mot.lower() in dicoFr:
+            mot = mot.lower()
+
+        #if mot.endswith( 's' ) and mot[0:-1] in dicoFr:
+        #    mot = mot[:-1]      ... pas une bonne idee dans>dan
+
+        if len( mot )>2 and mot.lower() not in blacklist:
+            if mot in words_count:
+                words_count[ mot ] += 1
+            elif mot:
+                words_count[ mot ] = 1
+
+            if mot in post['count']:
+                post['count'][ mot ] += 1
+            elif mot:
+                post['count'][ mot ] = 1
+
+dataExtern.printSorted( words_count , 200)

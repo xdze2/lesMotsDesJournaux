@@ -13,51 +13,16 @@ import re
 
 print(' --- Get Data ---')
 
-# ---- conf. ---
-data_dir = './data_rss/'
-
-Journaux = []
-
-name = 'leMonde'
-url = 'http://www.lemonde.fr/rss/une.xml'
-getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
-
-name = 'Liberation'
-url = 'http://rss.liberation.fr/rss/latest/'
-getEntry = lambda x:x['feed']['entry']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
-
-name = 'LeFigaro'
-url = 'http://rss.lefigaro.fr/lefigaro/laune?format=xml'
-getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
-
-name = 'courrierinternational'
-url = 'http://www.courrierinternational.com/feed/category/6260/rss.xml'
-getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
-
-name = 'lesechos'
-url = 'http://www.lesechos.fr/rss/rss_articles_journal.xml'
-getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
 
 
-name = 'lepoint'
-url = 'http://www.lepoint.fr/24h-infos/rss.xml'
-getEntry = lambda x:x['rss']['channel']['item']
-Journaux.append( {'name':name, 'url':url, 'getEntry':getEntry} )
-
+import config_flux
 # ------------------------
-def getFilename(name):
-    filename = data_dir + 'rss_save_' + name + '.json'
-    return filename
+
 
 def update( flux ):
     url = flux['url']
     name = flux['name']
-    filename = getFilename( name )
+    filename = config_flux.getFilename( name )
     getEntry = flux['getEntry']
 
     # load
@@ -100,84 +65,11 @@ def update( flux ):
 
 
 
-# -- Remove HTML Tags --
-
-def strip_tags(data):
-    p = re.compile(r'<.*?>')
-    return p.sub('', data)
-# ---
-
-
-def getdata(filename, src):
-    #filename = './data_rss/rss_save_leMonde.json'
-
-    print(  filename )
-    loaded_data = json.loads(open(filename).read())
-
-    mydata = []
-    for post in loaded_data.values():
-
-        mypost = {}
-        if 'date' in post:
-            mypost['date'] = post['date']
-        elif 'pubDate' in post:
-            mypost['date'] = post['pubDate']
-        elif 'updated' in post:
-            mypost['date'] = post['updated']
-
-        mypost['source'] = src
-        mypost['title'] = post['title']
-
-        if 'description' in post:
-            if post['description']:
-                mypost['description'] = strip_tags( post['description'] )
-        elif 'summary' in post:
-            if u'#text' in post['summary']:
-                mypost['description'] = strip_tags( post['summary'][u'#text'] )
-
-        mydata.append( mypost )
-
-    return mydata
-
-
 #  -- GO --
+
+Journaux = config_flux.getJournaux()
+
 for journal in Journaux:
     update( journal )
-
-# -- parse and save --
-print(  '\n Consolide:' )
-alldata = []
-for journal in Journaux:
-    filename = getFilename( journal['name'] )
-    alldata.extend( getdata(filename, journal['name'])  )
-
-print(  '  nombre de posts: %i'%len( alldata ) )
-
-# Work with DATE
-from datetime import datetime
-
-
-for post in alldata:
-    txt_date = post['date']
-    txt_date = txt_date.replace(u'GMT', u'')
-    txt_date = re.sub('\+[0-9]{4}', u'', txt_date) # !! not the real hour ..
-    txt_date = txt_date.strip()
-
-    try:
-        date = datetime.strptime(txt_date, '%a,  %d %b %Y %H:%M:%S')
-    except:
-        txt_date = re.sub('\+0[0-9]:00$', u'', txt_date) # !! not the real hour ..
-        try:
-            date = datetime.strptime(txt_date, '%Y-%m-%dT%H:%M:%S')
-        except:
-            print(  txt_date )
-    post['date'] = date.isoformat()
-
-# save JSON
-json_file = data_dir + 'all_title.json'
-with open(json_file, 'w') as outfile:
-    json.dump(alldata, outfile)
-    print( ' Parsed data saved in %s'%json_file )
-
 
 print('\n ')

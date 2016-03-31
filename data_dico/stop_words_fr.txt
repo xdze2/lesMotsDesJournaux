@@ -213,3 +213,6 @@ lors
 comme
 dont
 quand
+ceux
+cela
+ceci

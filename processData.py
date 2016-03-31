@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import json
 import re
 
@@ -99,19 +101,25 @@ for post in data:
     # -- count local & global
     if 'count' not in post:  post['count'] = {}
 
-    for nuplet in nuplet_set:
+    # on commence par le plus grand, <Myriam <El Khomri>>
+    # mais existe aussi : <élections <législatives> partielles> ??
+    sortedNuplet = sorted( nuplet_set, key=lambda x:len(x), reverse=True )
+    for nuplet in sortedNuplet:
         c = post['formatedtext'].count( nuplet )
 
-        # remove nuplet from formatedtext to count 1-uplets
-        post['formatedtext'] = post['formatedtext'].replace(  nuplet, u'<>' )
+        # if c == 0:
+        #     print( 'zero? ... %s'%nuplet )
+        #     print( sortedNuplet )
+        #     print( '  %s\n'%post['formatedtext'])
+        if c>0:
+            post['formatedtext'] = post['formatedtext'].replace(  nuplet, u'<>' )
+            post['count'].update( {nuplet:c} )
 
-        post['count'].update( {nuplet:c} )
-
-        # count global
-        if nuplet in nuplets_count:
-            nuplets_count[nuplet] += c
-        else:
-            nuplets_count[nuplet] = c
+            # count global
+            if nuplet in nuplets_count:
+                nuplets_count[nuplet] += c
+            else:
+                nuplets_count[nuplet] = c
 
 #seuil = 3
 #print( ' // freq. min pour garder un Nuplet: %i' % seuil )
@@ -123,20 +131,13 @@ output = [ x[0]+' (%i)'%x[1] for x in sorted_nuplets[:100] ]
 print( '; '.join( output ) )
 print('\n')
 
-# save JSON
-json_file = './data_rss/data_nuplets.json'
-with open(json_file, 'w') as outfile:
-    json.dump(nuplets_count, outfile)
+# # -- save JSON --
+# json_file = './data_rss/count_global.json'
+# with open(json_file, 'w') as outfile:
+#     json.dump(nuplets_count, outfile)
+#
+# print( ' Nuplets saved in %s'%json_file )
 
-print( ' Nuplets saved in %s'%json_file )
-
-
-# -- save JSON --
-json_file = filename
-with open(json_file, 'w') as outfile:
-    json.dump(data, outfile)
-
-print( ' [formatedtext]&[count] saved in %s'%json_file )
 
 # ---------- After ELeVE ----------
 print( '   - After ELeVE -')
@@ -147,7 +148,7 @@ blacklist = dataExtern.getBlacklistAfterEleve()
 
 
 # count words
-words_count = {}
+words_count = nuplets_count  # merge nuplets et single
 for post in data:
     mots = post['formatedtext'].split(' ')
 
@@ -179,3 +180,19 @@ for post in data:
                 post['count'][ mot ] = 1
 
 dataExtern.printSorted( words_count , 200)
+
+
+# -- save JSON --
+json_file = filename
+with open(json_file, 'w') as outfile:
+    json.dump(data, outfile)
+
+print( ' [formatedtext]&[count] saved in %s'%json_file )
+
+
+# -- save JSON --
+json_file = './data_rss/count_global.json'
+with open(json_file, 'w') as outfile:
+    json.dump(words_count, outfile)
+
+print( ' words_count saved in %s'%json_file )

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # Load "liste des mots"
 import codecs
 import re
@@ -27,7 +29,7 @@ def getBlacklistBeforeEleve():
     blacklist.extend( [u'LE SCAN TÉLÉ', u'LE SCAN ÉCO', u'LE SCAN ECO' , u"Toute l'actualité", u"Le Point", u'INFO LE FIGARO'] )
     blacklist.extend( ['Le Monde', 'EN DIRECT', 'CARTE INTERACTIVE', 'FIGAROVOX TRIBUNE', u'VIDÉOS'] )
     blacklist.extend( ['MILLIONS DE DOLLARS', 'INTERVIEW', 'ENTRETIEN', u'VIDÉO', 'INFOGRAPHIE'] )
-    blacklist.extend( ['FIGAROVOX', 'TRIBUNE', 'REPORTAGE'] )
+    blacklist.extend( ['FIGAROVOX', 'TRIBUNE', 'REPORTAGE', 'FOCUS'] )
     blacklist.extend( ['entre eux', 'Top 14', 'Zapping du Point'] )
 
     return blacklist

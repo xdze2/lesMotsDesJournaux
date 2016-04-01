@@ -9,7 +9,7 @@ import json
 import os
 import collections
 import re
-
+from datetime import datetime
 
 # -- Remove HTML Tags --
 
@@ -34,6 +34,8 @@ def getdata(filename, src):
             mypost['date'] = post['pubDate']
         elif 'updated' in post:
             mypost['date'] = post['updated']
+
+
 
         mypost['source'] = src
         mypost['title'] = post['title']
@@ -68,7 +70,6 @@ print(  '  nombre de posts: %i'%len( alldata ) )
 
 
 # Work with DATE
-from datetime import datetime
 
 for post in alldata:
     txt_date = post['date']
@@ -85,6 +86,11 @@ for post in alldata:
         except:
             print(  txt_date )
     post['date'] = date.isoformat()
+
+    date_str = post['date']
+    date = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S')
+    day_tuple = ( date.day, date.month, date.year )
+    post['day'] = day_tuple
 
 # save JSON
 json_file = './data_rss/all_title.json'

@@ -89,8 +89,14 @@ for post in alldata:
 
     date_str = post['date']
     date = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S')
+
     day_tuple = ( date.day, date.month, date.year )
-    post['day'] = day_tuple
+
+    if date.year <= 2015 or date.month<3: #... :/
+        print(post)
+        day_tuple = (2,  3, 2016)
+
+    post['day'] = '%.2i-%.2i-%i'%day_tuple
 
 # save JSON
 json_file = './data_rss/all_title.json'

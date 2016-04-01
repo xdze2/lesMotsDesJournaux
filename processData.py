@@ -4,7 +4,7 @@ import json
 import re
 
 import dataExtern
-# see https://github.com/kodexlab/eleve
+
 
 print(' --- Process Data ---')
 # --- Data for ELeVE ---
@@ -61,6 +61,7 @@ delta = len(alldata) - len( data )
 print( 'nbr posts perdu: %i ' %  delta )
 
 #  --- ELeVE ---
+# see https://github.com/kodexlab/eleve
 print( '   - ELeVE -')
 
 from eleve import MemoryStorage
@@ -79,15 +80,13 @@ print( 'nombre de mots: %i ' % n )
 
 from eleve import Segmenter
 s = Segmenter(storage)
-# segment up to 4-grams, if we used the same storage as before.
 
 dicoFr = dataExtern.getDicoFr()
 blacklist = dataExtern.getBlacklistAfterEleve()
 
-
+count_by_day = {}
 words_count = {}
 for post in data:
-    if 'count' not in post:  post['count'] = {}
 
     phrase = post['formatedtext']
     segmentedPhrase = s.segment( phrase.split(' ') )
@@ -95,22 +94,10 @@ for post in data:
     for nuplet in segmentedPhrase:
         while '' in nuplet: nuplet.remove( '' )
         if not nuplet: continue
-
         if len( nuplet ) > 1:
             nuplet = ' '.join( nuplet )
             # enleve l'apostrophe du debut si besoin:
             nuplet = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet)
-
-            # count global
-            if nuplet in words_count:
-                words_count[ nuplet ] += 1
-            else:
-                words_count[ nuplet ] = 1
-
-            if nuplet in post['count']:
-                post['count'][ nuplet ] += 1
-            elif nuplet:
-                post['count'][ nuplet ] = 1
 
         elif len( nuplet[0] )>2:
             mot = nuplet[0]
@@ -127,16 +114,32 @@ for post in data:
                 mot = mot.lower()
 
             if len(mot)>2 and mot not in blacklist:
-                if mot in words_count:
-                    words_count[ mot ] += 1
-                elif mot:
-                    words_count[ mot ] = 1
+                nuplet = mot
+            else:
+                nuplet = None
+        else:
+            nuplet = None
 
-                if mot in post['count']:
-                    post['count'][ mot ] += 1
-                elif mot:
-                    post['count'][ mot ] = 1
+        if nuplet:
+            # count global
+            if nuplet in words_count:
+                words_count[ nuplet ] += 1
+            else:
+                words_count[ nuplet ] = 1
 
+            if 'count' not in post:  post['count'] = {}
+            if nuplet in post['count']:
+                post['count'][ nuplet ] += 1
+            elif nuplet:
+                post['count'][ nuplet ] = 1
+
+            day =  post['day']
+            if nuplet not in count_by_day: count_by_day[nuplet] = {}
+            
+            if day in count_by_day[nuplet]:
+                count_by_day[ nuplet ][day] += 1
+            elif nuplet:
+                count_by_day[ nuplet ][day] = 1
 
 # --  print words_count
 sorted_words = sorted( words_count.items(), key=lambda x:x[1], reverse=True )
@@ -145,6 +148,23 @@ print( '\t'.join( output ) )
 print('\n')
 
 print('  -nombre de mot: %i'%len(words_count ))
+print('  -nombre de jour: %i'%len(count_by_day ))
+
+
+# -- save JSON --
+json_file = './data_rss/count_global.json'
+with open(json_file, 'w') as outfile:
+    json.dump(words_count, outfile)
+
+print( ' words_count saved in %s'%json_file )
+
+# -- save JSON --
+json_file = './data_rss/count_by_day.json'
+with open(json_file, 'w') as outfile:
+    json.dump(count_by_day, outfile)
+
+print( ' count_by_day saved in %s'%json_file )
+
 
 # # -- save JSON --
 # json_file = './data_rss/count_global.json'
@@ -215,11 +235,3 @@ print('  -nombre de mot: %i'%len(words_count ))
 #     json.dump(data, outfile)
 #
 # print( ' [formatedtext]&[count] saved in %s'%json_file )
-
-
-# -- save JSON --
-json_file = './data_rss/count_global.json'
-with open(json_file, 'w') as outfile:
-    json.dump(words_count, outfile)
-
-print( ' words_count saved in %s'%json_file )

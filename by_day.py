@@ -26,12 +26,15 @@ def jour_de_la_semaine(i):
     d = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
     return d[i]
 
-def updateDicoCount( base, newdico ):
+def updateDicoCount( base, newdico, i ):
     for k, c in newdico.items():
+        #if 'count' not in base[k]: base[k]['count'] = {}
         if k in base:
-            base[k] += c
+            base[k]['count'] += c
+            base[k]['post'].append( i )
         else:
-            base[k] = c
+            base[k] = {'count': c, 'post':[i]}
+
     return base
 
 
@@ -46,7 +49,7 @@ for i, post in enumerate( data ):
     if date_tuple not in count_by_day:
         count_by_day[ date_tuple ] = {}
 
-    count_by_day[date_tuple] = updateDicoCount(count_by_day[date_tuple], post['count']  )
+    count_by_day[date_tuple] = updateDicoCount(count_by_day[date_tuple], post['count'], i  )
 
 # s = sorted( count_by_day[(29, 3, 2016)].items(), key=lambda x:x[1], reverse=False )
 # print( ' '.join( [ '%s (%i)'%x for x in s ][-80:] ) )
@@ -70,20 +73,27 @@ for day in count_by_day.keys():
 
     count_today = count_by_day[day]
 
-    n_mots_today = sum( count_today.values() )
+    n_mots_today = float( sum( [ x['count'] for x in count_today.values() ] ))
 
-    for mot, c in count_today.items():
+    for mot, dico_mot in count_today.items():
+        c_today = dico_mot['count']
         if mot in dicoFr and words_count[mot] > 10:
-            w_count = dicoFr[mot]*1e-6*nombre_mots
-        elif words_count[mot] > 10:
-            w_count = words_count[mot]/nombre_mots
+            c_corpus = 1e6 #dicoFr[mot]*1e-6*nombre_mots
+        elif words_count[mot] > c_today:
+            c_corpus = words_count[mot]
         else:
-            w_count = 1/n_mots_today
+            c_corpus = c_today #1e6/n_mots_today
 
-        proba_random = w_count*n_mots_today
-        new_c = c/float( proba_random )
+        #proba_random = w_count*n_mots_today
+        score = c_today/float( c_corpus )
 
-        count_by_day[day][ mot ] = new_c
+        count_by_day[day][ mot ]['score'] = score #new_c
 
-s = sorted( count_by_day[(31, 3, 2016)].items(), key=lambda x:x[1], reverse=True )
-print( ' '.join( [ '%s (%.2f)'%x for x in s ][:80] ) )
+s = sorted( count_by_day[(31, 3, 2016)].items(), key=lambda x:x[1]['score'], reverse=True )
+s = [ (mot, c['count'], c['score']) for mot, c in s  ]
+print( ' '.join( [ '%s (%i, %.2f)'% x for x in s ][:30] ) )
+
+print('\n')
+s = sorted( count_by_day[(30, 3, 2016)].items(), key=lambda x:x[1]['score'], reverse=True )
+s = [ (mot, c['count'], c['score']) for mot, c in s  ]
+print( ' '.join( [ '%s (%i, %.2f)'% x for x in s ][:30] ) )

@@ -39,7 +39,7 @@ def getBlacklistAfterEleve():
     blacklist = ['etat', 'etats', 'euros', u'est-il', 'actu', u'a-t-il', 'ont-ils', 'a-t-on', 'va-t-il', u'elle-même']
     blacklist.extend( ['axa', u'après-midi', 'a-t-elle', 'faut-il', u'peut-être', 'the', 'sont-elles'] )
     blacklist.extend(['week-end', u'lui-même', u"qu'on", 'celle-ci', 'celui-ci', u'au-delà', 'est-elle', 'sont-ils'])
-    blacklist.extend([u'Libé', u'œil', u'œuvre', 'zapping', 'editorial'])
+    blacklist.extend([u'Libé', u'œil', u'œuvre', 'zapping', 'editorial', 'aura-t-il'])
     # stopwords
     #blacklist.extend(['les', 'des', u'est', u"été", 'pour', 'contre', u'pas', 'dans', 'qui', 'que', 'lui', 'ses', 'une'])
     #blacklist.extend(['avait', 'sur', 'voici', 'avec', 'comme', 'cela', 'aux', 'cette', 'par', 'selon', u'après', 'fait', 'faire'])

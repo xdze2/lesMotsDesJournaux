@@ -140,7 +140,7 @@ for post in data:
 
 # --  print words_count
 sorted_words = sorted( words_count.items(), key=lambda x:x[1], reverse=True )
-output = [ x[0]+', ' for x in sorted_words[:600] ] #+' (%i)'%x[1]
+output = [ x[0]+' %i, '%x[1] for x in sorted_words[:600] ] #+' (%i)'%x[1]
 print( '\t'.join( output ) )
 print('\n')
 

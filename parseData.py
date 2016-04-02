@@ -92,9 +92,6 @@ for post in alldata:
 
     day_tuple = ( date.day, date.month, date.year )
 
-    if date.year <= 2015 or date.month<3: #... :/
-        print(post)
-        day_tuple = (2,  3, 2016)
 
     post['day'] = '%.2i-%.2i-%i'%day_tuple
 

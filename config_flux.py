@@ -1,4 +1,8 @@
 
+# note:
+#  http://www.humanite.fr/rss/actu.rss
+# http://www.francesoir.fr/rss.xml
+# http://www.leparisien.fr/actualites-a-la-une.rss.xml#xtor=RSS-1481423633
 
 def getJournaux():
 

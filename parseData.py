@@ -35,8 +35,6 @@ def getdata(filename, src):
         elif 'updated' in post:
             mypost['date'] = post['updated']
 
-
-
         mypost['source'] = src
         mypost['title'] = post['title']
 

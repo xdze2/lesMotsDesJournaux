@@ -26,8 +26,8 @@ def cleanIt( texte ):
 
     texte = re.sub(r'(FIGAROVOX/[A-ZÉ\s]+)', r'', texte)
 
-    # for mot in blacklist:
-    #      texte = texte.replace( mot, u'')
+    for mot in blacklist:
+        texte = texte.replace( mot, u'')
 
     texte = re.sub(r'\s[.\-]\s', u' ', texte) # point ou tiret solo
     texte = re.sub(r'\s', u' ', texte) # remove tab and other strange space

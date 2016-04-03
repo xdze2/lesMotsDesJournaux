@@ -1,3 +1,4 @@
+# coding: utf-8
 
 # note:
 #  http://www.humanite.fr/rss/actu.rss

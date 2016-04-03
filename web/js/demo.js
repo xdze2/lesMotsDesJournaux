@@ -55,8 +55,8 @@ Demo = {
             offset = n*Demo.day_width + Demo.param.daymargin;
             Demo.canvas.blocks(blocks, Demo.param.day_width*n, day);
     }
-    
-    
+
+
 
   },
 
@@ -87,7 +87,7 @@ Demo = {
       daymargin:8
       },
   getFontSize: function(i){
-            var fontsize_min = 14, fontsize;
+            var fontsize_min = 12, fontsize;
             return Math.round( fontsize_min*i );
       },
   evaluateSize: function(blocks) {
@@ -128,7 +128,7 @@ Demo = {
       for (n = 0 ; n < criteria.length ; n++) {
         diff = Demo.sort[criteria[n]](a,b);
         if (diff != 0)
-          return diff;  
+          return diff;
       }
       return 0;
     },
@@ -155,7 +155,7 @@ Demo = {
       Demo.el.draw.fillStyle = color;
       Demo.el.draw.fillRect(x + 0.5, y + 0.5, w, h);
       Demo.el.draw.font= Demo.getFontSize( size )+"px Georgia Bold";
-      Demo.el.draw.textBaseline="hanging"; 
+      Demo.el.draw.textBaseline="hanging";
       Demo.el.draw.fillStyle = 'black';
       Demo.el.draw.fillText(label, x+pad, y+pad);
     },
@@ -173,7 +173,7 @@ Demo = {
           Demo.canvas.rect(offset + block.fit.x , topM+block.fit.y, block.w, block.h, Demo.color(n), block.label, block.size);
       }
       Demo.el.draw.font= "18px Georgia";
-      Demo.el.draw.textBaseline="hanging"; 
+      Demo.el.draw.textBaseline="hanging";
       Demo.el.draw.fillStyle = 'black';
       Demo.el.draw.fillText( day, offset+2, 2);
     }
@@ -203,6 +203,3 @@ var data_filename = 'data.json'
 $.getJSON(data_filename, function (json) {
       $( Demo.init(json) );
 });
-
-
-

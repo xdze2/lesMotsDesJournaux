@@ -28,3 +28,32 @@ save nuplets_count
   count, merge, dicoDuSignifiant...
 
 /count by day...
+
+
+TODO
+=====
+* parse to DB.posts   rss2db
+* cluster for each day
+* Flask web site
+* Layout d3js+svg...
+* lundi vs lundi
+* detect gram in ngram : "vache" < "vache folle"
+* work with date... fr //  , en --?
+
+
+Fonctionalités possible
+=======================
+* zoom _ Group by day/week/month
+* search for a date
+* search for a word
+* see title/descript. for a word/day
+* see TimeLine for a word/ or list of words
+* compare source - journaux
+* smartphone support
+* [plus de mots] affiche plus de mots
+
+Interface
+=========
+* scroll locked + inertie (smartphone like)
+http://darsa.in/sly/examples/horizontal.html
+* full time line en bas/fond -> selection date + affichage time si mot

@@ -76,3 +76,25 @@ def printSorted(dico, n = 200 ):
     sList = [ '%s (%i) ' % (m, c) for m, c in myDico_sorted[:n] ]
 
     print( ' '.join( sList ) )
+
+
+
+# Print iterations progress
+# http://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
+import  sys
+def printProgress (iteration, total, prefix = '', suffix = '', decimals = 0, barLength = 60):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iterations  - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+    """
+    filledLength    = int(round(barLength * iteration / float(total)))
+    percents        = round(100.00 * (iteration / float(total)), decimals)
+    bar             = '#' * filledLength + '-' * (barLength - filledLength)
+    sys.stdout.write('%s [%s] %s%s %s\r' % (prefix, bar, percents, '%', suffix)),
+    sys.stdout.flush()
+    if iteration >= total-1:
+        print("\n")

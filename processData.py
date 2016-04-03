@@ -131,6 +131,8 @@ for postid, post in enumerate(data):
             oc = dict(mot=ngram, day=post['day'], source=post['source'], postid=postid)
             occurences.insert( oc )
 
+        dataExtern.printProgress(postid, len(data))
+
 db.commit()
 print( ' .. database commit: %i .. ' % occurences.count() )
 

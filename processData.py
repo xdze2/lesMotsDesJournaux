@@ -4,7 +4,7 @@ import json
 import re
 
 import dataExtern
-
+import dataset
 
 print(' --- Process Data ---')
 # --- Data for ELeVE ---
@@ -24,8 +24,10 @@ def cleanIt( texte ):
     # espace dans les chiffres 10_000->10000:
     texte = re.sub(r'([0-9]+)\s([0-9]+)', r'\1\2', texte)
 
-    for mot in blacklist:
-         texte = texte.replace( mot, u'')
+    texte = re.sub(r'(FIGAROVOX/[A-ZÉ\s]+)', r'', texte)
+
+    # for mot in blacklist:
+    #      texte = texte.replace( mot, u'')
 
     texte = re.sub(r'\s[.\-]\s', u' ', texte) # point ou tiret solo
     texte = re.sub(r'\s', u' ', texte) # remove tab and other strange space
@@ -35,12 +37,11 @@ def cleanIt( texte ):
 
 # -- load --
 filename = './data_rss/all_title.json'
-alldata = json.loads(open(filename).read())
+data = json.loads(open(filename).read())
 
-print( 'nombre de news: %i' % len(alldata) )
+print( 'nombre de news: %i' % len( data ) )
 
-data = []
-for post in alldata:
+for post in data:
     texte = ''
 
     if 'title' in post:
@@ -53,12 +54,9 @@ for post in alldata:
 
     if texte:
         post['formatedtext'] = cleanIt( texte )
-        data.append( post )
     else:
         print(  post )
 
-delta = len(alldata) - len( data )
-print( 'nbr posts perdu: %i ' %  delta )
 
 #  --- ELeVE ---
 # see https://github.com/kodexlab/eleve
@@ -77,94 +75,89 @@ for post in data:
 
 print( 'nombre de mots: %i ' % n )
 
-
+print( '   - Segment & count -')
 from eleve import Segmenter
 s = Segmenter(storage)
 
 dicoFr = dataExtern.getDicoFr()
 blacklist = dataExtern.getBlacklistAfterEleve()
 
-count_by_day = {}
-words_count = {}
-for post in data:
+# --- create DB ---
+import os
+
+db_file = 'database_occurences.db'
+
+if os.path.isfile('./'+db_file):
+    os.remove( db_file )
+    print( '  // %s removed'% db_file)
+
+db = dataset.connect('sqlite:///%s'%db_file)
+occurences = db.create_table( 'occurences' )
+db.begin()
+
+for postid, post in enumerate(data):
 
     phrase = post['formatedtext']
     segmentedPhrase = s.segment( phrase.split(' ') )
 
-    for nuplet in segmentedPhrase:
-        while '' in nuplet: nuplet.remove( '' )
-        if not nuplet: continue
-        if len( nuplet ) > 1:
-            nuplet = ' '.join( nuplet )
+    for ngram in segmentedPhrase:
+        while '' in ngram: ngram.remove( '' )
+        if not ngram: continue
+        if len( ngram ) > 1:
+            ngram = ' '.join( ngram )
             # enleve l'apostrophe du debut si besoin:
-            nuplet = re.sub(r"^[LldDsSnNcC][’']", u'', nuplet)
+            ngram = re.sub(r"^[LldDsSnNcC][’']", u'', ngram)
 
-        elif len( nuplet[0] )>2:
-            mot = nuplet[0]
-            mot = re.sub(u"[Aa]ujourd.hui",  '', mot)
-            mot = re.sub(u"jusqu.([àa]|en)",  '', mot)
+        elif len( ngram[0] )>2:
+            ngram = ngram[0]
+            ngram = re.sub(u"[Aa]ujourd.hui",  '', ngram)
+            ngram = re.sub(u"jusqu.([àa]|en)",  '', ngram)
 
-            mot = re.sub(u"(^|\s)[LldDsSnNcCjJ]['`’]", "", mot)
-            mot = re.sub(u"(^|\s)qu['`’]", "", mot)
-            mot = re.sub(r"[0-9\.\(\)]", u'', mot)
-            mot = re.sub(r"-$", u'', mot)
-            mot = re.sub(r"\s", u'', mot)
+            ngram = re.sub(u"(^|\s)[LldDsSnNcCjJ]['`’]", "", ngram)
+            ngram = re.sub(u"(^|\s)qu['`’]", "", ngram)
+            ngram = re.sub(r"[0-9\.\(\)]", u'', ngram)
+            ngram = re.sub(r"-$", u'', ngram)
+            ngram = re.sub(r"\s", u'', ngram)
 
-            if mot.lower() in dicoFr and mot != 'Paris':
-                mot = mot.lower()
+            if ngram.lower() in dicoFr and ngram != 'Paris':
+                ngram = ngram.lower()
 
-            if len(mot)>2 and mot not in blacklist:
-                nuplet = mot
-            else:
-                nuplet = None
-        else:
-            nuplet = None
+        if len(ngram)>2 and ngram not in blacklist:
+            oc = dict(mot=ngram, day=post['day'], source=post['source'], postid=postid)
+            occurences.insert( oc )
 
-        if nuplet:
-            # count global
-            if nuplet in words_count:
-                words_count[ nuplet ] += 1
-            else:
-                words_count[ nuplet ] = 1
+db.commit()
+print( ' .. database commit: %i .. ' % occurences.count() )
 
-            if 'count' not in post:  post['count'] = {}
-            if nuplet in post['count']:
-                post['count'][ nuplet ] += 1
-            elif nuplet:
-                post['count'][ nuplet ] = 1
-
-            day =  post['day']
-            if nuplet not in count_by_day: count_by_day[nuplet] = {}
-            
-            if day in count_by_day[nuplet]:
-                count_by_day[ nuplet ][day] += 1
-            elif nuplet:
-                count_by_day[ nuplet ][day] = 1
-
-# --  print words_count
-sorted_words = sorted( words_count.items(), key=lambda x:x[1], reverse=True )
-output = [ x[0]+' %i, '%x[1] for x in sorted_words[:600] ] #+' (%i)'%x[1]
-print( '\t'.join( output ) )
-print('\n')
-
-print('  -nombre de mot: %i'%len(words_count ))
-print('  -nombre de jour: %i'%len(count_by_day ))
+# # -- export all users into a single CSV
+# result = db['occurences'].all()
+# dataset.freeze(result, format='csv', filename='occurences.csv')
 
 
-# -- save JSON --
-json_file = './data_rss/count_global.json'
-with open(json_file, 'w') as outfile:
-    json.dump(words_count, outfile)
-
-print( ' words_count saved in %s'%json_file )
-
-# -- save JSON --
-json_file = './data_rss/count_by_day.json'
-with open(json_file, 'w') as outfile:
-    json.dump(count_by_day, outfile)
-
-print( ' count_by_day saved in %s'%json_file )
-
+# # --  print words_count
+# sorted_words = sorted( words_count.items(), key=lambda x:x[1], reverse=True )
+# output = [ x[0]+' %i, '%x[1] for x in sorted_words[:600] ] #+' (%i)'%x[1]
+# print( '\t'.join( output ) )
+# print('\n')
+#
+# print('  -nombre de mot: %i'%len(words_count ))
+# print('  -nombre de jour: %i'%len(count_by_day ))
+#
+#
+# # -- save JSON --
+# json_file = './data_rss/count_global.json'
+# with open(json_file, 'w') as outfile:
+#     json.dump(words_count, outfile)
+#
+# print( ' words_count saved in %s'%json_file )
+#
+# # -- save JSON --
+# json_file = './data_rss/count_by_day.json'
+# with open(json_file, 'w') as outfile:
+#     json.dump(count_by_day, outfile)
+#
+# print( ' count_by_day saved in %s'%json_file )
+#
 
 # # -- save JSON --
 # json_file = './data_rss/count_global.json'

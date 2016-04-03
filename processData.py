@@ -103,12 +103,17 @@ for postid, post in enumerate(data):
     for ngram in segmentedPhrase:
         while '' in ngram: ngram.remove( '' )
         if not ngram: continue
+
         if len( ngram ) > 1:
+            c = storage.query_count( ngram )
+            if c < 10: # 1er filrage
+                segmentedPhrase.extend( [ [x] for x in ngram ] )
+                continue
             ngram = ' '.join( ngram )
             # enleve l'apostrophe du debut si besoin:
             ngram = re.sub(r"^[LldDsSnNcC][’']", u'', ngram)
 
-        elif len( ngram[0] )>2:
+        elif len( ngram[0] )>2 and storage.query_count( ngram )>5:
             ngram = ngram[0]
             ngram = re.sub(u"[Aa]ujourd.hui",  '', ngram)
             ngram = re.sub(u"jusqu.([àa]|en)",  '', ngram)

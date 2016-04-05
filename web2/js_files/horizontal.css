@@ -1,0 +1,58 @@
+
+/*  wrapper */
+.wrap {
+	position: relative;
+	margin: 0;
+	background-color: #ddd;
+}
+
+/* Frame */
+.frame {
+/*	height: 300px; *//*default*/
+	/*line-height: 250px;*/
+	overflow: hidden;
+}
+.frame ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.frame ul li {
+	float: left;
+	width: 1000px; /* default*/
+	height: 400px;
+
+	margin: 0 10px 0 0;
+	padding: 0;
+	background: #343;
+	color: #ddd;
+
+}
+.frame ul li.active {
+	color: #fff;
+	background: #a03232;
+}
+
+/* Scrollbar */
+.scrollbar {
+	margin: 0 0 1em 0;
+	height: 2em;
+	background: #ccc;
+	line-height: 0;
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+.scrollbar .handle {
+	width: 50px;
+	height: 100%;
+	background: #292a33;
+	cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+	position: absolute;
+	top: -9px;
+	left: 0;
+	width: 100%;
+	height: 50px;
+}

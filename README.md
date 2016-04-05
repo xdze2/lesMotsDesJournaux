@@ -40,6 +40,7 @@ TODO
 * detect gram in ngram : "vache" < "vache folle"
 * work with date... fr //  , en --?
 
+* resume un livre... chaque page = un jour
 
 Fonctionalités possible
 =======================

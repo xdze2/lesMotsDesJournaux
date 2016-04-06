@@ -13,13 +13,19 @@ $.getJSON(data_filename, function (data) {
 
 		var maxHeight = windowHeight - 150;
 
+		var targetedDayWidth = 300;
+		var actualDayWidth = windowWidth / Math.floor( windowWidth/targetedDayWidth );
+		console.log(actualDayWidth);
 
     // data
 		$.each( data, function(i, d){
 			var day = d['day']
 			var blocks = d['mots']
 
-			$slidee.append( $('<li />').attr('id', day ) );
+			$slidee.append( $('<li />')
+				.attr('id', day )
+				.css( {width:actualDayWidth } )
+			 );
 			//$('<li />').appendTo( $slidee ).text(day); //, { id : day }
 
 			fillAday( day, blocks, maxHeight  );

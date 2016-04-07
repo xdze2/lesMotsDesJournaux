@@ -16,6 +16,8 @@ import time   # besoin pour time_obj->json
 #         return serial
 #     raise TypeError ("Type not serializable")
 
+print( '... update rss feeds ...' )
+print(" " + time.strftime("%x %X") )
 
 feedsToFetch = { \
     'Liberation_laUne': 'http://rss.liberation.fr/rss/latest/',\
@@ -31,7 +33,8 @@ feedsToFetch = { \
     'lePoint_24hinfo':'http://www.lepoint.fr/24h-infos/rss.xml',\
     'lePoint_chroniques':'http://www.lepoint.fr/chroniques/rss.xml',\
     'FranceSoir': 'http://www.francesoir.fr/rss.xml' ,\
-    'leParisien': 'http://www.leparisien.fr/actualites-a-la-une.rss.xml#xtor=RSS-1481423633'    }
+    'leParisien': 'http://www.leparisien.fr/actualites-a-la-une.rss.xml#xtor=RSS-1481423633',\
+    'courrierinternational':'http://www.courrierinternational.com/feed/all/rss.xml'    }
 
 ## load allfeeds_info
 dir_rssData = './rss_data/'
@@ -42,10 +45,11 @@ if os.path.isfile(feedinfo_filename):
     with open(feedinfo_filename, 'r') as file:
         allfeeds_info = json.load(file)
 
-    print( u'flux oubliées: '+ \
-    ' '.join([ key for key in allfeeds_info.keys() if key not in feedsToFetch]) )
+    fluxoubliees = [ key for key in allfeeds_info.keys() if key not in feedsToFetch]
+    if fluxoubliees:
+        print( u'flux oublié(s): '+' '.join(fluxoubliees) )
 
-# ajoute les nouveaux flux:
+# Ajoute les nouveaux flux:
 for name, url in feedsToFetch.items():
     if name not in allfeeds_info:
         allfeeds_info[name] = {'name':name, 'url':url}
@@ -53,7 +57,7 @@ for name, url in feedsToFetch.items():
 ## ---
 for name, feed_info in allfeeds_info.items():
 
-    print('// Request for %s ...' % feed_info['name'])
+    #print('// Request for %s ...' % feed_info['name'])
 
     ##  --- Query  ---
     if 'etag' in feed_info:
@@ -65,24 +69,24 @@ for name, feed_info in allfeeds_info.items():
 
     ##  --- Tell Status ---
     if 'status' not in data:
-        print( '_Warning_ : no status, %s' %  data['bozo_exception']   )
+        print( name+'_Warning_ : no status, %s' %  data['bozo_exception']   )
     elif data['status'] == 304:
-        print(' pas de nouveaux post /etag/modified/') # mais quand meme des entries...
+        print(name+'_ pas de nouveaux post /etag/modified/') # mais quand meme des entries...
     elif data['status'] == 301:
-        print( '_Warning!_  The feed has permanently moved to a new location. URL updated.' )
+        print( name+'_Warning!_  The feed has permanently moved to a new location. URL updated.' )
         feed_info['url'] = data.href
     elif data['status'] == 410:
-        print( '_Warning!_  the feed is gone. URL removed. '  )
+        print( name+'_Warning!_  the feed is gone. URL removed. '  )
         feed_info['url'] = None
     elif data['status'] == 200:
         #print( '_no problem!  :) _ '  )
         pass
     else:
-        print( '_nop_ status: %i '% data['status'])
+        print( name+'_nop_ status: %i '% data['status'])
 
     ##  --- Tell Bozo ---
     if data['bozo']:
-        print( '_Warning_ : erreur bozo, %s' %  data['bozo_exception']   )
+        print( name+'_Warning_ : erreur bozo, %s' %  data['bozo_exception']   )
 
     ##  --- Go for Entries ---
     if 'entries' in data and len(data['entries'])>0 :
@@ -110,7 +114,7 @@ for name, feed_info in allfeeds_info.items():
 
 
         rss_data.update( new_data )
-        print( '\t  %i posts added, %i total' %  (( len( rss_data )-nEntriesBefore), len(rss_data)) )
+        print( '  '+name+'_   %i posts added, %i total' %  (( len( rss_data )-nEntriesBefore), len(rss_data)) )
 
         # save rss_data file
         with open(filename, 'w') as outfile:
@@ -120,10 +124,8 @@ for name, feed_info in allfeeds_info.items():
     ##  --- update FeedInfo ---
     if 'etag' in data:
         feed_info['etag'] = data['etag']
-        # print( '   etag: ' + data['etag'] )
     elif 'modified' in data:
         feed_info['modified'] = data['modified']
-        # print( '  modified: ' + data['modified'] )
 
     if 'feed' in data and data['feed']:
         feed_info['feed'] = data['feed']
@@ -137,5 +139,3 @@ for name, feed_info in allfeeds_info.items():
 allfeeds_info[ feed_info['name'] ] = feed_info
 with open(feedinfo_filename, 'w') as outfile:
     json.dump(allfeeds_info, outfile )#, default=json_serial)
-
-print( allfeeds_info.keys() )

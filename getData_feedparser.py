@@ -40,6 +40,9 @@ feedsToFetch = { \
 dir_rssData = './data/'
 feedinfo_filename = dir_rssData + 'allfeeds_info.json'
 
+if not os.path.exists(dir_rssData):
+    os.makedirs(dir_rssData)
+
 allfeeds_info = {}
 if os.path.isfile(feedinfo_filename):
     with open(feedinfo_filename, 'r') as file:

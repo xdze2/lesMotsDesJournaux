@@ -35,5 +35,11 @@ Fonctionalités possible
 
 Lib
 ===
+# JS:
 * scroll Sly: http://darsa.in/sly/examples/horizontal.html
 * Bin packing with Packer: https://github.com/jakesgordon/bin-packing
+
+# Python:
+* feedparser
+* ELeVE
+* dataset

@@ -37,7 +37,7 @@ feedsToFetch = { \
     'courrierinternational':'http://www.courrierinternational.com/feed/all/rss.xml'    }
 
 ## load allfeeds_info
-dir_rssData = './rss_data/'
+dir_rssData = './data/'
 feedinfo_filename = dir_rssData + 'allfeeds_info.json'
 
 allfeeds_info = {}

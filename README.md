@@ -15,6 +15,10 @@ TODO
 * work with date... fr //  , en --?
 * full time line en bas/fond -> selection date + affichage time si mot
 
+* infinite height bin_packing (+vertical scroll sur telephone...)
+
+* alternat text sur les labelDay:  aujourd'hui, hier, il ya deux jours..., il y a une semaine, il y a un mois et 1 semaines, jours, il y
+http://stackoverflow.com/questions/21181621/displaying-some-text-when-mouse-is-over-an-input-text-box
 
 * resume un livre... chaque page = un jour
 

@@ -7,6 +7,8 @@ import os
 
 
 import time   # besoin pour time_obj->json
+# see https://docs.python.org/2/library/time.html#time.struct_time
+
 # def json_serial(obj):
 #     """JSON serializer for objects not serializable by default json code"""
 #     print('hello')
@@ -98,6 +100,7 @@ for name, feed_info in allfeeds_info.items():
 
         # load rss_data file
         filename = dir_rssData + 'rss_data_%s.json' % feed_info['name']
+        feed_info['filename'] = filename
 
         if os.path.isfile(filename):
             with open(filename, 'r') as file:

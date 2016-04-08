@@ -74,7 +74,7 @@ for name, feed_info in allfeeds_info.items():
     if 'status' not in data:
         print( name+'_Warning_ : no status, %s' %  data['bozo_exception']   )
     elif data['status'] == 304:
-        print(name+'_ pas de nouveaux post /etag/modified/') # mais quand meme des entries...
+        print( '{:>24s}: pas de nouveaux post (etag or modified)'.format(name) )
     elif data['status'] == 301:
         print( name+'_Warning!_  The feed has permanently moved to a new location. URL updated.' )
         feed_info['url'] = data.href
@@ -106,18 +106,22 @@ for name, feed_info in allfeeds_info.items():
         nEntriesBefore = len( rss_data )
 
         # update dico
-        new_data = {}
+        nRejected = 0
+        nAdded = 0
         for post in data['entries']:
             if 'id' in post:
                 key = post['id']
             elif 'link' in post:
                 key = post['link']
 
-            new_data[ key ] = post
+            if key in rss_data:
+                nRejected += 1
+            else:
+                rss_data[ key ] = post
+                nAdded += 1
 
-
-        rss_data.update( new_data )
-        print( '  '+name+'_   %i posts added, %i total' %  (( len( rss_data )-nEntriesBefore), len(rss_data)) )
+        print( '{:>24s}: {:>3d} added, {:>3d} rejected, {:>5d} total'.format( \
+            name, nAdded, nRejected, len(rss_data) ) )
 
         # save rss_data file
         with open(filename, 'w') as outfile:

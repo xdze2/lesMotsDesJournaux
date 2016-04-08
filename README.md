@@ -20,6 +20,9 @@ TODO
 * alternat text sur les labelDay:  aujourd'hui, hier, il ya deux jours..., il y a une semaine, il y a un mois et 1 semaines, jours, il y
 http://stackoverflow.com/questions/21181621/displaying-some-text-when-mouse-is-over-an-input-text-box
 
+Eventuellement
+==============
+* getData: verifier si max non attend (ex: 20 pour le Monde), reduire le délais si besoin
 * resume un livre... chaque page = un jour
 
 Fonctionalités possible
@@ -33,13 +36,16 @@ Fonctionalités possible
 * smartphone support
 * [plus de mots] affiche plus de mots
 
+
+
+
 Lib
 ===
-# JS:
+## JS:
 * scroll Sly: http://darsa.in/sly/examples/horizontal.html
 * Bin packing with Packer: https://github.com/jakesgordon/bin-packing
 
-# Python:
+## Python:
 * feedparser
-* ELeVE
+* ELeVE: see https://github.com/kodexlab/eleve
 * dataset

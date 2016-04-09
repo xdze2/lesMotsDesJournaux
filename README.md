@@ -20,10 +20,13 @@ TODO
 * alternat text sur les labelDay:  aujourd'hui, hier, il ya deux jours..., il y a une semaine, il y a un mois et 1 semaines, jours, il y
 http://stackoverflow.com/questions/21181621/displaying-some-text-when-mouse-is-over-an-input-text-box
 
+* Faire une lib pour WordsPacking
+
 Eventuellement
 ==============
 * getData: verifier si max non attend (ex: 20 pour le Monde), reduire le délais si besoin
 * resume un livre... chaque page = un jour
+* chercher les doublons dans DB.posts (il y en  a)
 
 Fonctionalités possible
 =======================

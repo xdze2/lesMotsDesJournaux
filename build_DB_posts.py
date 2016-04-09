@@ -5,6 +5,7 @@ import sqlite3
 import re
 from dateutil import parser
 
+
 # -- Remove HTML Tags --
 removeTags = re.compile(r'<.*?>')
 def strip_tags(data):
@@ -45,10 +46,12 @@ for name, feed_info in allfeeds_info.items():
 
         source = name
         title = strip_tags(  datapost['title'] )
+        if not title: title = 'noTitle'
+
         if 'summary' in datapost:
             summary = strip_tags( datapost['summary'] )
         else:
-            summary = None
+            summary = ''
         link = datapost['link']
         if 'published' in datapost:
             datetime_txt = datapost['published']

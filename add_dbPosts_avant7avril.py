@@ -1,13 +1,12 @@
 # coding: utf-8
 
-
-
 import json
 
 import re
 import os
 import sqlite3
 from dateutil import parser
+
 
 # -- Remove HTML Tags --
 removeTags = re.compile(r'<.*?>')
@@ -60,18 +59,19 @@ for name in journaux:
         source = name
         title = post['title']
 
-        try:
-            if 'description' in post:
-                summary_html = post['description']
-            elif 'summary' in post and u'#text' in post['summary']:
-                summary_html =  post['summary'][u'#text']
-        except:
-            print( post )
+        if not title: title = 'noTitle'
+        if 'description' in post:
+            summary_html = post['description']
+        elif 'summary' in post and u'#text' in post['summary']:
+            summary_html =  post['summary'][u'#text']
+        else:
+            summary = ''
 
         if summary_html:
             summary = strip_tags( summary_html )
         else:
-            summary = None
+            summary = ''
+
 
         link = None
 

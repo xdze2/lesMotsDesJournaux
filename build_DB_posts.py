@@ -3,7 +3,7 @@ import os
 import json
 import sqlite3
 import re
-import dateutil
+from dateutil import parser
 
 # -- Remove HTML Tags --
 removeTags = re.compile(r'<.*?>')
@@ -16,7 +16,7 @@ database_filename = './data/data_lmdjx.db'
 # remove if exist DB ...
 if os.path.isfile( database_filename ):
     os.remove( database_filename )
-    print( '  // %s removed'% database_filename)
+    print( ' %s removed'% database_filename)
 
 database_connection = sqlite3.connect(database_filename)
 database = database_connection.cursor()
@@ -55,7 +55,7 @@ for name, feed_info in allfeeds_info.items():
         elif 'updated' in datapost:
             datetime_txt = datapost['updated']
 
-        dt = dateutil.parser.parse( datetime_txt )
+        dt = parser.parse( datetime_txt )
         date = dt.date().isoformat()  # on oublie l'heure
 
         # Insert a row of data
@@ -67,9 +67,9 @@ for name, feed_info in allfeeds_info.items():
 database_connection.commit()
 
 database.execute('SELECT COUNT(*) FROM posts')
-print( 'rows in DB: %i '% database.fetchone()[0])
+print( '\t> rows in DB: %i '% database.fetchone()[0])
 
 # We can also close the connection if we are done with it.
 database_connection.close()
 
-print( '  // %s closed '% database_filename)
+print( '%s closed '% database_filename)

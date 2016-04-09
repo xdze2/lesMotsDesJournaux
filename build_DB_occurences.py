@@ -38,7 +38,7 @@ blacklist_afterEleve = lmdjxtools.blacklist_afterEleve()
 # Create table occurences
 cursor.execute('''DROP TABLE IF EXISTS occurences''')
 cursor.execute('''CREATE TABLE occurences
-             (date text, mot text, source text)''')  #postid?
+             (date text, ngram text, source text)''')  #postid?
 print('\t reset table DB.occurences')
 
 from eleve import Segmenter
@@ -61,13 +61,13 @@ for line in cursor.fetchall():
         if len( ngram ) > 1:
             # Filrage pour les (<1)-grams
             # si le n-gram est trop rare, on le split en 1-gram
-            if storage.query_count( ngram ) > 3:
+            if storage.query_count( ngram ) > 2:
                 ngram = ' '.join( ngram )
             else:
                 segmentedPhrase.extend( [ [x] for x in ngram ] )
                 rejected_ngrams.add( '_'.join( ngram ) )
                 continue
-        elif len( ngram[0] )>2 and storage.query_count( ngram ) > 3 :
+        elif len( ngram[0] )>2:# and storage.query_count( ngram ) > 1 :
             # Filrage pour les 1-grams
             ngram = ngram[0]
         else:
@@ -93,14 +93,18 @@ for line in cursor.fetchall():
 
 
 # log rejected ngrams
-lmdjxtools.log2file( ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
+lmdjxtools.log2file( '%i '%len(rejected_ngrams)+ ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
 
 
 # Save (commit) the changes
 database_connection.commit()
 
+# Some stats on DB.occurences:
 cursor.execute('SELECT COUNT(*) FROM occurences')
 print( '\t %s lines in DB.occurences '% '{:,}'.format( cursor.fetchone()[0] ))
+
+cursor.execute('SELECT COUNT( DISTINCT ngram )  FROM occurences')
+print( '\t %s distinct n-grams in DB.occurences '% '{:,}'.format( cursor.fetchone()[0] ))
 
 # We can also close the connection if we are done with it.
 database_connection.close()

@@ -18,10 +18,10 @@ def format( texte ):
 
     # Rq: l'ordre est important ...
 
-    texte = texte.replace(u'\xa0', u' ') # espace insécable
+    #texte = texte.replace(u'\xa0', u' ') # espace insécable
 
     # Ponctuation:
-    myRe = u'[,;:«»"?!\n\r…©“]'
+    myRe = u'[,;:«»"?!\n\r…©“”]'
     texte = re.sub(myRe, u' ', texte)
 
     # enleve les points en gardant ceux des initials:
@@ -30,7 +30,6 @@ def format( texte ):
     # espace des milliers 10_000->10000:
     texte = re.sub(r'([0-9]+)\s([0-9]+)', r'\1\2', texte)
     texte = re.sub(u'([0-9.,]+)\s([%€])', r'\1\2', texte)  # pourcentage...etc
-
 
     for mot in blacklist_beforeEleve:
         texte = texte.replace( mot, u'')

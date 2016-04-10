@@ -13,7 +13,6 @@ blacklist_beforeEleve =  [u'LE SCAN SPORT', u'EN IMAGES', u'LE SCAN POLITIQUE',\
 
 def format( texte ):
     """ Formate le texte title+description pour ELeVE (DB.posts)
-
     """
 
     # Rq: l'ordre est important ...
@@ -21,7 +20,7 @@ def format( texte ):
     #texte = texte.replace(u'\xa0', u' ') # espace insécable
 
     # Ponctuation:
-    myRe = u"""[,;:«»"'?!\n\r…©“”()]"""
+    myRe = u"""[,;:«»"?!\n\r…©“”()]"""
     texte = re.sub(myRe, u' ', texte)
 
     # enleve les points en gardant ceux des initials:

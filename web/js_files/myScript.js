@@ -31,7 +31,8 @@ $.getJSON(data_filename, function (data) {
 
 			fillAday( day, blocks, maxHeight  );
 		});
-		console.log( $slidee.children('li').length );
+		//console.log( $slidee.children('li').length );
+		
 		/* - Param and call Sly  (scrolling lib) - */
 		$frame.sly({
 			horizontal: 1,
@@ -63,11 +64,27 @@ function fillAday( id, blocks, maxHeight  ){
 	var $mardi = $( '#' + id + ' p' );
 	$mardi.css({ position:'relative', height:maxHeight});
 
+	// Scale score -> size
+	var scoreMin = blocks[0].score;
+  var scoreMax = blocks[0].score;
+
+	 blocks.forEach(function (mot, index, blocks) {
+		 if(index > 0) {
+			 if(mot.score < scoreMin){
+				 scoreMin = mot.score;
+			 }
+			 if(mot.score > scoreMax) {
+				 scoreMax = mot.score;
+			 }
+		 }
+	 });
+ console.log(scoreMax);
+
 	// insert les mots dans le DOM pour avoir leurs taille
 	$.each( blocks, function(i, d){
 		var $mot = $('<span />', {
 			id : d['id'],
-			css : { fontSize : d['size']+"em"	,
+			css : { fontSize : "1em"	, //d['score']+
 							padding: '0px 5px 0px 0px', // t r b l
 							'white-space': 'nowrap',
 							position : 'absolute',

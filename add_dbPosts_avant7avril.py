@@ -14,6 +14,14 @@ def strip_tags(data):
     return removeTags.sub('', data)
 
 
+matchSourceName = { \
+'courrierinternational':'courrierinternational', \
+'leMonde':'leMonde_laUne',\
+'lesechos':'lesEchos_journaldujour',\
+'LeFigaro': 'leFigaro_laUne',\
+'lepoint':'lePoint_24hinfo',\
+'Liberation':'Liberation_laUne' }
+
 # ---
 data_dir = './dataRssAvant6avril/'
 
@@ -56,7 +64,7 @@ for name in journaux:
         dt = parser.parse( datetime_txt )
         date = dt.date().isoformat()  # on oublie l'heure
 
-        source = name
+        source = matchSourceName[name]
         title = post['title']
 
         if not title: title = 'noTitle'

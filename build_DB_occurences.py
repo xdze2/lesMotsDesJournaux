@@ -21,11 +21,12 @@ storage = MemoryStorage()
 n, nPosts = 0, 0
 cursor.execute('SELECT title, summary FROM posts')
 for line in cursor.fetchall():
-    formattedtext = lmdjxtools.format( ' '.join( line )   )
-    mots = formattedtext.split(' ')
-    storage.add_sentence( mots  )
-    n += len( mots )
     nPosts += 1
+    for phrase in line:
+        formattedtext = lmdjxtools.format( phrase )
+        mots = formattedtext.split(' ')
+        storage.add_sentence( mots  )
+        n += len( mots )
 
 print( '\t %s one-grams (non-unique) found in %s sentences'%\
     ( '{:,}'.format(n), '{:,}'.format(nPosts))  )
@@ -50,9 +51,11 @@ cursor.execute('SELECT date, source, title, summary  FROM posts')
 for line in cursor.fetchall():
     date = line[0]
     source = line[1]
-    formattedtext = lmdjxtools.format( ' '.join( line[2:3] )   )
 
-    segmentedPhrase = s.segment( formattedtext.split(' ') )
+    segmentedPhrase = []
+    for phrase in line[2:3]:
+        formattedtext = lmdjxtools.format( phrase   )
+        segmentedPhrase += s.segment( formattedtext.split(' ') )
 
     # print(segmentedPhrase)
 
@@ -61,28 +64,28 @@ for line in cursor.fetchall():
         if len( ngram ) > 1:
             # Filrage pour les (<1)-grams
             # si le n-gram est trop rare, on le split en 1-gram
-            if storage.query_count( ngram ) > 2:
+            if storage.query_count( ngram ) > 4:
                 ngram = ' '.join( ngram )
             else:
-                segmentedPhrase.extend( [ [x] for x in ngram ] )
+                #segmentedPhrase.extend( [ [x] for x in ngram ] )
                 rejected_ngrams.add( '_'.join( ngram ) )
                 continue
-        elif len( ngram[0] )>2:# and storage.query_count( ngram ) > 1 :
+
+        elif len( ngram[0] )<=2 or storage.query_count( ngram ) <= 10 :
             # Filrage pour les 1-grams
-            ngram = ngram[0]
-        else:
-            rejected_ngrams.add( ngram[0] )
             continue
+        else:
+            ngram = ngram[0]
 
         # Retire l'apostrophe du début:
         ngram = re.sub(u"^[LldDsSnNcCjJ]['`’]", u'', ngram)
         ngram = re.sub(u"^qu['`’]", u'', ngram)
 
+        if len(ngram)<=2 or ngram in blacklist_afterEleve:
+            continue
+
         if ngram.lower() in dicoFr and ngram != 'Paris':
             ngram = ngram.lower()
-
-        if len(ngram)>2 and ngram in blacklist_afterEleve:
-            continue
 
         # Insert a row of data
         cursor.execute("INSERT INTO occurences VALUES \
@@ -93,13 +96,16 @@ for line in cursor.fetchall():
 
 
 # log rejected ngrams
-lmdjxtools.log2file( '%i '%len(rejected_ngrams)+ ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
+nRejected = len(rejected_ngrams)
+lmdjxtools.log2file( '%i '%nRejected+ ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
 
 
 # Save (commit) the changes
 database_connection.commit()
 
 # Some stats on DB.occurences:
+print( '\t %s n-grams rejected '% '{:,}'.format( nRejected ))
+
 cursor.execute('SELECT COUNT(*) FROM occurences')
 print( '\t %s lines in DB.occurences '% '{:,}'.format( cursor.fetchone()[0] ))
 

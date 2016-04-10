@@ -7,4 +7,6 @@ python add_dbPosts_avant7avril.py
 
 python build_DB_occurences.py
 
-python build_DB_frequences.py
+python build_DB_statistics.py
+
+python stats2json.py

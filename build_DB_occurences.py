@@ -31,7 +31,6 @@ for line in cursor.fetchall():
 print( '\t %s one-grams (non-unique) found in %s sentences'%\
     ( '{:,}'.format(n), '{:,}'.format(nPosts))  )
 
-
 print( '> ELeVE: Segment & count')
 dicoFr = lmdjxtools.getDicoFr()
 blacklist_afterEleve = lmdjxtools.blacklist_afterEleve()
@@ -64,14 +63,14 @@ for line in cursor.fetchall():
         if len( ngram ) > 1:
             # Filrage pour les (<1)-grams
             # si le n-gram est trop rare, on le split en 1-gram
-            if storage.query_count( ngram ) > 4:
+            if storage.query_count( ngram ) > 5:
                 ngram = ' '.join( ngram )
             else:
                 #segmentedPhrase.extend( [ [x] for x in ngram ] )
                 rejected_ngrams.add( '_'.join( ngram ) )
                 continue
 
-        elif len( ngram[0] )<=2 or storage.query_count( ngram ) <= 10 :
+        elif storage.query_count( ngram ) <= 15 :
             # Filrage pour les 1-grams
             continue
         else:

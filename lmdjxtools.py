@@ -45,7 +45,7 @@ def format( texte ):
 import codecs
 
 def getDicoFr():
-    filename = './data_dico/liste_mots_utf8.txt'
+    filename = './listesMots_fr/liste_mots_utf8.txt'
     # cf: http://www.lexique.org/listes/liste_mots.txt
 
     with codecs.open(filename, encoding='utf-8') as f:
@@ -76,7 +76,7 @@ def blacklist_afterEleve():
     return blacklist
 
 def getStopWords():
-    filename = './data_dico/stop_words_fr.txt'
+    filename = './listesMots_fr/stop_words_fr.txt'
     with codecs.open(filename, encoding='utf-8') as f:
         listemots = f.readlines()
 

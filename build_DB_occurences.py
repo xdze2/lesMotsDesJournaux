@@ -56,7 +56,6 @@ for line in cursor.fetchall():
         formattedtext = lmdjxtools.format( phrase   )
         segmentedPhrase += s.segment( formattedtext.split(' ') )
 
-    # print(segmentedPhrase)
 
     for ngram in segmentedPhrase:
 
@@ -69,10 +68,6 @@ for line in cursor.fetchall():
                 #segmentedPhrase.extend( [ [x] for x in ngram ] )
                 rejected_ngrams.add( '_'.join( ngram ) )
                 continue
-
-        elif storage.query_count( ngram ) <= 15 :
-            # Filrage pour les 1-grams
-            continue
         else:
             ngram = ngram[0]
 

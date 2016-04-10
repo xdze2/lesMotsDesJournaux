@@ -16,16 +16,16 @@ cursor.execute( '''CREATE TABLE frequences AS
                     SELECT Ttot.date, Tmot.ngram, cMot as count, cTot,
             1000.0*CAST(cMot as real)/CAST(cTot as real) as freq \
                     FROM (
-                        SELECT date, COUNT(*) as cTot \
-                        FROM occurences\
-                        GROUP BY date \
-                        HAVING cTot > 500 \
-                        ) Ttot \
-                    JOIN (
                         SELECT date, ngram, COUNT(*) as cMot\
                         FROM occurences\
                         GROUP BY date, ngram \
                         ) Tmot \
+                    JOIN (
+                        SELECT date, COUNT(*) as cTot \
+                        FROM occurences\
+                        GROUP BY date \
+                        HAVING cTot > 100 \
+                        ) Ttot \
                     ON Ttot.date = Tmot.date ''')
 
 
@@ -127,9 +127,9 @@ print( '\n---- stats ----')
 cursor.execute('''DROP TABLE IF EXISTS stats''')
 cursor.execute( '''CREATE TABLE stats AS
                 SELECT Tfreq.date as date, Tfreq.ngram as ngram,
-                Tfreq.freq as freq,    Tscore.score as score
+                Tfreq.freq as freq,  Tscore.score as score, Tfreq.count as count
                     FROM  (
-                        SELECT date, ngram, freq
+                        SELECT date, ngram, freq, count
                         FROM frequences
                         ) Tfreq
                     JOIN (

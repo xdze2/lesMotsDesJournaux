@@ -18,18 +18,23 @@ import lmdjxtools
 from eleve import MemoryStorage
 storage = MemoryStorage()
 
-n, nPosts = 0, 0
+cursor.execute('SELECT count(*) FROM posts')
+nPosts = cursor.fetchone()[0]
+
+nMots = 0
+i = 0
 cursor.execute('SELECT title, summary FROM posts')
 for line in cursor.fetchall():
-    nPosts += 1
     for phrase in line:
         formattedtext = lmdjxtools.format( phrase )
-        mots = formattedtext.split(' ')
-        storage.add_sentence( mots  )
-        n += len( mots )
+        listeMots = formattedtext.split(' ')
+        storage.add_sentence( listeMots  )
+        nMots += len( listeMots )
+    lmdjxtools.progressbar(i, nPosts) # print la bar de progression
+    i += 1
 
 print( '\t %s one-grams (non-unique) found in %s sentences'%\
-    ( '{:,}'.format(n), '{:,}'.format(nPosts))  )
+    ( '{:,}'.format(nMots), '{:,}'.format(nPosts))  )
 
 print( '> ELeVE: Segment & count')
 dicoFr = lmdjxtools.getDicoFr()
@@ -38,7 +43,7 @@ blacklist_afterEleve = lmdjxtools.blacklist_afterEleve()
 # Create table occurences
 cursor.execute('''DROP TABLE IF EXISTS occurences''')
 cursor.execute('''CREATE TABLE occurences
-             (date text, ngram text, source text)''')  #postid?
+             (date text, ngram text, source text, postid integer)''')  #postid?
 print('\t reset table DB.occurences')
 
 from eleve import Segmenter
@@ -46,7 +51,7 @@ s = Segmenter(storage)
 
 rejected_ngrams = set()
 i = 0
-cursor.execute('SELECT date, source, title, summary  FROM posts')
+cursor.execute('SELECT date, source, title, summary, rowid FROM posts')
 for line in cursor.fetchall():
     date = line[0]
     source = line[1]
@@ -56,6 +61,7 @@ for line in cursor.fetchall():
         formattedtext = lmdjxtools.format( phrase   )
         segmentedPhrase += s.segment( formattedtext.split(' ') )
 
+    postid = line[4]
 
     for ngram in segmentedPhrase:
 
@@ -83,7 +89,7 @@ for line in cursor.fetchall():
 
         # Insert a row of data
         cursor.execute("INSERT INTO occurences VALUES \
-                (?, ?, ?)", (date, ngram, source))
+                (?, ?, ?, ?)", (date, ngram, source, postid))
 
     lmdjxtools.progressbar(i, nPosts) # print la bar de progression
     i += 1

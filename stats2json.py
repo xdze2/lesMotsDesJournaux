@@ -32,7 +32,7 @@ cursor = database_connection.cursor()
 
 # liste des jours
 cursor.execute( '''SELECT distinct date
-                    FROM stats
+                    FROM scores
                     ORDER By Date(date)
                     ''' )
 
@@ -44,10 +44,10 @@ data4web = []
 for date in all_dates:
 
     cursor.execute( '''SELECT rowid,  ngram, score
-                        FROM stats
+                        FROM scores
                         WHERE score > 1 and date=?
                         ORDER BY score DESC
-                        LIMIT 30   ''', (date, ) )
+                        LIMIT 21   ''', (date, ) )
 
     ngrams4today = []
     for line in cursor.fetchall():

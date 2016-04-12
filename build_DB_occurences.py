@@ -90,15 +90,15 @@ for line in cursor.fetchall():
 
 
 # log rejected ngrams
-nRejected = len(rejected_ngrams)
-lmdjxtools.log2file( '%i '%nRejected+ ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
-
+# nRejected = len(rejected_ngrams)
+# lmdjxtools.log2file( '%i '%nRejected+ ', '.join(list(rejected_ngrams)), 'rejected_ngram.txt' )
+#
 
 # Save (commit) the changes
 database_connection.commit()
 
-# Some stats on DB.occurences:
-print( '\t %s n-grams rejected '% '{:,}'.format( nRejected ))
+## Some stats on DB.occurences:
+# print( '\t %s n-grams rejected '% '{:,}'.format( nRejected ))
 
 cursor.execute('SELECT COUNT(*) FROM occurences')
 print( '\t %s lines in DB.occurences '% '{:,}'.format( cursor.fetchone()[0] ))

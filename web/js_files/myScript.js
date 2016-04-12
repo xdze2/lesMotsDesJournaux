@@ -32,7 +32,7 @@ $.getJSON(data_filename, function (data) {
 			fillAday( day, blocks, maxHeight  );
 		});
 		//console.log( $slidee.children('li').length );
-		
+
 		/* - Param and call Sly  (scrolling lib) - */
 		$frame.sly({
 			horizontal: 1,
@@ -78,13 +78,18 @@ function fillAday( id, blocks, maxHeight  ){
 			 }
 		 }
 	 });
- console.log(scoreMax);
 
+function scaleFontSize(score){
+				 var sizeMax = 4;
+ 					var scoreNormed =  (score-scoreMin)/( 1.0*scoreMax - scoreMin );
+          var size = Math.round(  scoreNormed*(sizeMax - 1)  ) + 1;
+					return size;
+ }
 	// insert les mots dans le DOM pour avoir leurs taille
 	$.each( blocks, function(i, d){
 		var $mot = $('<span />', {
 			id : d['id'],
-			css : { fontSize : "1em"	, //d['score']+
+			css : { fontSize : scaleFontSize(d['score'])+"em"	, //d['score']+
 							padding: '0px 5px 0px 0px', // t r b l
 							'white-space': 'nowrap',
 							position : 'absolute',
@@ -102,7 +107,7 @@ function fillAday( id, blocks, maxHeight  ){
 
 		if (d['w']>maxWidth ){
 		/* ReScale la taille de police, si mot trop long */
-			var newSize = d['size']/d['w']*maxWidth*0.97;
+			var newSize = scaleFontSize(d['score'])/d['w']*maxWidth*0.97;
 			$mot.css( {'fontSize': newSize+'em' } ); //, "font-weight":"bold"
 			d['w'] = $mot.outerWidth();
 			d['h'] = $mot.outerHeight();

@@ -2,11 +2,28 @@
  | A French stop word list. Comments begin with vertical bar. Each stop
  | word is at the start of a line.
 
+
+je             |  I
+tu
+il             |  he
+elle
+on
+nous
+vous
+ils
+elles
+
 au             |  a + le
 aux            |  a + les
 avec           |  with
 ce             |  this
+cette
+cet
 ces            |  these
+se
+sa             |  his, her (fem)
+ses
+son            |  his, her (masc)
 dans           |  with
 de             |  of
 des            |  de + les
@@ -14,68 +31,54 @@ du             |  de + le
 en             |  `of them' etc
 et             |  and
 eux            |  them
-il             |  he
-elle
-je             |  I
-tu
-nous
-vous
-ils
-elles
+
 la             |  the
 le             |  the
 leur           |  their
+leurs
 lui            |  him
-ma             |  my (fem)
-mais           |  but
-me             |  me
-même           |  same; as in moi-même (myself) etc
-mes            |  me (pl)
 moi            |  me
+ma             |  my (fem)
 mon            |  my (masc)
-ne             |  not
+mes            |  me (pl)
 nos            |  our (pl)
 notre          |  our
-nous           |  we
-on             |  one
-ou             |
+
+mais           |  but
+encore
+donc
 où
+ou
+est
+or
+ni
+car
+
+même           |  same; as in moi-même (myself) etc
+
+ne             |  not
+
 par            |  by
 pas            |  not
 pour           |  for
 qu             |  que before vowel
 que            |  that
 qui            |  who
-sa             |  his, her (fem)
-se             |  oneself
-ses            |  his (pl)
-son            |  his, her (masc)
+quoi
+
+
 sur            |  on
 ta             |  thy (fem)
 te             |  thee
 tes            |  thy (pl)
 toi            |  thee
 ton            |  thy (masc)
-tu             |  thou
 un             |  a
 une            |  a
 vos            |  your (pl)
 votre          |  your
 
-               |  single letter forms
 
-c              |  c'
-d              |  d'
-j              |  j'
-l              |  l'
-à              |  to, at
-m              |  m'
-n              |  n'
-s              |  s'
-t              |  t'
-y              |  there
-
-               | forms of être (not including the infinitive):
 été
 étée
 étées
@@ -168,10 +171,9 @@ eussent
 ceci           |  this
 cela           |  that (added 11 Apr 2012. Omission reported by Adrien Grand)
 celà           |  that (incorrect, though common)
-cet            |  this
-cette          |  this
+
 ici            |  here
-ils            |  they
+
 les            |  the (pl)
 leurs          |  their (pl)
 quel           |  which
@@ -190,6 +192,7 @@ après
 avant
 tous
 tout
+toute
 toutes
 fois
 selon
@@ -216,3 +219,8 @@ quand
 ceux
 cela
 ceci
+comment
+vers
+jamais
+fait
+font

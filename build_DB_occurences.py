@@ -81,7 +81,7 @@ for line in cursor.fetchall():
         ngram = re.sub(u"^[LldDsSnNcCjJ]['`’]", u'', ngram)
         ngram = re.sub(u"^qu['`’]", u'', ngram)
 
-        if len(ngram)<=2 or ngram in blacklist_afterEleve:
+        if len(ngram)<=2 or ngram.lower() in blacklist_afterEleve:
             continue
 
         if ngram.lower() in dicoFr and ngram != 'Paris':

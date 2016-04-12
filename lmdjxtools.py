@@ -63,9 +63,9 @@ def getDicoFr():
 def blacklist_afterEleve():
     # en minuscule
     blacklist = ['etat', 'etats', 'euros', u'est-il', 'actu', u'a-t-il', 'ont-ils', 'a-t-on', 'va-t-il', u'elle-même']
-    blacklist.extend( ['axa', u'après-midi', 'a-t-elle', 'faut-il', u'peut-être', 'the', 'sont-elles'] )
-    blacklist.extend(['week-end', u'lui-même', u"qu'on", 'celle-ci', 'celui-ci', u'au-delà', 'est-elle', 'sont-ils'])
-    blacklist.extend([u'Libé', u'œil', u'œuvre', 'zapping', 'editorial', 'aura-t-il'])
+    blacklist.extend( [ u'après-midi', 'a-t-elle', 'faut-il', u'peut-être', 'sont-elles'] )
+    blacklist.extend([ u'lui-même', u"qu'on", 'celle-ci', 'celui-ci', u'au-delà', 'est-elle', 'sont-ils'])
+    blacklist.extend([ 'aura-t-il'])
 
     blacklist.extend( getStopWords() )
 
@@ -79,14 +79,13 @@ def getStopWords():
     with codecs.open(filename, encoding='utf-8') as f:
         listemots = f.readlines()
 
-    stopwords = []
+    stopwords = set()
     for line in listemots:
         m = re.match(u'([^\s|]*)', line )
         if m and m.group():
-            if m.group() not in stopwords:
-                stopwords.append( m.group() )
+            stopwords.add( m.group() )
 
-    return stopwords
+    return list( stopwords )
 
 
 # Print iterations progress

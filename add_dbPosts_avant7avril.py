@@ -73,7 +73,7 @@ for name in journaux:
         elif 'summary' in post and u'#text' in post['summary']:
             summary_html =  post['summary'][u'#text']
         else:
-            summary = ''
+            summary_html = ''
 
         if summary_html:
             summary = strip_tags( summary_html )

@@ -32,7 +32,7 @@ cursor = database_connection.cursor()
 
 # liste des jours
 cursor.execute( '''SELECT distinct date
-                    FROM scores
+                    FROM stats
                     ORDER By Date(date)
                     ''' )
 
@@ -42,9 +42,8 @@ for line in cursor.fetchall():
 
 data4web = []
 for date in all_dates:
-
     cursor.execute( '''SELECT rowid,  ngram, score
-                        FROM scores
+                        FROM stats
                         WHERE score > 1 and date=?
                         ORDER BY score DESC
                         LIMIT 21   ''', (date, ) )
@@ -63,6 +62,10 @@ with open(json_file, 'w') as outfile:
     json.dump(data4web, outfile, indent=4)
     print( ' Parsed data saved in %s'%json_file )
 
+
+database_connection.close()
+
+print( '%s closed '% database_filename)
 
 
 # data4web = []

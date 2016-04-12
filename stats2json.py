@@ -1,17 +1,17 @@
 # coding: utf-8
 import sqlite3
 import json
-import hashids
+## import hashids
 from datetime import datetime
 
 
-hashids = hashids.Hashids(salt="Comment Garder Son Anonymat Dans Un Paradis Fiscal")
-
+#hashids = hashids.Hashids(salt="Comment Garder Son Anonymat Dans Un Paradis Fiscal")
 #numbers = hashids.decode(id)
 #hashids.encode(line[0])
 def getId( k ):
-    myid = hashids.encode( k )
-    return str( myid )
+    #myid = hashids.encode( k )
+    myId = 'oc'+str( k )
+    return str( myId )
 
 def getLabelDay( date ):
     jour_de_la_semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']

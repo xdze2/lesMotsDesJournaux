@@ -57,7 +57,7 @@ for date in all_dates:
     data4web.append( day_dict )
 
 # save JSON
-json_file = './web/data.json'
+json_file = './web_flask/static/data.json'
 with open(json_file, 'w') as outfile:
     json.dump(data4web, outfile, indent=4)
     print( ' Parsed data saved in %s'%json_file )

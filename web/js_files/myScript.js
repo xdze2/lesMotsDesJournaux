@@ -90,10 +90,10 @@ function scaleFontSize(score){
 		var $mot = $('<span />', {
 			id : d['id'],
 			css : { fontSize : scaleFontSize(d['score'])+"em"	, //d['score']+
-							padding: '0px 5px 0px 0px', // t r b l
+							padding: '0px 10px 0px 0px', // t r b l
 							'white-space': 'nowrap',
 							position : 'absolute',
-							'line-height': '90%'
+							'line-height': '95%'
 						 }
 		});
 		var label = arrangeLabel( d['label'] )

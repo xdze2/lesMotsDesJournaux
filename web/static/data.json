@@ -1,0 +1,3554 @@
+[
+    {
+        "day": "2016-03-09",
+        "labelDay": "mercredi 9 mars",
+        "mots": [
+            {
+                "score": 15.743931739540482,
+                "label": "code",
+                "id": "oc11016"
+            },
+            {
+                "score": 12.833460684439876,
+                "label": "bat",
+                "id": "oc11005"
+            },
+            {
+                "score": 12.334204578035989,
+                "label": "lyc\u00e9ens",
+                "id": "oc11053"
+            },
+            {
+                "score": 10.823316803094533,
+                "label": "quarts",
+                "id": "oc11083"
+            },
+            {
+                "score": 10.547142148481136,
+                "label": "ferme",
+                "id": "oc11027"
+            },
+            {
+                "score": 10.392998715473533,
+                "label": "images",
+                "id": "oc11040"
+            },
+            {
+                "score": 9.624716078171591,
+                "label": "Sanders",
+                "id": "oc10993"
+            },
+            {
+                "score": 9.03958574662564,
+                "label": "grandes",
+                "id": "oc11033"
+            },
+            {
+                "score": 8.770361902634093,
+                "label": "transports",
+                "id": "oc11099"
+            },
+            {
+                "score": 8.577540496344719,
+                "label": "rend",
+                "id": "oc11086"
+            },
+            {
+                "score": 8.319795802868946,
+                "label": "journal",
+                "id": "oc11046"
+            },
+            {
+                "score": 7.890846480033234,
+                "label": "suisse",
+                "id": "oc11094"
+            },
+            {
+                "score": 7.846879023870212,
+                "label": "Moscou",
+                "id": "oc10988"
+            },
+            {
+                "score": 7.697955101071601,
+                "label": "patrons",
+                "id": "oc11070"
+            },
+            {
+                "score": 7.679578712837538,
+                "label": "reprendre",
+                "id": "oc11087"
+            },
+            {
+                "score": 7.665555205125026,
+                "label": "mus\u00e9e",
+                "id": "oc11063"
+            },
+            {
+                "score": 7.529915651415498,
+                "label": "camp",
+                "id": "oc11008"
+            },
+            {
+                "score": 7.4891151862936844,
+                "label": "Cor\u00e9e",
+                "id": "oc10980"
+            },
+            {
+                "score": 7.285179805000704,
+                "label": "Tunisie",
+                "id": "oc10996"
+            },
+            {
+                "score": 7.036809997118148,
+                "label": "fr\u00e8re",
+                "id": "oc11032"
+            },
+            {
+                "score": 6.942496694284553,
+                "label": "Colombie",
+                "id": "oc10979"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-10",
+        "labelDay": "jeudi 10 mars",
+        "mots": [
+            {
+                "score": 15.291046188342065,
+                "label": "CDD",
+                "id": "oc10855"
+            },
+            {
+                "score": 10.298218162413171,
+                "label": "auto",
+                "id": "oc10878"
+            },
+            {
+                "score": 9.867795509391474,
+                "label": "rue",
+                "id": "oc10960"
+            },
+            {
+                "score": 9.774249933836614,
+                "label": "jeunesse",
+                "id": "oc10920"
+            },
+            {
+                "score": 9.717171771829202,
+                "label": "service",
+                "id": "oc10962"
+            },
+            {
+                "score": 9.356242479832858,
+                "label": "ancien",
+                "id": "oc10871"
+            },
+            {
+                "score": 9.001093394389729,
+                "label": "assaut",
+                "id": "oc10876"
+            },
+            {
+                "score": 8.976640202961956,
+                "label": "\u00e9conomique",
+                "id": "oc10974"
+            },
+            {
+                "score": 8.67319983613747,
+                "label": "Irak",
+                "id": "oc10859"
+            },
+            {
+                "score": 8.288447912664619,
+                "label": "d\u00e9mission",
+                "id": "oc10901"
+            },
+            {
+                "score": 8.090551813804082,
+                "label": "devenir",
+                "id": "oc10893"
+            },
+            {
+                "score": 8.04688023634977,
+                "label": "camp",
+                "id": "oc10882"
+            },
+            {
+                "score": 7.085672332035939,
+                "label": "certains",
+                "id": "oc10884"
+            },
+            {
+                "score": 6.845523301445618,
+                "label": "cha\u00eene",
+                "id": "oc10886"
+            },
+            {
+                "score": 6.799057908419358,
+                "label": "proche",
+                "id": "oc10949"
+            },
+            {
+                "score": 6.765489228646652,
+                "label": "Birmanie",
+                "id": "oc10854"
+            },
+            {
+                "score": 6.659416088811479,
+                "label": "d\u00e9fend",
+                "id": "oc10900"
+            },
+            {
+                "score": 6.629211759994254,
+                "label": "rappelle",
+                "id": "oc10957"
+            },
+            {
+                "score": 6.626961803127898,
+                "label": "patron",
+                "id": "oc10939"
+            },
+            {
+                "score": 6.582781692619343,
+                "label": "jeux",
+                "id": "oc10921"
+            },
+            {
+                "score": 6.48168625267508,
+                "label": "internationale",
+                "id": "oc10916"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-14",
+        "labelDay": "lundi 14 mars",
+        "mots": [
+            {
+                "score": 11.217017727789285,
+                "label": "Manuel Valls",
+                "id": "oc10772"
+            },
+            {
+                "score": 11.168245548965052,
+                "label": "jug\u00e9",
+                "id": "oc10806"
+            },
+            {
+                "score": 10.988925722868288,
+                "label": "victime",
+                "id": "oc10851"
+            },
+            {
+                "score": 10.554657833146113,
+                "label": "Google",
+                "id": "oc10770"
+            },
+            {
+                "score": 9.974566949516799,
+                "label": "comprendre",
+                "id": "oc10787"
+            },
+            {
+                "score": 9.743142434722644,
+                "label": "d\u00e9but",
+                "id": "oc10793"
+            },
+            {
+                "score": 9.68562112468982,
+                "label": "aide",
+                "id": "oc10777"
+            },
+            {
+                "score": 9.4083671983364,
+                "label": "Microsoft",
+                "id": "oc10773"
+            },
+            {
+                "score": 9.057346237930139,
+                "label": "radicalisation",
+                "id": "oc10835"
+            },
+            {
+                "score": 8.517943917085972,
+                "label": "concert",
+                "id": "oc10788"
+            },
+            {
+                "score": 8.254450622696838,
+                "label": "famille",
+                "id": "oc10798"
+            },
+            {
+                "score": 8.146480535886155,
+                "label": "n\u00e9gociations",
+                "id": "oc10825"
+            },
+            {
+                "score": 7.711779033104094,
+                "label": "attaque",
+                "id": "oc10781"
+            },
+            {
+                "score": 7.540712658124891,
+                "label": "risque",
+                "id": "oc10839"
+            },
+            {
+                "score": 7.447028178910214,
+                "label": "\u00e9chec",
+                "id": "oc10853"
+            },
+            {
+                "score": 6.59920097044676,
+                "label": "attaques",
+                "id": "oc10782"
+            },
+            {
+                "score": 6.478333550787155,
+                "label": "d\u00e9faite",
+                "id": "oc10794"
+            },
+            {
+                "score": 6.468436789083812,
+                "label": "vraiment",
+                "id": "oc10852"
+            },
+            {
+                "score": 5.918190544554903,
+                "label": "PSG",
+                "id": "oc10774"
+            },
+            {
+                "score": 5.772984650963693,
+                "label": "mois",
+                "id": "oc10820"
+            },
+            {
+                "score": 5.727371564105467,
+                "label": "manifestation",
+                "id": "oc10811"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-15",
+        "labelDay": "mardi 15 mars",
+        "mots": [
+            {
+                "score": 15.380051299324496,
+                "label": "\u00e9preuve",
+                "id": "oc10763"
+            },
+            {
+                "score": 13.996511394764267,
+                "label": "djihadistes",
+                "id": "oc10690"
+            },
+            {
+                "score": 13.735504984415657,
+                "label": "Zika",
+                "id": "oc10664"
+            },
+            {
+                "score": 9.65254801086806,
+                "label": "chiffres",
+                "id": "oc10679"
+            },
+            {
+                "score": 9.46956925290941,
+                "label": "militaire",
+                "id": "oc10722"
+            },
+            {
+                "score": 9.200528361058302,
+                "label": "\u00e9lu",
+                "id": "oc10762"
+            },
+            {
+                "score": 8.637775208106515,
+                "label": "d\u00e9ficit",
+                "id": "oc10693"
+            },
+            {
+                "score": 8.364782956826668,
+                "label": "guerre",
+                "id": "oc10706"
+            },
+            {
+                "score": 8.023227330136368,
+                "label": "compte",
+                "id": "oc10683"
+            },
+            {
+                "score": 7.602166979374038,
+                "label": "journalistes",
+                "id": "oc10714"
+            },
+            {
+                "score": 7.581710477495744,
+                "label": "accus\u00e9",
+                "id": "oc10665"
+            },
+            {
+                "score": 7.563395011847771,
+                "label": "futur",
+                "id": "oc10703"
+            },
+            {
+                "score": 7.40169017598382,
+                "label": "r\u00e9f\u00e9rendum",
+                "id": "oc10748"
+            },
+            {
+                "score": 7.398641744622083,
+                "label": "Notre-Dame-des-Landes",
+                "id": "oc10658"
+            },
+            {
+                "score": 7.374832787410627,
+                "label": "m\u00e9decins",
+                "id": "oc10729"
+            },
+            {
+                "score": 7.290662142965898,
+                "label": "Emmanuel",
+                "id": "oc10651"
+            },
+            {
+                "score": 7.220484877500388,
+                "label": "candidature",
+                "id": "oc10675"
+            },
+            {
+                "score": 7.02871172708549,
+                "label": "combats",
+                "id": "oc10681"
+            },
+            {
+                "score": 6.815238746912516,
+                "label": "Foll",
+                "id": "oc10653"
+            },
+            {
+                "score": 6.780454728073465,
+                "label": "fuite",
+                "id": "oc10702"
+            },
+            {
+                "score": 6.592425035200428,
+                "label": "salaire",
+                "id": "oc10749"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-16",
+        "labelDay": "mercredi 16 mars",
+        "mots": [
+            {
+                "score": 11.04204037993115,
+                "label": "allemand",
+                "id": "oc10348"
+            },
+            {
+                "score": 7.646726185281226,
+                "label": "diesel",
+                "id": "oc10421"
+            },
+            {
+                "score": 6.57416622145927,
+                "label": "imp\u00f4t",
+                "id": "oc10470"
+            },
+            {
+                "score": 6.405862686770547,
+                "label": "r\u00e9f\u00e9rendum",
+                "id": "oc10590"
+            },
+            {
+                "score": 6.250810500023175,
+                "label": "banques",
+                "id": "oc10368"
+            },
+            {
+                "score": 5.845585387424256,
+                "label": "usine",
+                "id": "oc10630"
+            },
+            {
+                "score": 5.67375188417085,
+                "label": "r\u00e9clame",
+                "id": "oc10588"
+            },
+            {
+                "score": 5.65584072694492,
+                "label": "fonctionnaires",
+                "id": "oc10446"
+            },
+            {
+                "score": 5.307022579115682,
+                "label": "Uber",
+                "id": "oc10337"
+            },
+            {
+                "score": 5.281697657489214,
+                "label": "Lula",
+                "id": "oc10313"
+            },
+            {
+                "score": 5.084893064419882,
+                "label": "Rousseff",
+                "id": "oc10327"
+            },
+            {
+                "score": 5.035715695357615,
+                "label": "assises",
+                "id": "oc10358"
+            },
+            {
+                "score": 4.883246976009481,
+                "label": "source",
+                "id": "oc10602"
+            },
+            {
+                "score": 4.808201323651341,
+                "label": "voiture",
+                "id": "oc10638"
+            },
+            {
+                "score": 4.668402171401395,
+                "label": "alain",
+                "id": "oc10347"
+            },
+            {
+                "score": 4.641755713480372,
+                "label": "f\u00e9vrier",
+                "id": "oc10456"
+            },
+            {
+                "score": 4.620878776591439,
+                "label": "dette",
+                "id": "oc10418"
+            },
+            {
+                "score": 4.552381682721963,
+                "label": "Notre-Dame-des-Landes",
+                "id": "oc10319"
+            },
+            {
+                "score": 4.319572716155362,
+                "label": "automobile",
+                "id": "oc10363"
+            },
+            {
+                "score": 3.9405622240864897,
+                "label": "m\u00e9moire",
+                "id": "oc10518"
+            },
+            {
+                "score": 3.802755109029148,
+                "label": "sait",
+                "id": "oc10594"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-17",
+        "labelDay": "jeudi 17 mars",
+        "mots": [
+            {
+                "score": 9.091909429383007,
+                "label": "fonctionnaires",
+                "id": "oc10092"
+            },
+            {
+                "score": 8.926457896104877,
+                "label": "syndicats",
+                "id": "oc10252"
+            },
+            {
+                "score": 8.069323779119127,
+                "label": "#Baselworld2016",
+                "id": "oc9946"
+            },
+            {
+                "score": 6.445470250872271,
+                "label": "polici\u00e8re",
+                "id": "oc10194"
+            },
+            {
+                "score": 6.440713443184719,
+                "label": "s\u00e9nat",
+                "id": "oc10253"
+            },
+            {
+                "score": 6.090020320093779,
+                "label": "Fifa",
+                "id": "oc9970"
+            },
+            {
+                "score": 5.995770899843554,
+                "label": "m\u00e9decins",
+                "id": "oc10165"
+            },
+            {
+                "score": 5.9450321429492705,
+                "label": "Lula",
+                "id": "oc9980"
+            },
+            {
+                "score": 5.015154523476531,
+                "label": "sport",
+                "id": "oc10247"
+            },
+            {
+                "score": 4.9767443178045525,
+                "label": "incidents",
+                "id": "oc10117"
+            },
+            {
+                "score": 4.825181274128022,
+                "label": "libert\u00e9",
+                "id": "oc10131"
+            },
+            {
+                "score": 4.68851538590452,
+                "label": "nationalit\u00e9",
+                "id": "oc10169"
+            },
+            {
+                "score": 4.613537088215159,
+                "label": "lyc\u00e9es",
+                "id": "oc10136"
+            },
+            {
+                "score": 4.509819198446986,
+                "label": "pr\u00eat",
+                "id": "oc10213"
+            },
+            {
+                "score": 4.209578049885859,
+                "label": "Ile-de-France",
+                "id": "oc9974"
+            },
+            {
+                "score": 4.20526350311474,
+                "label": "Renault",
+                "id": "oc9995"
+            },
+            {
+                "score": 4.196011955139924,
+                "label": "livre",
+                "id": "oc10133"
+            },
+            {
+                "score": 4.172121288372676,
+                "label": "r\u00e9gion",
+                "id": "oc10235"
+            },
+            {
+                "score": 4.146432578999317,
+                "label": "trafic",
+                "id": "oc10261"
+            },
+            {
+                "score": 3.9587922955952157,
+                "label": "cr\u00e9er",
+                "id": "oc10062"
+            },
+            {
+                "score": 3.9047579131050734,
+                "label": "affaires",
+                "id": "oc10017"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-18",
+        "labelDay": "vendredi 18 mars",
+        "mots": [
+            {
+                "score": 6.948698634791318,
+                "label": "tourisme",
+                "id": "oc9911"
+            },
+            {
+                "score": 6.799311433852441,
+                "label": "assises",
+                "id": "oc9591"
+            },
+            {
+                "score": 6.3208758534010645,
+                "label": "comptes",
+                "id": "oc9638"
+            },
+            {
+                "score": 5.208217002305711,
+                "label": "Twitter",
+                "id": "oc9558"
+            },
+            {
+                "score": 5.093207514351441,
+                "label": "Manchester City",
+                "id": "oc9529"
+            },
+            {
+                "score": 4.993358340919801,
+                "label": "directeur",
+                "id": "oc9659"
+            },
+            {
+                "score": 4.202848271241657,
+                "label": "vente",
+                "id": "oc9923"
+            },
+            {
+                "score": 3.8167853526736506,
+                "label": "assembl\u00e9e",
+                "id": "oc9590"
+            },
+            {
+                "score": 3.7431884385505887,
+                "label": "Tunisie",
+                "id": "oc9556"
+            },
+            {
+                "score": 3.7212338674906205,
+                "label": "pollution",
+                "id": "oc9821"
+            },
+            {
+                "score": 3.450909204561328,
+                "label": "Foll",
+                "id": "oc9514"
+            },
+            {
+                "score": 3.386051827500438,
+                "label": "choc",
+                "id": "oc9629"
+            },
+            {
+                "score": 3.2694247818361983,
+                "label": "nouveaux",
+                "id": "oc9791"
+            },
+            {
+                "score": 3.0808224767482164,
+                "label": "Jean-Marie",
+                "id": "oc9524"
+            },
+            {
+                "score": 3.0749461868041097,
+                "label": "Uber",
+                "id": "oc9559"
+            },
+            {
+                "score": 3.0183416665589364,
+                "label": "Alg\u00e9rie",
+                "id": "oc9495"
+            },
+            {
+                "score": 2.984179281430718,
+                "label": "voitures",
+                "id": "oc9932"
+            },
+            {
+                "score": 2.9689605345081818,
+                "label": "Google",
+                "id": "oc9517"
+            },
+            {
+                "score": 2.9382609614445374,
+                "label": "accord",
+                "id": "oc9566"
+            },
+            {
+                "score": 2.9268367457742284,
+                "label": "Salah Abdeslam",
+                "id": "oc9550"
+            },
+            {
+                "score": 2.913084097970549,
+                "label": "mardi",
+                "id": "oc9758"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-19",
+        "labelDay": "samedi 19 mars",
+        "mots": [
+            {
+                "score": 16.234771588147222,
+                "label": "Six nations",
+                "id": "oc9286"
+            },
+            {
+                "score": 12.045738346404235,
+                "label": "arrestation",
+                "id": "oc9309"
+            },
+            {
+                "score": 11.430434751000671,
+                "label": "angleterre",
+                "id": "oc9302"
+            },
+            {
+                "score": 10.88386953593946,
+                "label": "Egypte",
+                "id": "oc9257"
+            },
+            {
+                "score": 10.376051202737468,
+                "label": "crash",
+                "id": "oc9342"
+            },
+            {
+                "score": 10.254911670316428,
+                "label": "Abdeslam",
+                "id": "oc9252"
+            },
+            {
+                "score": 8.78528170428813,
+                "label": "Hand",
+                "id": "oc9266"
+            },
+            {
+                "score": 7.645172548608299,
+                "label": "saison",
+                "id": "oc9456"
+            },
+            {
+                "score": 7.291554621768782,
+                "label": "ski",
+                "id": "oc9461"
+            },
+            {
+                "score": 6.877099810688049,
+                "label": "Salah Abdeslam",
+                "id": "oc9284"
+            },
+            {
+                "score": 6.784615963000842,
+                "label": "bon",
+                "id": "oc9321"
+            },
+            {
+                "score": 6.759895135358626,
+                "label": "Russie",
+                "id": "oc9283"
+            },
+            {
+                "score": 6.6598766909585985,
+                "label": "stade",
+                "id": "oc9465"
+            },
+            {
+                "score": 6.4029955624163,
+                "label": "avion",
+                "id": "oc9314"
+            },
+            {
+                "score": 6.34985551744656,
+                "label": "Montpellier",
+                "id": "oc9275"
+            },
+            {
+                "score": 6.216904822498889,
+                "label": "succ\u00e8s",
+                "id": "oc9466"
+            },
+            {
+                "score": 5.845062984276796,
+                "label": "olympique",
+                "id": "oc9420"
+            },
+            {
+                "score": 5.804596036353629,
+                "label": "g\u00e9ant",
+                "id": "oc9379"
+            },
+            {
+                "score": 5.660561122709067,
+                "label": "retrouv\u00e9",
+                "id": "oc9453"
+            },
+            {
+                "score": 5.378960617796541,
+                "label": "#Baselworld2016",
+                "id": "oc9249"
+            },
+            {
+                "score": 5.363525376064983,
+                "label": "questions",
+                "id": "oc9446"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-20",
+        "labelDay": "dimanche 20 mars",
+        "mots": [
+            {
+                "score": 13.371890040581969,
+                "label": "monaco",
+                "id": "oc9151"
+            },
+            {
+                "score": 11.189808824224118,
+                "label": "Philippe",
+                "id": "oc9038"
+            },
+            {
+                "score": 10.586559504608768,
+                "label": "accident",
+                "id": "oc9047"
+            },
+            {
+                "score": 9.751119296825,
+                "label": "printemps",
+                "id": "oc9187"
+            },
+            {
+                "score": 9.641934575317114,
+                "label": "avocat",
+                "id": "oc9067"
+            },
+            {
+                "score": 8.981638354691643,
+                "label": "ski",
+                "id": "oc9214"
+            },
+            {
+                "score": 7.396380092198987,
+                "label": "Barack Obama",
+                "id": "oc9017"
+            },
+            {
+                "score": 7.349237270363092,
+                "label": "tension",
+                "id": "oc9225"
+            },
+            {
+                "score": 6.862647573628767,
+                "label": "r\u00e9volution",
+                "id": "oc9209"
+            },
+            {
+                "score": 6.763236817295506,
+                "label": "candidat",
+                "id": "oc9074"
+            },
+            {
+                "score": 6.586163529591537,
+                "label": "Salah Abdeslam",
+                "id": "oc9041"
+            },
+            {
+                "score": 6.239546782015529,
+                "label": "athl\u00e9tisme",
+                "id": "oc9062"
+            },
+            {
+                "score": 6.204770288230379,
+                "label": "priv\u00e9",
+                "id": "oc9189"
+            },
+            {
+                "score": 5.659536358669243,
+                "label": "\u00e9tudiants",
+                "id": "oc9248"
+            },
+            {
+                "score": 5.603680502875277,
+                "label": "Qatar",
+                "id": "oc9039"
+            },
+            {
+                "score": 5.592231684873372,
+                "label": "bonne",
+                "id": "oc9070"
+            },
+            {
+                "score": 5.5735298639640884,
+                "label": "crash",
+                "id": "oc9085"
+            },
+            {
+                "score": 5.553272083025702,
+                "label": "g\u00e9ant",
+                "id": "oc9120"
+            },
+            {
+                "score": 5.542637797273968,
+                "label": "cuba",
+                "id": "oc9086"
+            },
+            {
+                "score": 5.5197916975684285,
+                "label": "meurtre",
+                "id": "oc9145"
+            },
+            {
+                "score": 5.392974111975635,
+                "label": "cyclisme",
+                "id": "oc9087"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-21",
+        "labelDay": "lundi 21 mars",
+        "mots": [
+            {
+                "score": 10.720177019880719,
+                "label": "iPhone",
+                "id": "oc8788"
+            },
+            {
+                "score": 10.114684755229575,
+                "label": "radicalisation",
+                "id": "oc8919"
+            },
+            {
+                "score": 7.988215143273607,
+                "label": "Twitter",
+                "id": "oc8609"
+            },
+            {
+                "score": 6.638363224111908,
+                "label": "r\u00e9volution",
+                "id": "oc8940"
+            },
+            {
+                "score": 6.613079473622833,
+                "label": "Barack Obama",
+                "id": "oc8544"
+            },
+            {
+                "score": 6.527860695035188,
+                "label": "assises",
+                "id": "oc8635"
+            },
+            {
+                "score": 6.33271996596347,
+                "label": "Moscou",
+                "id": "oc8586"
+            },
+            {
+                "score": 6.27789375358392,
+                "label": "coupable",
+                "id": "oc8695"
+            },
+            {
+                "score": 6.047850594719895,
+                "label": "points",
+                "id": "oc8884"
+            },
+            {
+                "score": 5.777698803376214,
+                "label": "main",
+                "id": "oc8818"
+            },
+            {
+                "score": 5.668927903700478,
+                "label": "Apple",
+                "id": "oc8543"
+            },
+            {
+                "score": 5.425022073812388,
+                "label": "hidalgo",
+                "id": "oc8780"
+            },
+            {
+                "score": 4.769161725294267,
+                "label": "nouveaux",
+                "id": "oc8857"
+            },
+            {
+                "score": 4.433075296289576,
+                "label": "voiture",
+                "id": "oc9002"
+            },
+            {
+                "score": 4.3843887693034524,
+                "label": "fraude",
+                "id": "oc8760"
+            },
+            {
+                "score": 4.379001979305684,
+                "label": "jug\u00e9",
+                "id": "oc8805"
+            },
+            {
+                "score": 4.311874142864556,
+                "label": "renvoy\u00e9",
+                "id": "oc8924"
+            },
+            {
+                "score": 4.234694647702068,
+                "label": "cancer",
+                "id": "oc8668"
+            },
+            {
+                "score": 3.894739004371165,
+                "label": "cr\u00e9er",
+                "id": "oc8703"
+            },
+            {
+                "score": 3.885061291312316,
+                "label": "doit",
+                "id": "oc8717"
+            },
+            {
+                "score": 3.732161000113236,
+                "label": "historique",
+                "id": "oc8782"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-22",
+        "labelDay": "mardi 22 mars",
+        "mots": [
+            {
+                "score": 9.027236256403466,
+                "label": "m\u00e9tro",
+                "id": "oc8389"
+            },
+            {
+                "score": 7.095409202551908,
+                "label": "cour",
+                "id": "oc8254"
+            },
+            {
+                "score": 6.174194037190434,
+                "label": "eau",
+                "id": "oc8286"
+            },
+            {
+                "score": 5.959670793939047,
+                "label": "cas",
+                "id": "oc8232"
+            },
+            {
+                "score": 5.752138984879386,
+                "label": "d\u00e9missionne",
+                "id": "oc8283"
+            },
+            {
+                "score": 5.380211261510625,
+                "label": "commission",
+                "id": "oc8244"
+            },
+            {
+                "score": 5.065410416625642,
+                "label": "art",
+                "id": "oc8195"
+            },
+            {
+                "score": 4.870954595896996,
+                "label": "attaques",
+                "id": "oc8198"
+            },
+            {
+                "score": 4.598171434034243,
+                "label": "europ\u00e9en",
+                "id": "oc8292"
+            },
+            {
+                "score": 4.166447088872274,
+                "label": "belges",
+                "id": "oc8216"
+            },
+            {
+                "score": 4.068717747966277,
+                "label": "Barack Obama",
+                "id": "oc8110"
+            },
+            {
+                "score": 4.056855176215051,
+                "label": "explosion",
+                "id": "oc8294"
+            },
+            {
+                "score": 4.040479196538485,
+                "label": "Bruxelles",
+                "id": "oc8117"
+            },
+            {
+                "score": 3.965325157436813,
+                "label": "basket",
+                "id": "oc8213"
+            },
+            {
+                "score": 3.8526237314542495,
+                "label": "propos",
+                "id": "oc8439"
+            },
+            {
+                "score": 3.718811378788626,
+                "label": "Zika",
+                "id": "oc8175"
+            },
+            {
+                "score": 3.58921925687822,
+                "label": "Jean-Marie",
+                "id": "oc8142"
+            },
+            {
+                "score": 3.551858048273072,
+                "label": "iPhone",
+                "id": "oc8333"
+            },
+            {
+                "score": 3.476550808018625,
+                "label": "abattoirs",
+                "id": "oc8176"
+            },
+            {
+                "score": 3.4371924555743876,
+                "label": "s\u00e9nat",
+                "id": "oc8485"
+            },
+            {
+                "score": 3.400583705493636,
+                "label": "mardi",
+                "id": "oc8359"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-23",
+        "labelDay": "mercredi 23 mars",
+        "mots": [
+            {
+                "score": 8.390412664500506,
+                "label": "Ted Cruz",
+                "id": "oc7738"
+            },
+            {
+                "score": 7.156831946499949,
+                "label": "#Baselworld2016",
+                "id": "oc7677"
+            },
+            {
+                "score": 6.913452722723402,
+                "label": "cour",
+                "id": "oc7831"
+            },
+            {
+                "score": 6.686124504524165,
+                "label": "transports",
+                "id": "oc8074"
+            },
+            {
+                "score": 6.469958919017657,
+                "label": "kamikaze",
+                "id": "oc7919"
+            },
+            {
+                "score": 6.1769081203437,
+                "label": "Strasbourg",
+                "id": "oc7736"
+            },
+            {
+                "score": 5.970244643118127,
+                "label": "fr\u00e8res",
+                "id": "oc7884"
+            },
+            {
+                "score": 5.493272983200555,
+                "label": "belges",
+                "id": "oc7791"
+            },
+            {
+                "score": 5.324738300307078,
+                "label": "propos",
+                "id": "oc8012"
+            },
+            {
+                "score": 5.2509783530231,
+                "label": "kamikazes",
+                "id": "oc7920"
+            },
+            {
+                "score": 5.088643111798893,
+                "label": "avance",
+                "id": "oc7782"
+            },
+            {
+                "score": 4.914507739088644,
+                "label": "FBI",
+                "id": "oc7702"
+            },
+            {
+                "score": 4.639304021007846,
+                "label": "argentine",
+                "id": "oc7767"
+            },
+            {
+                "score": 4.294750545821744,
+                "label": "minute",
+                "id": "oc7946"
+            },
+            {
+                "score": 4.16070514321977,
+                "label": "autorit\u00e9s",
+                "id": "oc7780"
+            },
+            {
+                "score": 4.1167889535100075,
+                "label": "sait",
+                "id": "oc8042"
+            },
+            {
+                "score": 3.99854716354647,
+                "label": "Colombie",
+                "id": "oc7690"
+            },
+            {
+                "score": 3.9009295311232295,
+                "label": "m\u00e9tro",
+                "id": "oc7959"
+            },
+            {
+                "score": 3.862128076560424,
+                "label": "usine",
+                "id": "oc8083"
+            },
+            {
+                "score": 3.853722017404519,
+                "label": "basket",
+                "id": "oc7788"
+            },
+            {
+                "score": 3.574837194628566,
+                "label": "am\u00e9ricaine",
+                "id": "oc7756"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-24",
+        "labelDay": "jeudi 24 mars",
+        "mots": [
+            {
+                "score": 11.395778182084166,
+                "label": "Johan Cruyff",
+                "id": "oc7251"
+            },
+            {
+                "score": 10.123126078588683,
+                "label": "Cruyff",
+                "id": "oc7231"
+            },
+            {
+                "score": 9.224579176255359,
+                "label": "f\u00e9vrier",
+                "id": "oc7434"
+            },
+            {
+                "score": 9.157113172800633,
+                "label": "solution",
+                "id": "oc7619"
+            },
+            {
+                "score": 7.979954530711375,
+                "label": "ch\u00f4mage",
+                "id": "oc7353"
+            },
+            {
+                "score": 6.916184779945645,
+                "label": "Volkswagen",
+                "id": "oc7288"
+            },
+            {
+                "score": 6.29007526018098,
+                "label": "offensive",
+                "id": "oc7534"
+            },
+            {
+                "score": 6.201394854656871,
+                "label": "possible",
+                "id": "oc7562"
+            },
+            {
+                "score": 6.102099649115172,
+                "label": "salari\u00e9s",
+                "id": "oc7613"
+            },
+            {
+                "score": 5.6363943446037075,
+                "label": "Renault",
+                "id": "oc7275"
+            },
+            {
+                "score": 5.513416108935064,
+                "label": "jug\u00e9",
+                "id": "oc7477"
+            },
+            {
+                "score": 5.184974995844635,
+                "label": "Google",
+                "id": "oc7245"
+            },
+            {
+                "score": 5.048783159610817,
+                "label": "ministres",
+                "id": "oc7511"
+            },
+            {
+                "score": 4.804309582627635,
+                "label": "remis",
+                "id": "oc7592"
+            },
+            {
+                "score": 4.799246676474562,
+                "label": "amende",
+                "id": "oc7299"
+            },
+            {
+                "score": 4.769038030732014,
+                "label": "recherche",
+                "id": "oc7590"
+            },
+            {
+                "score": 4.739624749043351,
+                "label": "emploi",
+                "id": "oc7408"
+            },
+            {
+                "score": 4.584269513157077,
+                "label": "souhaite",
+                "id": "oc7621"
+            },
+            {
+                "score": 4.505224988766611,
+                "label": "soldat",
+                "id": "oc7618"
+            },
+            {
+                "score": 4.263114650941622,
+                "label": "voiture",
+                "id": "oc7667"
+            },
+            {
+                "score": 4.104241810867364,
+                "label": "manifestations",
+                "id": "oc7496"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-25",
+        "labelDay": "vendredi 25 mars",
+        "mots": [
+            {
+                "score": 7.229119752406152,
+                "label": "Johan Cruyff",
+                "id": "oc6798"
+            },
+            {
+                "score": 5.970126637833002,
+                "label": "vendredi",
+                "id": "oc7199"
+            },
+            {
+                "score": 5.8700210156107175,
+                "label": "retrouv\u00e9",
+                "id": "oc7133"
+            },
+            {
+                "score": 5.671787941753598,
+                "label": "double",
+                "id": "oc6932"
+            },
+            {
+                "score": 5.396859574069416,
+                "label": "d\u00e9jou\u00e9",
+                "id": "oc6940"
+            },
+            {
+                "score": 5.222373375259299,
+                "label": "offensive",
+                "id": "oc7066"
+            },
+            {
+                "score": 5.09085223209368,
+                "label": "r\u00e9seau",
+                "id": "oc7146"
+            },
+            {
+                "score": 4.84061377326708,
+                "label": "d\u00e9ficit",
+                "id": "oc6939"
+            },
+            {
+                "score": 4.818060579526636,
+                "label": "f\u00e9vrier",
+                "id": "oc6966"
+            },
+            {
+                "score": 4.814653485670632,
+                "label": "RATP",
+                "id": "oc6820"
+            },
+            {
+                "score": 4.663764985309307,
+                "label": "Kerry",
+                "id": "oc6800"
+            },
+            {
+                "score": 4.351316527322684,
+                "label": "route",
+                "id": "oc7136"
+            },
+            {
+                "score": 4.216982874729268,
+                "label": "historique",
+                "id": "oc6984"
+            },
+            {
+                "score": 4.196035323784612,
+                "label": "alain",
+                "id": "oc6845"
+            },
+            {
+                "score": 4.094954793589193,
+                "label": "m\u00e9moire",
+                "id": "oc7053"
+            },
+            {
+                "score": 4.073036802508438,
+                "label": "p\u00e2ques",
+                "id": "oc7118"
+            },
+            {
+                "score": 3.8281754489217343,
+                "label": "pouvoir",
+                "id": "oc7100"
+            },
+            {
+                "score": 3.807885671453855,
+                "label": "action",
+                "id": "oc6841"
+            },
+            {
+                "score": 3.766938531729105,
+                "label": "policier",
+                "id": "oc7091"
+            },
+            {
+                "score": 3.748479702935313,
+                "label": "vert",
+                "id": "oc7201"
+            },
+            {
+                "score": 3.7470184525464267,
+                "label": "Cruyff",
+                "id": "oc6776"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-26",
+        "labelDay": "samedi 26 mars",
+        "mots": [
+            {
+                "score": 10.35260563953231,
+                "label": "num\u00e9ro",
+                "id": "oc6676"
+            },
+            {
+                "score": 9.24946016922384,
+                "label": "p\u00e2ques",
+                "id": "oc6708"
+            },
+            {
+                "score": 8.470540925296559,
+                "label": "palestinien",
+                "id": "oc6677"
+            },
+            {
+                "score": 8.187948075057133,
+                "label": "erreur",
+                "id": "oc6610"
+            },
+            {
+                "score": 7.906756700763273,
+                "label": "Johan Cruyff",
+                "id": "oc6518"
+            },
+            {
+                "score": 7.389239674672,
+                "label": "contr\u00f4le",
+                "id": "oc6588"
+            },
+            {
+                "score": 7.093205909351498,
+                "label": "international",
+                "id": "oc6634"
+            },
+            {
+                "score": 6.693052956350657,
+                "label": "Pologne",
+                "id": "oc6530"
+            },
+            {
+                "score": 6.44533281454689,
+                "label": "version",
+                "id": "oc6743"
+            },
+            {
+                "score": 6.401883309430007,
+                "label": "Euro-2016",
+                "id": "oc6510"
+            },
+            {
+                "score": 6.243436721357342,
+                "label": "entr\u00e9e",
+                "id": "oc6609"
+            },
+            {
+                "score": 6.111302785610292,
+                "label": "inculp\u00e9",
+                "id": "oc6633"
+            },
+            {
+                "score": 6.089316693782497,
+                "label": "femmes",
+                "id": "oc6613"
+            },
+            {
+                "score": 5.921727164845407,
+                "label": "peur",
+                "id": "oc6686"
+            },
+            {
+                "score": 5.541827988816303,
+                "label": "plainte",
+                "id": "oc6688"
+            },
+            {
+                "score": 5.445568838644869,
+                "label": "nucl\u00e9aire",
+                "id": "oc6675"
+            },
+            {
+                "score": 5.376077127880717,
+                "label": "porter",
+                "id": "oc6692"
+            },
+            {
+                "score": 5.106081211822267,
+                "label": "The",
+                "id": "oc6536"
+            },
+            {
+                "score": 5.031930202766111,
+                "label": "d\u00e9fense",
+                "id": "oc6607"
+            },
+            {
+                "score": 4.8264655386363575,
+                "label": "marche",
+                "id": "oc6654"
+            },
+            {
+                "score": 4.743680797724847,
+                "label": "Montpellier",
+                "id": "oc6522"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-27",
+        "labelDay": "dimanche 27 mars",
+        "mots": [
+            {
+                "score": 8.550165161745117,
+                "label": "syrien",
+                "id": "oc6469"
+            },
+            {
+                "score": 8.233139417380128,
+                "label": "Molenbeek",
+                "id": "oc6289"
+            },
+            {
+                "score": 7.5987853549562505,
+                "label": "cit\u00e9",
+                "id": "oc6335"
+            },
+            {
+                "score": 7.162629223866784,
+                "label": "sport",
+                "id": "oc6466"
+            },
+            {
+                "score": 7.154363599488331,
+                "label": "r\u00e9gime",
+                "id": "oc6456"
+            },
+            {
+                "score": 6.861514847725659,
+                "label": "tesla",
+                "id": "oc6476"
+            },
+            {
+                "score": 6.684340691753175,
+                "label": "cyclisme",
+                "id": "oc6348"
+            },
+            {
+                "score": 6.162749022848322,
+                "label": "festival",
+                "id": "oc6367"
+            },
+            {
+                "score": 5.975656588661949,
+                "label": "terroriste",
+                "id": "oc6474"
+            },
+            {
+                "score": 5.710721230891645,
+                "label": "arr\u00eat\u00e9",
+                "id": "oc6312"
+            },
+            {
+                "score": 5.697699745870996,
+                "label": "rester",
+                "id": "oc6453"
+            },
+            {
+                "score": 5.507273532658112,
+                "label": "concert",
+                "id": "oc6339"
+            },
+            {
+                "score": 5.3763235013999155,
+                "label": "politiques",
+                "id": "oc6431"
+            },
+            {
+                "score": 5.321698020920665,
+                "label": "cha\u00eene",
+                "id": "oc6332"
+            },
+            {
+                "score": 5.1675514922914285,
+                "label": "Euro-2016",
+                "id": "oc6276"
+            },
+            {
+                "score": 5.14623033099817,
+                "label": "Palmyre",
+                "id": "oc6293"
+            },
+            {
+                "score": 5.007661449803832,
+                "label": "bon",
+                "id": "oc6322"
+            },
+            {
+                "score": 4.92542793151712,
+                "label": "inculp\u00e9",
+                "id": "oc6387"
+            },
+            {
+                "score": 4.693512557931777,
+                "label": "p\u00e2ques",
+                "id": "oc6441"
+            },
+            {
+                "score": 4.667823327446991,
+                "label": "pape",
+                "id": "oc6420"
+            },
+            {
+                "score": 4.602849227481614,
+                "label": "suspect",
+                "id": "oc6468"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-28",
+        "labelDay": "lundi 28 mars",
+        "mots": [
+            {
+                "score": 10.18904347230768,
+                "label": "jeune",
+                "id": "oc6152"
+            },
+            {
+                "score": 9.661085543350167,
+                "label": "Pakistan",
+                "id": "oc6048"
+            },
+            {
+                "score": 9.35751919394049,
+                "label": "hommes",
+                "id": "oc6145"
+            },
+            {
+                "score": 8.604627031121275,
+                "label": "Palmyre",
+                "id": "oc6049"
+            },
+            {
+                "score": 8.497499931621926,
+                "label": "golf",
+                "id": "oc6135"
+            },
+            {
+                "score": 7.457319928898919,
+                "label": "Premier ministre",
+                "id": "oc6052"
+            },
+            {
+                "score": 7.02796773362742,
+                "label": "belge",
+                "id": "oc6084"
+            },
+            {
+                "score": 6.9847319629811855,
+                "label": "Miami",
+                "id": "oc6044"
+            },
+            {
+                "score": 6.698914998206143,
+                "label": "surprise",
+                "id": "oc6235"
+            },
+            {
+                "score": 6.504708355739744,
+                "label": "suspect",
+                "id": "oc6236"
+            },
+            {
+                "score": 6.261404216856987,
+                "label": "feu",
+                "id": "oc6125"
+            },
+            {
+                "score": 6.130909250813693,
+                "label": "suspects",
+                "id": "oc6237"
+            },
+            {
+                "score": 6.108438399489987,
+                "label": "signe",
+                "id": "oc6229"
+            },
+            {
+                "score": 6.081230437428895,
+                "label": "voitures",
+                "id": "oc6258"
+            },
+            {
+                "score": 5.761620868864244,
+                "label": "fr\u00e8res",
+                "id": "oc6130"
+            },
+            {
+                "score": 5.747781399179095,
+                "label": "Isra\u00ebl",
+                "id": "oc6041"
+            },
+            {
+                "score": 5.622986947885107,
+                "label": "parlement",
+                "id": "oc6191"
+            },
+            {
+                "score": 5.0810441379029685,
+                "label": "Sanders",
+                "id": "oc6057"
+            },
+            {
+                "score": 5.039886228057987,
+                "label": "troisi\u00e8me",
+                "id": "oc6248"
+            },
+            {
+                "score": 4.962826296127659,
+                "label": "Centrafrique",
+                "id": "oc6028"
+            },
+            {
+                "score": 4.885558858567323,
+                "label": "basket",
+                "id": "oc6083"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-29",
+        "labelDay": "mardi 29 mars",
+        "mots": [
+            {
+                "score": 17.09428378517303,
+                "label": "avion",
+                "id": "oc5689"
+            },
+            {
+                "score": 16.394827491159482,
+                "label": "chypre",
+                "id": "oc5718"
+            },
+            {
+                "score": 9.717362494183199,
+                "label": "Reda Kriket",
+                "id": "oc5645"
+            },
+            {
+                "score": 9.277517708812608,
+                "label": "FBI",
+                "id": "oc5613"
+            },
+            {
+                "score": 8.124763129766128,
+                "label": "abattoirs",
+                "id": "oc5660"
+            },
+            {
+                "score": 7.3507706358615845,
+                "label": "RATP",
+                "id": "oc5644"
+            },
+            {
+                "score": 6.446279905433916,
+                "label": "bleus",
+                "id": "oc5703"
+            },
+            {
+                "score": 5.132699418736381,
+                "label": "r\u00e9mun\u00e9ration",
+                "id": "oc5953"
+            },
+            {
+                "score": 5.075140099590978,
+                "label": "terre",
+                "id": "oc5987"
+            },
+            {
+                "score": 4.913554868007816,
+                "label": "mercredi",
+                "id": "oc5849"
+            },
+            {
+                "score": 4.812372222063246,
+                "label": "cr\u00e9er",
+                "id": "oc5735"
+            },
+            {
+                "score": 4.773009836317385,
+                "label": "sud",
+                "id": "oc5975"
+            },
+            {
+                "score": 4.464268017358896,
+                "label": "p\u00e2ques",
+                "id": "oc5931"
+            },
+            {
+                "score": 4.437693231288004,
+                "label": "usa",
+                "id": "oc5999"
+            },
+            {
+                "score": 4.2421744682128875,
+                "label": "sept",
+                "id": "oc5962"
+            },
+            {
+                "score": 4.232450899359852,
+                "label": "mardi",
+                "id": "oc5844"
+            },
+            {
+                "score": 4.18203395217767,
+                "label": "Dilma Rousseff",
+                "id": "oc5604"
+            },
+            {
+                "score": 4.021480939280191,
+                "label": "points",
+                "id": "oc5902"
+            },
+            {
+                "score": 4.000783342720534,
+                "label": "refuse",
+                "id": "oc5940"
+            },
+            {
+                "score": 3.916624743125701,
+                "label": "cyclisme",
+                "id": "oc5738"
+            },
+            {
+                "score": 3.59796655371626,
+                "label": "Russie",
+                "id": "oc5650"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-30",
+        "labelDay": "mercredi 30 mars",
+        "mots": [
+            {
+                "score": 10.668919623213979,
+                "label": "chypre",
+                "id": "oc5282"
+            },
+            {
+                "score": 8.585994578448158,
+                "label": "Reda Kriket",
+                "id": "oc5198"
+            },
+            {
+                "score": 7.538256102624395,
+                "label": "d\u00e9ch\u00e9ance",
+                "id": "oc5317"
+            },
+            {
+                "score": 6.970162492487652,
+                "label": "JO-2016",
+                "id": "oc5171"
+            },
+            {
+                "score": 6.757351950980315,
+                "label": "salaire",
+                "id": "oc5522"
+            },
+            {
+                "score": 6.423181248763752,
+                "label": "examen",
+                "id": "oc5335"
+            },
+            {
+                "score": 6.35406526298268,
+                "label": "FBI",
+                "id": "oc5163"
+            },
+            {
+                "score": 6.233363312485398,
+                "label": "conseil",
+                "id": "oc5288"
+            },
+            {
+                "score": 6.148576362446991,
+                "label": "fraude",
+                "id": "oc5352"
+            },
+            {
+                "score": 5.93851241874987,
+                "label": "polici\u00e8re",
+                "id": "oc5465"
+            },
+            {
+                "score": 5.525779057006377,
+                "label": "PSA",
+                "id": "oc5188"
+            },
+            {
+                "score": 4.9947255688473735,
+                "label": "offensive",
+                "id": "oc5441"
+            },
+            {
+                "score": 4.994646076158952,
+                "label": "bas",
+                "id": "oc5255"
+            },
+            {
+                "score": 4.963836061975356,
+                "label": "nationalit\u00e9",
+                "id": "oc5433"
+            },
+            {
+                "score": 4.809711653764745,
+                "label": "jeudi",
+                "id": "oc5380"
+            },
+            {
+                "score": 3.984344532092307,
+                "label": "libre",
+                "id": "oc5388"
+            },
+            {
+                "score": 3.904357383663587,
+                "label": "lyc\u00e9es",
+                "id": "oc5393"
+            },
+            {
+                "score": 3.6944129398575676,
+                "label": "r\u00e9seau",
+                "id": "oc5520"
+            },
+            {
+                "score": 3.631987415181153,
+                "label": "action",
+                "id": "oc5219"
+            },
+            {
+                "score": 3.585740649994518,
+                "label": "Centrafrique",
+                "id": "oc5150"
+            },
+            {
+                "score": 3.583564246935161,
+                "label": "Sarkozy",
+                "id": "oc5205"
+            }
+        ]
+    },
+    {
+        "day": "2016-03-31",
+        "labelDay": "jeudi 31 mars",
+        "mots": [
+            {
+                "score": 7.05424581920494,
+                "label": "manifestations",
+                "id": "oc4954"
+            },
+            {
+                "score": 5.949751658675706,
+                "label": "syst\u00e8me",
+                "id": "oc5095"
+            },
+            {
+                "score": 5.898025441888926,
+                "label": "Reda Kriket",
+                "id": "oc4756"
+            },
+            {
+                "score": 5.608779674764668,
+                "label": "souhaite",
+                "id": "oc5083"
+            },
+            {
+                "score": 5.352464224467258,
+                "label": "lyc\u00e9es",
+                "id": "oc4948"
+            },
+            {
+                "score": 4.9911009494914405,
+                "label": "Maroc",
+                "id": "oc4742"
+            },
+            {
+                "score": 4.8838222826934805,
+                "label": "Qatar",
+                "id": "oc4755"
+            },
+            {
+                "score": 4.8736328199100765,
+                "label": "olympique",
+                "id": "oc4991"
+            },
+            {
+                "score": 4.617026919004419,
+                "label": "polici\u00e8re",
+                "id": "oc5016"
+            },
+            {
+                "score": 4.61429374202364,
+                "label": "nationale",
+                "id": "oc4980"
+            },
+            {
+                "score": 4.2777638133743645,
+                "label": "m\u00e9decins",
+                "id": "oc4977"
+            },
+            {
+                "score": 4.194671117013072,
+                "label": "autorit\u00e9s",
+                "id": "oc4794"
+            },
+            {
+                "score": 4.0944777055731345,
+                "label": "emploi",
+                "id": "oc4878"
+            },
+            {
+                "score": 3.8748550276659834,
+                "label": "lyc\u00e9en",
+                "id": "oc4946"
+            },
+            {
+                "score": 3.86640213683748,
+                "label": "sommet",
+                "id": "oc5080"
+            },
+            {
+                "score": 3.814541066733957,
+                "label": "priv\u00e9",
+                "id": "oc5029"
+            },
+            {
+                "score": 3.757736560141735,
+                "label": "Bercy",
+                "id": "oc4710"
+            },
+            {
+                "score": 3.6931041920223757,
+                "label": "vrai",
+                "id": "oc5122"
+            },
+            {
+                "score": 3.6506601263002523,
+                "label": "pr\u00eatre",
+                "id": "oc5038"
+            },
+            {
+                "score": 3.6387030759484214,
+                "label": "matin",
+                "id": "oc4958"
+            },
+            {
+                "score": 3.6029392640808826,
+                "label": "l\u00e8ve",
+                "id": "oc4949"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-01",
+        "labelDay": "vendredi 1 avril",
+        "mots": [
+            {
+                "score": 8.07531619191146,
+                "label": "nombreux",
+                "id": "oc4538"
+            },
+            {
+                "score": 8.054090407553337,
+                "label": "premiers",
+                "id": "oc4579"
+            },
+            {
+                "score": 6.886786915646002,
+                "label": "Centrafrique",
+                "id": "oc4256"
+            },
+            {
+                "score": 6.7722754540833705,
+                "label": "orange",
+                "id": "oc4551"
+            },
+            {
+                "score": 6.494465168397557,
+                "label": "gaz",
+                "id": "oc4459"
+            },
+            {
+                "score": 6.098403174397336,
+                "label": "cr\u00e9ation",
+                "id": "oc4396"
+            },
+            {
+                "score": 6.057275135478097,
+                "label": "pr\u00eatre",
+                "id": "oc4598"
+            },
+            {
+                "score": 5.823719713914735,
+                "label": "devoir",
+                "id": "oc4407"
+            },
+            {
+                "score": 5.792251501345672,
+                "label": "1er",
+                "id": "oc4243"
+            },
+            {
+                "score": 5.632233031648707,
+                "label": "tesla",
+                "id": "oc4660"
+            },
+            {
+                "score": 5.4519791341868995,
+                "label": "publique",
+                "id": "oc4600"
+            },
+            {
+                "score": 4.9920701174198365,
+                "label": "ventes",
+                "id": "oc4676"
+            },
+            {
+                "score": 4.907727138402954,
+                "label": "sommet",
+                "id": "oc4643"
+            },
+            {
+                "score": 4.580776455146665,
+                "label": "soup\u00e7onn\u00e9",
+                "id": "oc4645"
+            },
+            {
+                "score": 4.544398779477646,
+                "label": "Bouygues",
+                "id": "oc4252"
+            },
+            {
+                "score": 4.512210457271758,
+                "label": "opposants",
+                "id": "oc4549"
+            },
+            {
+                "score": 4.436403407418608,
+                "label": "explosion",
+                "id": "oc4439"
+            },
+            {
+                "score": 4.153128944634702,
+                "label": "d\u00e9part",
+                "id": "oc4428"
+            },
+            {
+                "score": 4.035706731245184,
+                "label": "imp\u00f4ts",
+                "id": "oc4479"
+            },
+            {
+                "score": 3.8567293682434682,
+                "label": "marathon",
+                "id": "oc4507"
+            },
+            {
+                "score": 3.690729963263962,
+                "label": "remis",
+                "id": "oc4608"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-02",
+        "labelDay": "samedi 2 avril",
+        "mots": [
+            {
+                "score": 15.117535883635366,
+                "label": "d\u00e9jou\u00e9",
+                "id": "oc4063"
+            },
+            {
+                "score": 14.369801947844184,
+                "label": "renvoy\u00e9",
+                "id": "oc4188"
+            },
+            {
+                "score": 14.026096640216709,
+                "label": "d\u00e9couvert",
+                "id": "oc4061"
+            },
+            {
+                "score": 12.123779149785166,
+                "label": "lyc\u00e9en",
+                "id": "oc4113"
+            },
+            {
+                "score": 9.062746774253984,
+                "label": "nombreux",
+                "id": "oc4141"
+            },
+            {
+                "score": 9.00898721612224,
+                "label": "policier",
+                "id": "oc4166"
+            },
+            {
+                "score": 7.868456090194229,
+                "label": "inculp\u00e9",
+                "id": "oc4094"
+            },
+            {
+                "score": 7.857914540858296,
+                "label": "troisi\u00e8me",
+                "id": "oc4223"
+            },
+            {
+                "score": 7.561494141369941,
+                "label": "Fillon",
+                "id": "oc3974"
+            },
+            {
+                "score": 7.118632805601376,
+                "label": "tribunal",
+                "id": "oc4221"
+            },
+            {
+                "score": 6.664067780458253,
+                "label": "sept",
+                "id": "oc4201"
+            },
+            {
+                "score": 6.353877619199152,
+                "label": "sc\u00e8ne",
+                "id": "oc4198"
+            },
+            {
+                "score": 6.008409466473253,
+                "label": "100",
+                "id": "oc3952"
+            },
+            {
+                "score": 5.920003579086886,
+                "label": "Espagne",
+                "id": "oc3969"
+            },
+            {
+                "score": 5.720967095524906,
+                "label": "dimanche",
+                "id": "oc4055"
+            },
+            {
+                "score": 5.644774445203414,
+                "label": "Cruyff",
+                "id": "oc3964"
+            },
+            {
+                "score": 5.644031234846746,
+                "label": "ventes",
+                "id": "oc4229"
+            },
+            {
+                "score": 5.532934338857241,
+                "label": "choc",
+                "id": "oc4037"
+            },
+            {
+                "score": 5.45158848216751,
+                "label": "FMI",
+                "id": "oc3973"
+            },
+            {
+                "score": 4.874465383883903,
+                "label": "\u00c9tats-Unis",
+                "id": "oc4240"
+            },
+            {
+                "score": 4.86366375078154,
+                "label": "cessez-le-feu",
+                "id": "oc4035"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-03",
+        "labelDay": "dimanche 3 avril",
+        "mots": [
+            {
+                "score": 16.410670533311038,
+                "label": "marathon",
+                "id": "oc3860"
+            },
+            {
+                "score": 10.700663495330213,
+                "label": "offshore",
+                "id": "oc3884"
+            },
+            {
+                "score": 10.206205744218378,
+                "label": "Marseille",
+                "id": "oc3745"
+            },
+            {
+                "score": 9.507718920415554,
+                "label": "voile",
+                "id": "oc3945"
+            },
+            {
+                "score": 9.393982884216028,
+                "label": "explosion",
+                "id": "oc3816"
+            },
+            {
+                "score": 9.28322213481514,
+                "label": "porter",
+                "id": "oc3898"
+            },
+            {
+                "score": 8.759578208447078,
+                "label": "Iran",
+                "id": "oc3738"
+            },
+            {
+                "score": 8.320672576259119,
+                "label": "r\u00e9v\u00e9lations",
+                "id": "oc3919"
+            },
+            {
+                "score": 7.863055205985733,
+                "label": "Bouygues Telecom",
+                "id": "oc3724"
+            },
+            {
+                "score": 7.6296482793041545,
+                "label": "r\u00e9publique",
+                "id": "oc3918"
+            },
+            {
+                "score": 7.578763629620488,
+                "label": "raison",
+                "id": "oc3909"
+            },
+            {
+                "score": 7.405418873305425,
+                "label": "bout",
+                "id": "oc3781"
+            },
+            {
+                "score": 6.950346262731103,
+                "label": "Bouygues",
+                "id": "oc3723"
+            },
+            {
+                "score": 6.6996838407729875,
+                "label": "urgence",
+                "id": "oc3939"
+            },
+            {
+                "score": 6.667237111380581,
+                "label": "renaud",
+                "id": "oc3912"
+            },
+            {
+                "score": 6.564957705242612,
+                "label": "noire",
+                "id": "oc3877"
+            },
+            {
+                "score": 6.255339974531296,
+                "label": "bless\u00e9s",
+                "id": "oc3779"
+            },
+            {
+                "score": 6.104919203846456,
+                "label": "p\u00e9trole",
+                "id": "oc3905"
+            },
+            {
+                "score": 5.498026449351423,
+                "label": "paradis fiscaux",
+                "id": "oc3887"
+            },
+            {
+                "score": 5.3005499048497,
+                "label": "dopage",
+                "id": "oc3803"
+            },
+            {
+                "score": 5.267036843956401,
+                "label": "formule",
+                "id": "oc3823"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-04",
+        "labelDay": "lundi 4 avril",
+        "mots": [
+            {
+                "score": 18.63656175934974,
+                "label": "Paradis fiscaux",
+                "id": "oc3327"
+            },
+            {
+                "score": 10.90654692187952,
+                "label": "taxis",
+                "id": "oc3676"
+            },
+            {
+                "score": 8.414596573469654,
+                "label": "main",
+                "id": "oc3519"
+            },
+            {
+                "score": 6.742884852851511,
+                "label": "Maroc",
+                "id": "oc3310"
+            },
+            {
+                "score": 6.502668945441585,
+                "label": "sursis",
+                "id": "oc3671"
+            },
+            {
+                "score": 6.236438545868631,
+                "label": "paradis fiscaux",
+                "id": "oc3580"
+            },
+            {
+                "score": 5.919893276313588,
+                "label": "r\u00e9v\u00e9lations",
+                "id": "oc3647"
+            },
+            {
+                "score": 5.5840910697758055,
+                "label": "emploi",
+                "id": "oc3450"
+            },
+            {
+                "score": 4.191161810851594,
+                "label": "Panama Papers",
+                "id": "oc3325"
+            },
+            {
+                "score": 4.078309525967077,
+                "label": "Mossack Fonseca",
+                "id": "oc3315"
+            },
+            {
+                "score": 3.935110285151147,
+                "label": "Bouygues Telecom",
+                "id": "oc3275"
+            },
+            {
+                "score": 3.9215195003353456,
+                "label": "dix",
+                "id": "oc3435"
+            },
+            {
+                "score": 3.9151607552780527,
+                "label": "automobile",
+                "id": "oc3376"
+            },
+            {
+                "score": 3.904300783849669,
+                "label": "combats",
+                "id": "oc3410"
+            },
+            {
+                "score": 3.7112813506336995,
+                "label": "comptes",
+                "id": "oc3412"
+            },
+            {
+                "score": 3.6457610840488526,
+                "label": "FMI",
+                "id": "oc3292"
+            },
+            {
+                "score": 3.515244052242787,
+                "label": "proche",
+                "id": "oc3612"
+            },
+            {
+                "score": 3.4029941510450854,
+                "label": "contrat",
+                "id": "oc3417"
+            },
+            {
+                "score": 3.370655997808236,
+                "label": "Uber",
+                "id": "oc3345"
+            },
+            {
+                "score": 3.3474484746718796,
+                "label": "Iran",
+                "id": "oc3301"
+            },
+            {
+                "score": 3.3434281156907604,
+                "label": "offshore",
+                "id": "oc3573"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-05",
+        "labelDay": "mardi 5 avril",
+        "mots": [
+            {
+                "score": 10.442197455255393,
+                "label": "sursis",
+                "id": "oc3209"
+            },
+            {
+                "score": 9.852198908491964,
+                "label": "usine",
+                "id": "oc3236"
+            },
+            {
+                "score": 9.41267512653374,
+                "label": "PSA",
+                "id": "oc2836"
+            },
+            {
+                "score": 8.602533440026438,
+                "label": "experts",
+                "id": "oc2990"
+            },
+            {
+                "score": 8.079239793272679,
+                "label": "taxis",
+                "id": "oc3217"
+            },
+            {
+                "score": 6.915061874579421,
+                "label": "r\u00e9v\u00e9lations",
+                "id": "oc3187"
+            },
+            {
+                "score": 6.469568443182037,
+                "label": "liste",
+                "id": "oc3050"
+            },
+            {
+                "score": 6.317911829708088,
+                "label": "activit\u00e9",
+                "id": "oc2870"
+            },
+            {
+                "score": 5.927984727112268,
+                "label": "panama",
+                "id": "oc3115"
+            },
+            {
+                "score": 5.8190746375797415,
+                "label": "Panama papers",
+                "id": "oc2840"
+            },
+            {
+                "score": 5.1013557694423834,
+                "label": "David",
+                "id": "oc2799"
+            },
+            {
+                "score": 5.056152449345986,
+                "label": "plusieurs",
+                "id": "oc3132"
+            },
+            {
+                "score": 5.033456776024065,
+                "label": "p\u00e9trole",
+                "id": "oc3162"
+            },
+            {
+                "score": 4.955162882802305,
+                "label": "royal",
+                "id": "oc3177"
+            },
+            {
+                "score": 4.868068935585754,
+                "label": "Notre-Dame-des-Landes",
+                "id": "oc2832"
+            },
+            {
+                "score": 4.703212032551202,
+                "label": "fraude",
+                "id": "oc3004"
+            },
+            {
+                "score": 4.605926535755872,
+                "label": "secteur",
+                "id": "oc3192"
+            },
+            {
+                "score": 4.530206792412055,
+                "label": "cr\u00e9er",
+                "id": "oc2956"
+            },
+            {
+                "score": 4.444371091430565,
+                "label": "hidalgo",
+                "id": "oc3022"
+            },
+            {
+                "score": 4.3969883956210145,
+                "label": "sanctions",
+                "id": "oc3189"
+            },
+            {
+                "score": 4.312784451710697,
+                "label": "clients",
+                "id": "oc2939"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-06",
+        "labelDay": "mercredi 6 avril",
+        "mots": [
+            {
+                "score": 18.795435423764378,
+                "label": "prostitution",
+                "id": "oc2686"
+            },
+            {
+                "score": 15.927764209970515,
+                "label": "Wisconsin",
+                "id": "oc2400"
+            },
+            {
+                "score": 8.762580970812248,
+                "label": "source",
+                "id": "oc2738"
+            },
+            {
+                "score": 7.282175136200902,
+                "label": "Bercy",
+                "id": "oc2330"
+            },
+            {
+                "score": 7.131591312269821,
+                "label": "200",
+                "id": "oc2322"
+            },
+            {
+                "score": 6.860660553134768,
+                "label": "Jean-Marie",
+                "id": "oc2356"
+            },
+            {
+                "score": 6.8203312127087745,
+                "label": "clients",
+                "id": "oc2470"
+            },
+            {
+                "score": 6.01572737914923,
+                "label": "City",
+                "id": "oc2334"
+            },
+            {
+                "score": 6.005145946943704,
+                "label": "voile",
+                "id": "oc2771"
+            },
+            {
+                "score": 5.913666911846664,
+                "label": "Soci\u00e9t\u00e9 g\u00e9n\u00e9rale",
+                "id": "oc2388"
+            },
+            {
+                "score": 5.284234821766899,
+                "label": "imp\u00f4t",
+                "id": "oc2562"
+            },
+            {
+                "score": 5.1468898598672554,
+                "label": "peine",
+                "id": "oc2655"
+            },
+            {
+                "score": 5.080152901838133,
+                "label": "Mossack Fonseca",
+                "id": "oc2367"
+            },
+            {
+                "score": 5.035994615641348,
+                "label": "d\u00e9mission",
+                "id": "oc2511"
+            },
+            {
+                "score": 4.9815555231078354,
+                "label": "parlement",
+                "id": "oc2648"
+            },
+            {
+                "score": 4.930563550387259,
+                "label": "contrat",
+                "id": "oc2480"
+            },
+            {
+                "score": 4.802284271361903,
+                "label": "action",
+                "id": "oc2405"
+            },
+            {
+                "score": 4.633766852057753,
+                "label": "assises",
+                "id": "oc2431"
+            },
+            {
+                "score": 4.541222563856577,
+                "label": "propos",
+                "id": "oc2685"
+            },
+            {
+                "score": 4.527108359323795,
+                "label": "quitte",
+                "id": "oc2698"
+            },
+            {
+                "score": 4.277639228705848,
+                "label": "liste",
+                "id": "oc2588"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-07",
+        "labelDay": "jeudi 7 avril",
+        "mots": [
+            {
+                "score": 9.484436926443164,
+                "label": "cancer",
+                "id": "oc2030"
+            },
+            {
+                "score": 7.008009068424354,
+                "label": "Islande",
+                "id": "oc1926"
+            },
+            {
+                "score": 6.380994143948019,
+                "label": "confirme",
+                "id": "oc2052"
+            },
+            {
+                "score": 6.050883343050516,
+                "label": "v\u00e9hicules",
+                "id": "oc2316"
+            },
+            {
+                "score": 5.625185905893304,
+                "label": "secteur",
+                "id": "oc2272"
+            },
+            {
+                "score": 5.434978197817808,
+                "label": "Paradis fiscaux",
+                "id": "oc1950"
+            },
+            {
+                "score": 5.370721178375088,
+                "label": "Wisconsin",
+                "id": "oc1979"
+            },
+            {
+                "score": 5.326783707852022,
+                "label": "noire",
+                "id": "oc2185"
+            },
+            {
+                "score": 5.140713735394964,
+                "label": "panama",
+                "id": "oc2200"
+            },
+            {
+                "score": 5.134803779856973,
+                "label": "plusieurs",
+                "id": "oc2216"
+            },
+            {
+                "score": 5.014472957491803,
+                "label": "Rome",
+                "id": "oc1958"
+            },
+            {
+                "score": 5.000358846288072,
+                "label": "remis",
+                "id": "oc2252"
+            },
+            {
+                "score": 4.870927082121595,
+                "label": "Cambad\u00e9lis",
+                "id": "oc1909"
+            },
+            {
+                "score": 4.791470205427066,
+                "label": "Paris-Roubaix",
+                "id": "oc1952"
+            },
+            {
+                "score": 4.591389789357753,
+                "label": "ligne",
+                "id": "oc2150"
+            },
+            {
+                "score": 4.449403620580767,
+                "label": "Masters",
+                "id": "oc1936"
+            },
+            {
+                "score": 4.433808975511439,
+                "label": "banques",
+                "id": "oc2015"
+            },
+            {
+                "score": 4.417180671618522,
+                "label": "nouvel",
+                "id": "oc2190"
+            },
+            {
+                "score": 4.348501679691961,
+                "label": "non",
+                "id": "oc2187"
+            },
+            {
+                "score": 4.164250976794117,
+                "label": "donne",
+                "id": "oc2074"
+            },
+            {
+                "score": 4.011331382245106,
+                "label": "Macron",
+                "id": "oc1934"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-08",
+        "labelDay": "vendredi 8 avril",
+        "mots": [
+            {
+                "score": 14.454724400392264,
+                "label": "Mohamed Abrini",
+                "id": "oc1574"
+            },
+            {
+                "score": 11.135900195653853,
+                "label": "remis",
+                "id": "oc1826"
+            },
+            {
+                "score": 8.333655407300466,
+                "label": "David",
+                "id": "oc1551"
+            },
+            {
+                "score": 8.25810672818863,
+                "label": "Ile-de-France",
+                "id": "oc1565"
+            },
+            {
+                "score": 8.125296497349536,
+                "label": "mer",
+                "id": "oc1740"
+            },
+            {
+                "score": 7.599604987143287,
+                "label": "Cameron",
+                "id": "oc1546"
+            },
+            {
+                "score": 7.389087215632728,
+                "label": "Bollor\u00e9",
+                "id": "oc1543"
+            },
+            {
+                "score": 7.187727935122938,
+                "label": "condamn\u00e9e",
+                "id": "oc1653"
+            },
+            {
+                "score": 6.917378012449208,
+                "label": "pape",
+                "id": "oc1775"
+            },
+            {
+                "score": 6.744994529057461,
+                "label": "Zapping",
+                "id": "oc1603"
+            },
+            {
+                "score": 6.404883890189203,
+                "label": "Mossack Fonseca",
+                "id": "oc1578"
+            },
+            {
+                "score": 6.223709339532902,
+                "label": "partie",
+                "id": "oc1778"
+            },
+            {
+                "score": 5.82964346528753,
+                "label": "vendredi",
+                "id": "oc1879"
+            },
+            {
+                "score": 5.692536790116359,
+                "label": "m\u00e9dias",
+                "id": "oc1760"
+            },
+            {
+                "score": 5.628769283234015,
+                "label": "famille",
+                "id": "oc1686"
+            },
+            {
+                "score": 5.623878420776816,
+                "label": "panama",
+                "id": "oc1774"
+            },
+            {
+                "score": 5.366652276820835,
+                "label": "visite",
+                "id": "oc1888"
+            },
+            {
+                "score": 5.30335861063981,
+                "label": "samedi",
+                "id": "oc1847"
+            },
+            {
+                "score": 5.215697478950188,
+                "label": "tourisme",
+                "id": "oc1870"
+            },
+            {
+                "score": 5.151819593493257,
+                "label": "arr\u00eat\u00e9",
+                "id": "oc1621"
+            },
+            {
+                "score": 4.810181865945678,
+                "label": "chapeau",
+                "id": "oc1643"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-09",
+        "labelDay": "samedi 9 avril",
+        "mots": [
+            {
+                "score": 11.272396599142255,
+                "label": "City",
+                "id": "oc1168"
+            },
+            {
+                "score": 10.578106325579109,
+                "label": "fils",
+                "id": "oc1319"
+            },
+            {
+                "score": 9.753988877495736,
+                "label": "opposants",
+                "id": "oc1411"
+            },
+            {
+                "score": 8.620567702192266,
+                "label": "mans",
+                "id": "oc1376"
+            },
+            {
+                "score": 8.081007163335444,
+                "label": "Mohamed Abrini",
+                "id": "oc1202"
+            },
+            {
+                "score": 7.381051334576302,
+                "label": "succ\u00e8s",
+                "id": "oc1493"
+            },
+            {
+                "score": 7.274491083629892,
+                "label": "proche",
+                "id": "oc1446"
+            },
+            {
+                "score": 6.915287200457346,
+                "label": "Masters",
+                "id": "oc1200"
+            },
+            {
+                "score": 6.522156633989937,
+                "label": "Alg\u00e9rie",
+                "id": "oc1163"
+            },
+            {
+                "score": 6.509977826640663,
+                "label": "gagne",
+                "id": "oc1331"
+            },
+            {
+                "score": 6.224253747733921,
+                "label": "londres",
+                "id": "oc1366"
+            },
+            {
+                "score": 6.029286031470027,
+                "label": "annule",
+                "id": "oc1241"
+            },
+            {
+                "score": 5.954427842328856,
+                "label": "chapeau",
+                "id": "oc1272"
+            },
+            {
+                "score": 5.85872704178532,
+                "label": "maison",
+                "id": "oc1370"
+            },
+            {
+                "score": 5.858439613443739,
+                "label": "visite",
+                "id": "oc1524"
+            },
+            {
+                "score": 5.674294349360136,
+                "label": "difficile",
+                "id": "oc1293"
+            },
+            {
+                "score": 5.646671409909029,
+                "label": "Islande",
+                "id": "oc1189"
+            },
+            {
+                "score": 5.394454787724231,
+                "label": "usa",
+                "id": "oc1514"
+            },
+            {
+                "score": 5.384766032182297,
+                "label": "moto",
+                "id": "oc1395"
+            },
+            {
+                "score": 5.175916733981818,
+                "label": "Cameron",
+                "id": "oc1167"
+            },
+            {
+                "score": 5.091479742440778,
+                "label": "cancer",
+                "id": "oc1266"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-10",
+        "labelDay": "dimanche 10 avril",
+        "mots": [
+            {
+                "score": 16.79247849169921,
+                "label": "mans",
+                "id": "oc1048"
+            },
+            {
+                "score": 16.424499007247054,
+                "label": "Paris-Roubaix",
+                "id": "oc927"
+            },
+            {
+                "score": 13.911097826090913,
+                "label": "Soci\u00e9t\u00e9 g\u00e9n\u00e9rale",
+                "id": "oc931"
+            },
+            {
+                "score": 13.528757512519634,
+                "label": "inde",
+                "id": "oc1028"
+            },
+            {
+                "score": 11.122074652484686,
+                "label": "v\u00e9hicules",
+                "id": "oc1154"
+            },
+            {
+                "score": 10.61162649101268,
+                "label": "huit",
+                "id": "oc1024"
+            },
+            {
+                "score": 10.285816297403912,
+                "label": "incidents",
+                "id": "oc1026"
+            },
+            {
+                "score": 10.155024592631884,
+                "label": "d\u00e8s",
+                "id": "oc992"
+            },
+            {
+                "score": 9.637583915043145,
+                "label": "p\u00e8re",
+                "id": "oc1100"
+            },
+            {
+                "score": 9.382499592605898,
+                "label": "imp\u00f4ts",
+                "id": "oc1025"
+            },
+            {
+                "score": 9.152454905650059,
+                "label": "p\u00e9rou",
+                "id": "oc1102"
+            },
+            {
+                "score": 9.03359812260017,
+                "label": "heures",
+                "id": "oc1020"
+            },
+            {
+                "score": 8.948460381914481,
+                "label": "Nuit debout",
+                "id": "oc922"
+            },
+            {
+                "score": 8.807041778802912,
+                "label": "pollution",
+                "id": "oc1085"
+            },
+            {
+                "score": 8.667217901659551,
+                "label": "coupe",
+                "id": "oc980"
+            },
+            {
+                "score": 7.856089563943977,
+                "label": "moto",
+                "id": "oc1063"
+            },
+            {
+                "score": 7.687902185465942,
+                "label": "100",
+                "id": "oc888"
+            },
+            {
+                "score": 7.500026979542243,
+                "label": "jihadiste",
+                "id": "oc1035"
+            },
+            {
+                "score": 7.204077409995724,
+                "label": "Nuit Debout",
+                "id": "oc921"
+            },
+            {
+                "score": 6.95987563413854,
+                "label": "Fillon",
+                "id": "oc906"
+            },
+            {
+                "score": 6.473594590344885,
+                "label": "terroristes",
+                "id": "oc1134"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-11",
+        "labelDay": "lundi 11 avril",
+        "mots": [
+            {
+                "score": 19.926106537896313,
+                "label": "requis",
+                "id": "oc818"
+            },
+            {
+                "score": 10.012383177594359,
+                "label": "CDD",
+                "id": "oc490"
+            },
+            {
+                "score": 9.142017423677467,
+                "label": "Cambad\u00e9lis",
+                "id": "oc491"
+            },
+            {
+                "score": 8.181165574592754,
+                "label": "p\u00e9rou",
+                "id": "oc810"
+            },
+            {
+                "score": 7.7417082857923365,
+                "label": "condamn\u00e9e",
+                "id": "oc613"
+            },
+            {
+                "score": 7.244011781672048,
+                "label": "sc\u00e8ne",
+                "id": "oc835"
+            },
+            {
+                "score": 6.479489473627983,
+                "label": "souhaite",
+                "id": "oc843"
+            },
+            {
+                "score": 6.203521388396464,
+                "label": "mesures",
+                "id": "oc733"
+            },
+            {
+                "score": 5.678225647193107,
+                "label": "signe",
+                "id": "oc837"
+            },
+            {
+                "score": 5.252282304369808,
+                "label": "hidalgo",
+                "id": "oc685"
+            },
+            {
+                "score": 5.177792092845452,
+                "label": "jusqu'\u00e0",
+                "id": "oc706"
+            },
+            {
+                "score": 4.825570072701576,
+                "label": "amende",
+                "id": "oc560"
+            },
+            {
+                "score": 4.632832983562547,
+                "label": "paradis fiscaux",
+                "id": "oc767"
+            },
+            {
+                "score": 4.542440348483432,
+                "label": "vise",
+                "id": "oc879"
+            },
+            {
+                "score": 4.462364142433926,
+                "label": "jeunesse",
+                "id": "oc699"
+            },
+            {
+                "score": 4.459972043592635,
+                "label": "jeunes",
+                "id": "oc698"
+            },
+            {
+                "score": 4.3325876658703635,
+                "label": "Kerry",
+                "id": "oc516"
+            },
+            {
+                "score": 4.319517614122579,
+                "label": "sort",
+                "id": "oc841"
+            },
+            {
+                "score": 4.292168992186679,
+                "label": "Nuit debout",
+                "id": "oc528"
+            },
+            {
+                "score": 4.249854365749819,
+                "label": "matin",
+                "id": "oc731"
+            },
+            {
+                "score": 4.209378655018913,
+                "label": "l\u00e8ve",
+                "id": "oc720"
+            }
+        ]
+    },
+    {
+        "day": "2016-04-12",
+        "labelDay": "mardi 12 avril",
+        "mots": [
+            {
+                "score": 11.457954385176908,
+                "label": "cannabis",
+                "id": "oc134"
+            },
+            {
+                "score": 7.589887476731086,
+                "label": "FMI",
+                "id": "oc29"
+            },
+            {
+                "score": 6.768117636779799,
+                "label": "Manchester City",
+                "id": "oc47"
+            },
+            {
+                "score": 6.431553599987162,
+                "label": "sursis",
+                "id": "oc428"
+            },
+            {
+                "score": 5.670054060686603,
+                "label": "destitution",
+                "id": "oc168"
+            },
+            {
+                "score": 5.3551304251055205,
+                "label": "Game of Thrones",
+                "id": "oc36"
+            },
+            {
+                "score": 5.35320429107225,
+                "label": "Facebook",
+                "id": "oc30"
+            },
+            {
+                "score": 5.03435148631543,
+                "label": "Bruno",
+                "id": "oc13"
+            },
+            {
+                "score": 5.016541846582699,
+                "label": "fiscale",
+                "id": "oc211"
+            },
+            {
+                "score": 4.9155414619002125,
+                "label": "cr\u00e9dit",
+                "id": "oc164"
+            },
+            {
+                "score": 4.365518816693177,
+                "label": "Mossack Fonseca",
+                "id": "oc51"
+            },
+            {
+                "score": 4.3031968488059835,
+                "label": "l\u00e8ve",
+                "id": "oc277"
+            },
+            {
+                "score": 4.279314252539532,
+                "label": "interpellations",
+                "id": "oc247"
+            },
+            {
+                "score": 4.14542418567551,
+                "label": "sant\u00e9",
+                "id": "oc411"
+            },
+            {
+                "score": 4.136050556397803,
+                "label": "match",
+                "id": "oc287"
+            },
+            {
+                "score": 4.00427560590254,
+                "label": "soldat",
+                "id": "oc418"
+            },
+            {
+                "score": 3.9050920267346916,
+                "label": "printemps",
+                "id": "oc371"
+            },
+            {
+                "score": 3.8863531436288303,
+                "label": "r\u00e9clame",
+                "id": "oc402"
+            },
+            {
+                "score": 3.821947973944207,
+                "label": "commission",
+                "id": "oc155"
+            },
+            {
+                "score": 3.643347528427441,
+                "label": "City",
+                "id": "oc16"
+            },
+            {
+                "score": 3.5589984236613876,
+                "label": "Bollor\u00e9",
+                "id": "oc10"
+            }
+        ]
+    }
+]

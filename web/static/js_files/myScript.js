@@ -1,4 +1,4 @@
-var data_filename = 'data.json'
+var data_filename = $SCRIPT_ROOT+'static/data.json'
 $.getJSON(data_filename, function (data) {
 		// get elements
 		var $frame  = $('#myTimeLine');
@@ -87,8 +87,9 @@ function scaleFontSize(score){
  }
 	// insert les mots dans le DOM pour avoir leurs taille
 	$.each( blocks, function(i, d){
-		var $mot = $('<span />', {
+		var $mot = $('<a />', {
 			id : d['id'],
+			href: 'plot/'+d['label'],
 			css : { fontSize : scaleFontSize(d['score'])+"em"	, //d['score']+
 							padding: '0px 10px 0px 0px', // t r b l
 							'white-space': 'nowrap',

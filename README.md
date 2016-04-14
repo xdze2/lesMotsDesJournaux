@@ -6,27 +6,40 @@ news timeline word cloud
 
 TODO
 =====
-* parse to DB.posts   rss2db
-* cluster for each day
-* Flask web site
-* Layout d3js+svg...
-* lundi vs lundi
-* detect gram in ngram : "vache" < "vache folle"
-* work with date... fr //  , en --?
-* full time line en bas/fond -> selection date + affichage time si mot
 
-* infinite height bin_packing (+vertical scroll sur telephone...)
+* function getTopScore( start_date, end_date, step ), zoom ...
 
+* mouseOver.clik: painter0.1, change style des ngram=ngram
+* on click: time line en bas, skyline
+
+* cluster for each day, ngram similarity
+
+* scroll bar joli
+
+* gestion des noFit ... [+]button . scroll vertical
+  - infinite height bin_packing (+vertical scroll sur telephone...)
+
+* Afficher Semaine #, les debut du mois en haut, repère visu
 * alternat text sur les labelDay:  aujourd'hui, hier, il ya deux jours..., il y a une semaine, il y a un mois et 1 semaines, jours, il y
 http://stackoverflow.com/questions/21181621/displaying-some-text-when-mouse-is-over-an-input-text-box
 
-* Faire une lib pour WordsPacking
+* voir les posts ?  mais pourquoi on parle de ça ??
+
+Popup AJAX:
+http://dimsemenov.com/plugins/magnific-popup/
+
+Dynamic auto complete:
+http://jstayton.github.io/jquery-marcopolo/
+
 
 Eventuellement
 ==============
-* getData: verifier si max non attend (ex: 20 pour le Monde), reduire le délais si besoin
+* detect gram in ngram : "vache" < "vache folle"
+* Detect "Nuit Debout" < "Nuit debout"
+* getData_feedparser: verifier si max non attend (ex: 20 pour le Monde), reduire le délais si besoin
 * resume un livre... chaque page = un jour
 * chercher les doublons dans DB.posts (il y en  a)
+* Faire une lib pour PackedCloud
 
 Fonctionalités possible
 =======================

@@ -103,9 +103,11 @@ def getNgrams():
     q = request.args.get('q', '', type=unicode)
 
     cursor = get_db().cursor()
-    cursor.execute( '''SELECT distinct ngram
+    cursor.execute( '''SELECT ngram, count(*) c
                         FROM occurences
                         WHERE ngram like  ? || '%'
+                        GROUP BY ngram
+                        ORDER BY c DESC
                         LIMIT 40
                         ''', ( q, ) )
 

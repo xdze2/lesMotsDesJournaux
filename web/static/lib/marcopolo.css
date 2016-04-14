@@ -1,17 +1,17 @@
 /* The input. */
+
 input.mp_input {
   border: 1px solid #000000;
   font: inherit;
   font-size: 150%;
   margin: 0;
   outline: none;
-  padding: 3px;
-  width: 250px;
+  padding: 0.1em;
+  padding-left: .5em;
+  width:250px;
 
 }
-&:focus {
-    outline: none;
-}
+
 /* Ordered list for display results. */
 ol.mp_list {
   background-color: #FFFFFF;
@@ -19,7 +19,7 @@ ol.mp_list {
   border-right: 1px solid #C0C0C0;
   overflow: hidden;
   position: absolute;
-  width: 256px;
+  width:264px;
   z-index: 99999;
 
   padding: 0;

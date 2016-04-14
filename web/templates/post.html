@@ -5,7 +5,7 @@
 <script type="text/javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<script src="{{ url_for('static', filename='lib/jquery.ui.widget.min.js')}}"></script>
+
 <script src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
 
 
@@ -27,7 +27,7 @@
       },
       onSelect: function (data, $item) {
         this.val(data.ngram);
-        this.blur()
+        this.blur();
         queryPosts(data.ngram);
       },
       formatData: function (data) {
@@ -66,12 +66,12 @@
 </head>
 <body>
 
-<div class='myform'>
+
 <form  method="get" class="marco">
   <input type="text" name="ngram" id="ngraminput">
   <img src="{{ url_for('static', filename='busy.gif')}}">
 </form>
-</div>
+
 
 <div id='result'>...</div>
 

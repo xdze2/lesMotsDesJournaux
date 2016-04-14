@@ -1,68 +1,15 @@
 <!doctype html>
 <html>
 <head>
-<title>see posts</title>
-<script type="text/javascript"
-  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<title>navigate posts</title>
 
 
-<script src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
-
-
-<link rel="stylesheet" href="{{ url_for('static', filename='posts.css')}}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='navigateposts.css')}}" />
 <link rel="stylesheet" href="{{ url_for('static', filename='lib/marcopolo.css')}}" />
 
-<script type="text/javascript">
-  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
 
 
-<script type=text/javascript>
-  $(function() {
 
-    $('#ngraminput').marcoPolo({
-      url: "{{ url_for('getNgrams')}}",
-      formatItem: function (data, $item) {
-        return data.ngram;
-      },
-      onSelect: function (data, $item) {
-        this.val(data.ngram);
-        this.blur();
-        queryPosts(data.ngram);
-      },
-      formatData: function (data) {
-        return data.data;
-      },
-      minChars: 2,
-      required: true
-    });
-
-    function queryPosts( ngram ) {
-      $.getJSON($SCRIPT_ROOT + '/post/_getposts', { ngram: ngram  }, printPost );
-    }
-
-  });
-
-  function printPost(data){
-
-    var $result =  $('#result');
-    $result.empty();
-    if ( data.posts.length > 0 ) {
-      $.each( data.posts, function(i, d){
-
-          $result.append(
-            $('<p />')
-              .text( '('+d['source']+')  ' + d['summary'] )
-              .prepend(
-                $('<h3 />')
-                  .text( d['date'] +' - '+  d['title'] )
-                  .css( {margin:0})
-              )
-          );
-      })
-    } else { $result.append( $('<p />').text('no results for '+data.ngram+'...') );  }
-  };
-</script>
 </head>
 <body>
 
@@ -74,6 +21,20 @@
 
 
 <div id='result'>...</div>
+
+<script type="text/javascript">
+  //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
+  var urlfor_getNgrams = "{{ url_for('getNgrams') }}";
+  var urlfor_getPosts = "{{ url_for('getPosts') }}";
+  console.log( urlfor_getNgrams );
+</script>
+
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='navigateposts.js')}}"></script>
 
 
 </body>

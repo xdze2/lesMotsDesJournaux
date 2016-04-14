@@ -25,6 +25,9 @@ http://stackoverflow.com/questions/21181621/displaying-some-text-when-mouse-is-o
 
 * voir les posts ?  mais pourquoi on parle de ça ??
 
+jQuerry plugins
+===============
+
 Popup AJAX:
 http://dimsemenov.com/plugins/magnific-popup/
 
@@ -34,6 +37,9 @@ http://jstayton.github.io/jquery-marcopolo/
 Highlight
 http://www.jquery.info/scripts/SearchHighlight/demo_en.html
 http://bartaz.github.io/sandbox.js/jquery.highlight.html
+
+Time picker/slider
+http://marcneuwirth.com/blog/2010/02/21/using-a-jquery-ui-slider-to-select-a-time-range/
 
 Eventuellement
 ==============
@@ -55,8 +61,13 @@ Fonctionalités possible
 * smartphone support
 * [plus de mots] affiche plus de mots
 
-
-
+* pool/ selection un mot
+  - tt les ngrams co-occurents
+  - count moyen
+  - group by source
+  - score(m, s) = count( m, source ) / count( m, * )
+  - order by score desc
+pour voir les mots associés à un terme, et comparer les journaux
 
 Lib
 ===

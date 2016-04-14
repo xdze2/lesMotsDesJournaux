@@ -71,26 +71,27 @@ def data_ngram(ngram='mardi'):
 def post():
     return render_template('post.html')
 
-@app.route('/post/_getposts')
+@app.route('/post/getPosts')
 def getPosts():
     ngram = request.args.get('ngram', '', type=unicode)
     date = '2016-04-02'
 
     cursor = get_db().cursor()
-    cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source FROM
+    cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source, Tp.link FROM
                         ( SELECT date, ngram, postid
                             FROM occurences
                             WHERE ngram = ?
                             GROUP BY postid
                             ORDER BY date( date ) DESC ) Toc
-                        JOIN ( SELECT ROWID, title, summary, source FROM posts ) Tp
+                        JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
                         ON Tp.rowid = Toc.postid
-                        LIMIT 30
+                        LIMIT 100
                         ''', ( ngram, ) )
 
     data = []
     for line in cursor.fetchall():
-        data.append( {'date':line[0], 'title':line[1], 'summary':line[2].replace('\n' ,''), 'source':line[3]} )
+        data.append( {'date':line[0], 'title':line[1], \
+            'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
 
     print('request posts for %s'%ngram)
     return jsonify(posts=data, ngram=ngram)
@@ -108,7 +109,7 @@ def getNgrams():
                         WHERE ngram like  ? || '%'
                         GROUP BY ngram
                         ORDER BY c DESC
-                        LIMIT 40
+                        LIMIT 30
                         ''', ( q, ) )
 
     data = []

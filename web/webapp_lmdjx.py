@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, render_template, request, g
 import sqlite3
 
+
 app = Flask(__name__)
 
 DATABASE = '../data/data_lmdjx.db'
@@ -72,7 +73,7 @@ def post():
 
 @app.route('/post/_getposts')
 def getPosts():
-    ngram = request.args.get('ngram', '', type=str)
+    ngram = request.args.get('ngram', '', type=unicode)
     date = '2016-04-02'
 
     cursor = get_db().cursor()
@@ -86,16 +87,33 @@ def getPosts():
                         ON Tp.rowid = Toc.postid
                         LIMIT 30
                         ''', ( ngram, ) )
-    print('Hello')
+
     data = []
     for line in cursor.fetchall():
-        print(line)
         data.append( {'date':line[0], 'title':line[1], 'summary':line[2].replace('\n' ,''), 'source':line[3]} )
 
-    return jsonify(posts=data)
+    print('request posts for %s'%ngram)
+    return jsonify(posts=data, ngram=ngram)
 
 
+@app.route('/ngrams/search')
+def getNgrams():
+    """ retourne la liste des nGrams pour l'auto completion
+    """
+    q = request.args.get('q', '', type=unicode)
 
+    cursor = get_db().cursor()
+    cursor.execute( '''SELECT distinct ngram
+                        FROM occurences
+                        WHERE ngram like  ? || '%'
+                        LIMIT 40
+                        ''', ( q, ) )
+
+    data = []
+    for line in cursor.fetchall():
+        data.append( {'ngram':line[0]} )
+
+    return jsonify(data=data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=True)

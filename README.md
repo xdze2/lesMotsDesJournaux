@@ -31,6 +31,9 @@ http://dimsemenov.com/plugins/magnific-popup/
 Dynamic auto complete:
 http://jstayton.github.io/jquery-marcopolo/
 
+Highlight
+http://www.jquery.info/scripts/SearchHighlight/demo_en.html
+http://bartaz.github.io/sandbox.js/jquery.highlight.html
 
 Eventuellement
 ==============

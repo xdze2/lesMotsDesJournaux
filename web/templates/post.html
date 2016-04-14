@@ -1,0 +1,38 @@
+<!doctype html>
+<title>see posts</title>
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#search').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/post/_getposts', {
+        ngram: $('input[name="ngram"]').val()
+      }, printPost );
+      return false;
+    });
+  });
+
+  function printPost(data){
+
+    var $result =  $('#result');
+    $result.empty();
+    $.each( data.posts, function(i, d){
+
+        $result.append( $('<p />')
+          .text( '('+d['source']+')  ' + d['summary'] )
+          .prepend( $('<h3 />').text( d['date'] +' - '+  d['title'] )
+                              .css( {margin:0})
+              )
+        );
+    } )
+  };
+</script>
+
+<p><input type=text size=10 name=ngram>
+<a href=# id='search'>search</a></p>
+
+<div id='result'>?</div>

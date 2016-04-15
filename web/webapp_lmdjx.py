@@ -2,6 +2,9 @@
 from flask import Flask, jsonify, render_template, request, g
 import sqlite3
 
+import sys
+if sys.version_info[0] < 3:
+    raise "Must be using Python 3"
 
 app = Flask(__name__)
 
@@ -73,7 +76,7 @@ def post():
 
 @app.route('/post/getPosts')
 def getPosts():
-    ngram = request.args.get('ngram', '', type=unicode)
+    ngram = request.args.get('ngram', '', type=str)
     date = '2016-04-02'
 
     cursor = get_db().cursor()
@@ -101,7 +104,7 @@ def getPosts():
 def getNgrams():
     """ retourne la liste des nGrams pour l'auto completion
     """
-    q = request.args.get('q', '', type=unicode)
+    q = request.args.get('q', '', type=str)
 
     cursor = get_db().cursor()
     cursor.execute( '''SELECT ngram, count(*) c

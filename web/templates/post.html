@@ -14,6 +14,7 @@
 <body>
 
 
+
 <form  method="get" class="marco">
   <input type="text" name="ngram" id="ngraminput">
   <img src="{{ url_for('static', filename='busy.gif')}}">
@@ -27,7 +28,10 @@
   var urlfor_getNgrams = "{{ url_for('getNgrams') }}";
   var urlfor_getPosts = "{{ url_for('getPosts') }}";
   console.log( urlfor_getNgrams );
+
 </script>
+
+
 
 <script type="text/javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -35,6 +39,16 @@
   src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
 <script type="text/javascript"
   src="{{ url_for('static', filename='navigateposts.js')}}"></script>
+
+  {% if ngram %}
+    <script type="text/javascript">
+      var ngram = "{{ngram}}";
+      console.log( ngram );
+
+      navposts.query(ngram);
+      //$("#ngraminput").val( ngram );
+    </script>
+  {% endif %}
 
 
 </body>

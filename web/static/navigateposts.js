@@ -38,16 +38,14 @@ var navposts = {
   addapost: function ( $elt, fields ) {
     $elt.append(
       $('<div />', {'class':'post'})
-        .append(
-          $('<h3 />')
+        .append( $('<h3 />')
             .append( $('<a />', {'href':fields['link'], 'text':fields['title']} ) )
             .prepend(
                 $('<span />', {'class':'date'})
                   .text( navposts.formatdate( fields['date'] ) )
             )
         )
-        .append(
-          $('<div />')
+        .append(  $('<div />')
             .html( fields['summary'] )
             .prepend(
                 $('<span />', {'text': '('+fields['source']+') '} )
@@ -58,7 +56,6 @@ var navposts = {
   },
   formatdate : function ( date ){
   	var d = date.split("-");
-
     return d[2] + '/' + d[1] + '/' + d[0];
   }
 

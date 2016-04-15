@@ -71,8 +71,9 @@ def data_ngram(ngram='mardi'):
     return jsonify(data=data_ngram, ngram=ngram)
 
 @app.route('/post/')
-def post():
-    return render_template('post.html')
+@app.route('/post/<ngram>')
+def post(ngram=None):
+    return render_template('post.html', ngram=ngram)
 
 @app.route('/post/getPosts')
 def getPosts():

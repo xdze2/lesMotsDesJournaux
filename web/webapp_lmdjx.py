@@ -41,8 +41,14 @@ def plot_ngram(ngram='lundi'):
 
     return render_template('plot.html', ngram=ngram)
 
-@app.route('/data/<ngram>')
-def data_ngram(ngram='mardi'):
+@app.route('/freqs/')
+@app.route('/freqs/<ngram>')
+def freqs(ngram=None):
+    return render_template('ngramviewer.html', ngram=ngram)
+
+@app.route('/getFreqs')
+def getFreqs(ngram='mardi'):
+    ngram = request.args.get('ngram', '', type=str)
 
     print( 'get ngram: %s'%ngram )
     cursor = get_db().cursor()

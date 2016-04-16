@@ -39,7 +39,7 @@ $.getJSON(data_filename, function (data) {
 			itemNav: 'basic',
 			smart: 1,
 			activateOn: null, //'click',
-			mouseDragging: 1,
+			mouseDragging: 0,
 			touchDragging: 1,
 			releaseSwing: 1,
 			startAt: nFramesTot - nFramesVisibles,

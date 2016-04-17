@@ -21,13 +21,13 @@ cursor.execute( '''CREATE TABLE frequences AS
             JOIN ( SELECT  ngram, count(*) globcount
                     FROM occurences
                     GROUP BY ngram
-                    HAVING globcount > 14 /*filtre sur le nbre min occurences d'un ngram*/
+                    HAVING globcount > 5 /*filtre sur le nbre min occurences d'un ngram*/
                 ) Tn
             ON Tn.ngram = Tdn.ngram
             JOIN ( SELECT date, count(*) daycount
                     FROM occurences
                     GROUP BY date
-                    HAVING daycount > 300 /*filtre sur le nbre min. de mots par jour*/
+                    HAVING daycount > 100 /*filtre sur le nbre min. de mots par jour*/
                 ) Td
             ON Td.date = Tdn.date
             ORDER BY date(Tdn.date) DESC ''')

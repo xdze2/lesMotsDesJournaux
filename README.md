@@ -32,6 +32,7 @@ Popup AJAX:
 http://dimsemenov.com/plugins/magnific-popup/
 
 Dynamic auto complete:
+jstayton.github.io/jquery-manifest
 http://jstayton.github.io/jquery-marcopolo/
 
 Highlight

@@ -42,6 +42,9 @@ http://bartaz.github.io/sandbox.js/jquery.highlight.html
 Time picker/slider
 http://marcneuwirth.com/blog/2010/02/21/using-a-jquery-ui-slider-to-select-a-time-range/
 
+Time series graph
+http://metricsgraphicsjs.org/
+
 Eventuellement
 ==============
 * detect gram in ngram : "vache" < "vache folle"

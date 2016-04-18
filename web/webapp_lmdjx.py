@@ -46,8 +46,9 @@ def plot_ngram(ngram='lundi'):
 def freqs(ngram=None):
     return render_template('ngramviewer.html', ngram=ngram)
 
-@app.route('/getFreqs')
-def getFreqs(ngram='mardi'):
+@app.route('/getFreqs',  methods=['GET'])
+# @app.route('/getFreqs/<ngram>')
+def getFreqs():
     ngram = request.args.get('ngram', '', type=str)
 
     print( 'get ngram: %s'%ngram )
@@ -67,14 +68,14 @@ def getFreqs(ngram='mardi'):
                         ORDER BY date(Tf.date)
                         ''', (ngram, ) )
 
-    data_ngram = []
+
+    data = []
+
     for line in cursor.fetchall():
-        date = line[0]
-        freq = line[1]
-        data_ngram.append( {'date':date, 'freq':freq  })
+        data.append( {'date':line[0], 'freq':line[1]  } )
 
 
-    return jsonify(data=data_ngram, ngram=ngram)
+    return jsonify(data=data, ngram=ngram)
 
 @app.route('/post/')
 @app.route('/post/<ngram>')
@@ -114,12 +115,12 @@ def getNgrams():
     q = request.args.get('q', '', type=str)
 
     cursor = get_db().cursor()
-    cursor.execute( '''SELECT ngram, count(*) c
-                        FROM occurences
+    cursor.execute( '''SELECT ngram, sum(freq) c
+                        FROM stats
                         WHERE ngram like  ? || '%'
                         GROUP BY ngram
                         ORDER BY c DESC
-                        LIMIT 30
+                        LIMIT 20
                         ''', ( q, ) )
 
     data = []

@@ -3,71 +3,88 @@ var marcopolo_config = {
   formatItem: function (data, $item) {
     return data.ngram;
   },
-  onSelect: function (data, $item) {
-    this.val(data.ngram);
-    this.blur(); //marche pas...
-    ngramviewer.query(data.ngram);
-  },
   formatData: function (data) {
     return data.data;
   },
+
   minChars: 2,
   required: true
 };
+var manifest_config = {
+  marcoPolo: marcopolo_config,
+  formatDisplay: function (data, $item, $mpItem) {
+    return data.ngram;
+  },
+  formatValue: function (data, $value, $item, $mpItem) {
+    return data.ngram;
+  },
+  // onSelect: function (data, $item) {
+  //   console.log( 'hello' )
+  //   console.log( data );
+  // },
+  onAdd: function (data, $item, initial) {
+    ngramviewer.query( data.ngram );
+  },
+  onRemove: function (data, $item) {
+    delete ngramviewer.alldata[ data.ngram ];
+    ngramviewer.plot();
+  },
+  formatRemove: function ($remove, $item) {
+    return '✖';
+  }
+
+};
 
 var ngramviewer = {
-
+  alldata: {},
+  graphic: {
+      target: '#plotzone',
+      full_width: true,
+      height: 300,
+      top: 20,
+      right:100,
+      x_extended_ticks: true,
+      interpolate: 'basic'
+    },
   init: function () {
-    $('#ngraminput').marcoPolo( marcopolo_config );
+    $('#ngraminput').manifest( manifest_config );
+
+
+
   },
 
   query: function ( ngram ) {
-    $.getJSON(urlfor_getFreqs, { ngram: ngram  }, ngramviewer.plot );
+    $.getJSON(urlfor_getFreqs, { ngram: ngram  }, ngramviewer.adddata );
   },
-  plot: function (data) {
-    console.log('plot');
-    $("#plotici").empty();
-    var svg = dimple.newSvg("#plotici", 900, 250);
+  adddata: function( data ){
+    data.data  = MG.convert.date(data.data, 'date')
+    // console.log( this ) ... query
+    ngramviewer.alldata[ data.ngram ] = data ;
+    console.log(ngramviewer.alldata)
 
-    console.log(data)
-    var myChart = new dimple.chart(svg, data.data);
-    myChart.setBounds(60, 40, 900-120, 250-100);
-    var x = myChart.addCategoryAxis("x", "date", "%Y-%m-%d", "%d-%B");
-    x.addOrderRule("date");
-
-    myChart.addMeasureAxis("y", "freq");
-    var s = myChart.addSeries('ngram', dimple.plot.bar);
-    s.lineWeight =  2;
-    //myChart.addLegend(60, 10, 500, 20, "right");
-    myChart.draw();
+    ngramviewer.plot();
   },
-  print: function (data) {
-    var $result =  $('#result');
-    $result.empty();
-    if ( data.posts.length > 0 ) {
-      $.each( data.posts, function(i, d){
-            ngramviewer.addapost( $result, d  );
-        }  );
-    } else { $result.append( $('<p />').text('no results for '+data.ngram+'...') );  }
-  },
+  plot: function () {
+    console.log( '-- plot:')
+    //console.log(ngramviewer.alldata);
+    var data2plot = [];
+    var legendLabels = [];
+    for (var ngram in ngramviewer.alldata){
+        var data = ngramviewer.alldata[ngram].data;
+        data2plot.push( data )
+        legendLabels.push( ngram )
+    }
+    // for (var i = 0; i < ngramviewer.alldata.length; i++) {
+    //   var data = ngramviewer.alldata[i].data;
+    //   data2plot.push( data )
+    // }
 
-  addapost: function ( $elt, fields ) {
-    $elt.append(
-      $('<div />', {'class':'post'})
-        .append( $('<h3 />')
-            .append( $('<a />', {'href':fields['link'], 'text':fields['title']} ) )
-            .prepend(
-                $('<span />', {'class':'date'})
-                  .text( ngramviewer.formatdate( fields['date'] ) )
-            )
-        )
-        .append(  $('<div />')
-            .html( fields['summary'] )
-            .prepend(
-                $('<span />', {'text': '('+fields['source']+') '} )
-              )
-        )
-    );
+    this.graphic.data = data2plot;
+    this.graphic.x_accessor = 'date';
+    this.graphic.y_accessor = 'freq';
+    this.graphic.chart_type = 'line';
+    this.graphic.legend = legendLabels;
+    MG.data_graphic( this.graphic );
 
   },
   formatdate : function ( date ){

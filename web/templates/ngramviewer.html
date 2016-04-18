@@ -4,54 +4,59 @@
 <title>navigate posts</title>
 
 
-<link rel="stylesheet" href="{{ url_for('static', filename='navigateposts.css')}}" />
-<link rel="stylesheet" href="{{ url_for('static', filename='lib/marcopolo.css')}}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='ngramviewer.css')}}" />
 
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='lib/marcopolo.css')}}" /> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='lib/manifest.css')}}" />
 
+<link rel="stylesheet" href="{{ url_for('static', filename='lib/metricsgraphics.css')}}" />
 
 
 </head>
 <body>
 
+  <form>
+    <input type="text" name="ngram" id="ngraminput">
+   <img src="{{ url_for('static', filename='busy.gif')}}">
+  </form>
 
 
-<form  method="get" class="marco">
-  <input type="text" name="ngram" id="ngraminput">
-  <img src="{{ url_for('static', filename='busy.gif')}}">
-</form>
 
 
-<div id='plotici'>...</div>
+<div id='plotzone'></div>
 
 <script type="text/javascript">
   //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
   var urlfor_getNgrams = "{{ url_for('getNgrams') }}";
   var urlfor_getFreqs = "{{ url_for('getFreqs') }}";
-  console.log( urlfor_getNgrams );
-
 </script>
 
 
 
-<script type="text/javascript"
-  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<!-- <script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+
+  <script type="text/javascript"
+    src="{{ url_for('static', filename='lib/jquery-1.11.3.min.js')}}"></script>
 <script type="text/javascript"
   src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
+  <script type="text/javascript"
+    src="{{ url_for('static', filename='lib/jquery.manifest.js')}}"></script>
 <script type="text/javascript"
   src="{{ url_for('static', filename='ngramviewer.js')}}"></script>
 
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script type="text/javascript"
+    src="{{ url_for('static', filename='lib/d3.v3.min.js')}}"></script>
+    <script type="text/javascript"
+      src="{{ url_for('static', filename='lib/metricsgraphics.min.js')}}"></script>
 
-  {% if ngram %}
+  <!-- {% if ngram %}
     <script type="text/javascript">
       var ngram = "{{ngram}}";
-      console.log( ngram );
-
       navposts.query(ngram);
       //$("#ngraminput").val( ngram );
     </script>
-  {% endif %}
+  {% endif %} -->
 
 
 </body>

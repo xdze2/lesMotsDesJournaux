@@ -18,6 +18,10 @@ import time   # besoin pour time_obj->json
 #         return serial
 #     raise TypeError ("Type not serializable")
 
+import sys
+if sys.version_info[0] < 3:
+    raise "Must be using Python 3"
+    
 print( '... update rss feeds ...' )
 print(" " + time.strftime("%x %X") )
 

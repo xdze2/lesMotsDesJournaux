@@ -7,7 +7,7 @@ var marcopolo_config = {
     return data.data;
   },
 
-  minChars: 2,
+  minChars: 1,
   required: true
 };
 var manifest_config = {
@@ -37,8 +37,9 @@ var manifest_config = {
   },
   formatRemove: function ($remove, $item) {
     return '✖';
-  }
-
+  },
+  required: true,
+  separator: ''
 };
 
 var ngramviewer = {
@@ -46,11 +47,13 @@ var ngramviewer = {
   graphic: {
       target: '#plotzone',
       full_width: true,
-      height: 300,
-      top: 20,
+      height: 250,
+      top: 15,
       right:100,
       x_extended_ticks: true,
-      interpolate: 'basic'
+      interpolate: 'basic',
+      area:false,
+       mouseover: function(d, i) { console.log(d); }
     },
   init: function () {
     $('#ngraminput').manifest( manifest_config );
@@ -92,6 +95,10 @@ var ngramviewer = {
     this.graphic.legend = legendLabels;
     MG.data_graphic( this.graphic );
 
+    $('#plotzone svg').click(
+      function (){
+        console.log('click');
+      }   );
   },
   formatdate : function ( date ){
   	var d = date.split("-");

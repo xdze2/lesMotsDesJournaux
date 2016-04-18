@@ -299,7 +299,7 @@ path.mg-confidence-band {
 path.mg-main-line {
     fill: none;
     opacity: 0.8;
-    stroke-width: 1.1px;
+    stroke-width: 1.6px;
 }
 
 .mg-points circle {
@@ -314,7 +314,7 @@ circle.mg-points-mono {
 
 tspan.mg-points-mono {
     fill: #0000ff;
-    stroke: #0000ff; 
+    stroke: #0000ff;
 }
 
 /* a selected point in a scatterplot */

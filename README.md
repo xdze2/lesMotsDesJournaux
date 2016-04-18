@@ -45,6 +45,9 @@ http://marcneuwirth.com/blog/2010/02/21/using-a-jquery-ui-slider-to-select-a-tim
 Time series graph
 http://metricsgraphicsjs.org/
 
+CrossFilter
+http://square.github.io/crossfilter/
+
 Eventuellement
 ==============
 * detect gram in ngram : "vache" < "vache folle"

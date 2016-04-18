@@ -4,7 +4,7 @@
 div.mf_container {
     font-size: 150%;
     padding: 0.1em;
-    padding-left: .5em;
+    /*padding-left: .5em;*/
     border: 1px solid black;
     width: 80%;
     margin: auto;
@@ -25,6 +25,7 @@ input.mp_input, input.mf_input {
   font: inherit;
 
   outline: none;
+  padding-left: .5em;
   /*padding: 0.1em;
   padding-left: .5em;*/
   /*width: 30em;*/
@@ -32,17 +33,23 @@ input.mp_input, input.mf_input {
 
 /* Ordered list for display results. */
 ol.mp_list {
-  background-color: #FFFFFF;
+  background-color: white;
   border-left: 1px solid #C0C0C0;
   border-right: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
   overflow: hidden;
-  position: absolute;
-  width:264px;
+  /*position: absolute;*/
   z-index: 99999;
-
+  font-size: 150%;
   padding: 0;
-  margin:0;
+  width: 80%;
+  margin: auto;
   list-style-type: none;
+}
+ol.mp_list li {
+  padding: 0.1em;
+  padding-left: 0.5em;
+
 }
 /* Currently highlighted list item. */
 ol.mp_list li.mp_highlighted {

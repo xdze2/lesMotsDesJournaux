@@ -27,7 +27,13 @@ var manifest_config = {
   },
   onRemove: function (data, $item) {
     delete ngramviewer.alldata[ data.ngram ];
-    ngramviewer.plot();
+    if( Object.keys(ngramviewer.alldata).length>0 ){
+          ngramviewer.plot();
+          console.log( Object.keys(ngramviewer.alldata).length );
+    } else {
+      $('#plotzone').empty();
+    }
+
   },
   formatRemove: function ($remove, $item) {
     return '✖';

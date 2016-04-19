@@ -23,13 +23,14 @@
    <img src="{{ url_for('static', filename='busy.gif')}}">
   </form>
 
-
+ <div id='postzone'></div>
 
 
 <script type="text/javascript">
   //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
   var urlfor_getNgrams = "{{ url_for('getNgrams') }}";
   var urlfor_getFreqs = "{{ url_for('getFreqs') }}";
+  var urlfor_getSomePosts = "{{ url_for('getSomePosts') }}";
 </script>
 
 

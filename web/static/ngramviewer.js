@@ -18,10 +18,6 @@ var manifest_config = {
   formatValue: function (data, $value, $item, $mpItem) {
     return data.ngram;
   },
-  // onSelect: function (data, $item) {
-  //   console.log( 'hello' )
-  //   console.log( data );
-  // },
   onAdd: function (data, $item, initial) {
     ngramviewer.query( data.ngram );
   },
@@ -44,6 +40,7 @@ var manifest_config = {
 
 var ngramviewer = {
   alldata: {},
+  lastdateover: '',
   graphic: {
       target: '#plotzone',
       full_width: true,
@@ -53,13 +50,14 @@ var ngramviewer = {
       x_extended_ticks: true,
       interpolate: 'basic',
       area:false,
-       mouseover: function(d, i) { console.log(d); }
+      mouseover: function(d, i) {
+        formatdate = d3.time.format("%Y-%m-%d");
+        ngramviewer.lastdateover = formatdate(d.date);
+      }
     },
+
   init: function () {
     $('#ngraminput').manifest( manifest_config );
-
-
-
   },
 
   query: function ( ngram ) {
@@ -95,10 +93,10 @@ var ngramviewer = {
     this.graphic.legend = legendLabels;
     MG.data_graphic( this.graphic );
 
-    $('#plotzone svg').click(
-      function (){
-        console.log('click');
-      }   );
+    $('#plotzone svg').click(function (){
+      var ngrams = Object.keys(ngramviewer.alldata);
+      navposts.query( ngramviewer.lastdateover, ngrams.join() )
+      });
   },
   formatdate : function ( date ){
   	var d = date.split("-");
@@ -106,6 +104,44 @@ var ngramviewer = {
   }
 
 
-};
+}
+
+var navposts = {
+  query: function (  date, ngrams ) {
+    console.log( date );
+    console.log( ngrams );
+    $.getJSON(urlfor_getSomePosts, { ngrams: ngrams, date:date  }, navposts.print );
+  },
+
+  print: function (data) {
+    var $result =  $('#postzone');
+    $result.empty();
+    if ( data.posts.length > 0 ) {
+      $.each( data.posts, function(i, d){
+            navposts.addapost( $result, d  );
+        }  );
+    } else { $result.append( $('<p />').text('no results for '+data.ngram+'...') );  }
+  },
+
+  addapost: function ( $elt, fields ) {
+    $elt.append(
+      $('<div />', {'class':'post'})
+        .append( $('<h3 />')
+            .append( $('<a />', {'href':fields['link'], 'text':fields['title']} ) )
+        )
+        .append(  $('<div />')
+            .html( fields['summary'] )
+            .prepend(
+                $('<span />', {'text': '('+fields['source']+') '} )
+              )
+        )
+    );
+
+  },
+  formatdate : function ( date ){
+  	var d = date.split("-");
+    return d[2] + '/' + d[1] + '/' + d[0];
+  }
+}
 
 $(document).ready( ngramviewer.init );

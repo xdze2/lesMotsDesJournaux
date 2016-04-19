@@ -5,7 +5,24 @@ body {
 }
 
 
-#result {
+#postzone {
   margin-top:1em;
 
+}
+
+
+
+.post {
+  margin-bottom: 0.6em;
+
+}
+.post h3 {
+  margin:0;
+}
+.post h3 a {
+  text-decoration: none;
+  color: black;
+}
+.post h3 a:hover{
+  color: #ff9900;
 }

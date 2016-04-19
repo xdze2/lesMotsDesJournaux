@@ -129,5 +129,34 @@ def getNgrams():
 
     return jsonify(data=data)
 
+
+
+@app.route('/freqs/getSomePosts')
+def getSomePosts():
+    ngrams = request.args.get('ngrams', '', type=str)
+    date = request.args.get('date', '', type=str)
+    ngrams = ngrams.split(',')
+
+    queryparams = [date] + ngrams
+    print(queryparams)
+    cursor = get_db().cursor()
+    cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source, Tp.link FROM
+                        ( SELECT date, ngram, postid
+                            FROM occurences
+                            WHERE date = ? AND ngram IN (%s)
+                            GROUP BY postid
+                            ORDER BY date( date ) DESC ) Toc
+                        JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
+                        ON Tp.rowid = Toc.postid
+                        LIMIT 15
+                        '''%','.join(['?']*len(ngrams)), tuple(queryparams) )
+
+    data = []
+    for line in cursor.fetchall():
+        data.append( {'date':line[0], 'title':line[1], \
+            'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
+
+    return jsonify(posts=data, ngramh=ngrams)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=True)

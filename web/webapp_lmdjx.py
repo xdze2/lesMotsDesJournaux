@@ -156,7 +156,8 @@ def getSomePosts():
         data.append( {'date':line[0], 'title':line[1], \
             'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
 
-    return jsonify(posts=data, ngramh=ngrams)
+    day = date
+    return jsonify(posts=data, ngrams=ngrams,  day=day)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=True)

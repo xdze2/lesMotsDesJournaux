@@ -6,15 +6,23 @@ body {
 
 
 #postzone {
+  width: 80%;
+  margin:auto;
   margin-top:1em;
-
+  margin-bottom: 2em;
 }
 
-
-
+#plotzone svg path, #plotzone svg rect  {
+  cursor: pointer;
+}
+#postzone h2 {
+  margin:0;
+  padding: 0;
+  margin-bottom: 0.6em;
+  margin-top: 1.2em;
+}
 .post {
   margin-bottom: 0.6em;
-
 }
 .post h3 {
   margin:0;
@@ -22,7 +30,16 @@ body {
 .post h3 a {
   text-decoration: none;
   color: black;
+  font-size: 80%;
+  margin-left: 1.2em;
+  cursor:pointer;
+  font-weight: normal;
 }
 .post h3 a:hover{
   color: #ff9900;
+}
+.post div {
+  margin-left:1.2em;
+  margin-right:5em;
+
 }

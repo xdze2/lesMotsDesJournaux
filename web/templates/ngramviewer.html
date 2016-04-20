@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>navigate posts</title>
 
@@ -44,13 +44,16 @@
   src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
   <script type="text/javascript"
     src="{{ url_for('static', filename='lib/jquery.manifest.js')}}"></script>
-<script type="text/javascript"
-  src="{{ url_for('static', filename='ngramviewer.js')}}"></script>
+    <script type="text/javascript"
+      src="{{ url_for('static', filename='lib/moment-with-locales.min.js')}}"></script>
 
   <script type="text/javascript"
     src="{{ url_for('static', filename='lib/d3.v3.min.js')}}"></script>
     <script type="text/javascript"
       src="{{ url_for('static', filename='lib/metricsgraphics.min.js')}}"></script>
+
+      <script type="text/javascript"
+      src="{{ url_for('static', filename='ngramviewer.js')}}"></script>
 
   <!-- {% if ngram %}
     <script type="text/javascript">

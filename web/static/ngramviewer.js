@@ -49,17 +49,23 @@ var ngramviewer = {
       target: '#plotzone',
       full_width: true,
       height: 250,
-      top: 15,
+      top: 50,
       right:100,
+      left: 80,
       x_extended_ticks: true,
       interpolate: 'basic',
       area:false,
+      y_label: 'freq. ‰',
+      xax_format:  function (d){
+            return  moment(d).format('Do MMM');
+      },
       mouseover: function(d, i) {
         ngramviewer.lastdateover = d.date;
       }
     },
 
   init: function () {
+    moment.locale('fr'); // 'fr'
     $('#ngraminput').manifest( manifest_config );
   },
   clear: function(){
@@ -80,6 +86,9 @@ var ngramviewer = {
     ngramviewer.plot();
     if( ngramviewer.selecteddate ){
       ngramviewer.viewposts();
+    } else {
+      var max = 1;
+      console.log( ngramviewer.alldata  );
     }
   },
   plot: function () {
@@ -106,10 +115,11 @@ var ngramviewer = {
     MG.data_graphic( this.graphic );
 
     $('#plotzone svg').click( function(){
-      formatdate = d3.time.format("%Y-%m-%d");
-      ngramviewer.selecteddate = formatdate(ngramviewer.lastdateover);
-      ngramviewer.viewposts();
       ngramviewer.addmarkers( ngramviewer.lastdateover );
+      var day = moment(ngramviewer.lastdateover).format('YYYY-MM-DD');
+      ngramviewer.selecteddate = day;
+      ngramviewer.viewposts( );
+
       }
       );
   },
@@ -140,25 +150,26 @@ var navposts = {
   print: function (data) {
     var $result =  $('#postzone');
     navposts.clear();
-    $('#postzone').append( $('<h2 />').text( data.day ) );
+    $('#postzone').append(
+      $('<h2 />').text( navposts.formatday( data.date )  )
+    );
     if ( data.posts.length > 0 ) {
       $.each( data.posts, function(i, d){
             navposts.addapost( $result, d  );
         }  );
     } else { $result.append( $('<p />').text("Pas d'articles pour '"+data.ngrams+"' ce jour...") );  }
   },
-
+  formatday: function (d){
+    return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
+  },
   addapost: function ( $elt, fields ) {
     $elt.append(
       $('<div />', {'class':'post'})
-        .append( $('<h3 />')
-            .append( $('<a />', {'href':fields['link'], 'text':fields['title']} ) )
+        .append( $('<h3 />', {'text':fields['title']})
+            .append( $('<a />', {'href':fields['link'], 'text':fields['source']} ) )
         )
         .append(  $('<div />')
             .html( fields['summary'] )
-            .prepend(
-                $('<span />', {'text': '('+fields['source']+') '} )
-              )
         )
     );
 

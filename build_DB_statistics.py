@@ -27,7 +27,7 @@ cursor.execute( '''CREATE TABLE frequences AS
             JOIN ( SELECT date, count(*) daycount
                     FROM occurences
                     GROUP BY date
-                    HAVING daycount > 100 /*filtre sur le nbre min. de mots par jour*/
+                    HAVING daycount > 250 /*filtre sur le nbre min. de mots par jour*/
                 ) Td
             ON Td.date = Tdn.date
             ORDER BY date(Tdn.date) DESC ''')
@@ -55,11 +55,12 @@ cursor.execute( '''CREATE TABLE moyennes AS
 
 
 # --- SCORE ---
+# CAST(Tf.freq as real)/CAST(Tm.avg as real)-1.0 as score
 print( '---- score ----')
 cursor.execute('''DROP TABLE IF EXISTS scores''')
 cursor.execute( '''CREATE TABLE scores AS
                 SELECT Tf.date as date, Tf.ngram as ngram,
-            CAST(Tf.freq as real)/CAST(Tm.avg as real)-1.0 as score
+            CAST(Tf.freq as real) - CAST(Tm.avg as real) as score
                     FROM  (
                         SELECT date, ngram, freq
                         FROM frequences

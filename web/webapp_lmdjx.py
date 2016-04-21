@@ -194,4 +194,4 @@ def last10days():
     return jsonify(data=data4web)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8888, debug=True)
+    app.run(host='0.0.0.0', port=8890, debug=True)

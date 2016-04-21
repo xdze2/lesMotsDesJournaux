@@ -163,16 +163,18 @@ var navposts = {
     return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
   },
   addapost: function ( $elt, fields ) {
-    $elt.append(
-      $('<div />', {'class':'post'})
-        .append( $('<h3 />', {'text':fields['title']})
-            .append( $('<a />', {'href':fields['link'], 'text':fields['source']} ) )
-        )
-        .append(  $('<div />')
-            .html( fields['summary'] )
-        )
-    );
 
+    var postdiv = $('<div />', {'class':'post'})
+      .append( $('<h3 />', {'text':fields['title']})
+        .append( $('<a />', {'href':fields['link'], 'text':fields['source']} ) )
+            );
+    if( fields['summary']  ){
+      postdiv.append(  $('<div />')
+        .html( fields['summary'] )
+      );
+    };
+
+    $elt.append(postdiv);
   },
   formatdate : function ( date ){
   	var d = date.split("-");

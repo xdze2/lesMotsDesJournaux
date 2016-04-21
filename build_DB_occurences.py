@@ -68,7 +68,7 @@ for line in cursor.fetchall():
         if len( ngram ) > 1:
             # Filrage pour les (<1)-grams
             # si le n-gram est trop rare, on le split en 1-gram
-            if storage.query_count( ngram ) > 5:
+            if storage.query_count( ngram ) > 2:
                 ngram = ' '.join( ngram )
             else:
                 #segmentedPhrase.extend( [ [x] for x in ngram ] )

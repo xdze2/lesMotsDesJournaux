@@ -33,7 +33,12 @@
   var urlfor_getSomePosts = "{{ url_for('getSomePosts') }}";
 </script>
 
-
+{% if ngram %}
+  <script type="text/javascript">
+    var ngram_url = "{{ngram}}";
+    console.log( ngram_url );
+  </script>
+{% endif %}
 
 <!-- <script type="text/javascript"
   src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->

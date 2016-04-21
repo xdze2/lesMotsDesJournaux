@@ -23,7 +23,7 @@ var manifest_config = {
   },
   onRemove: function (data, $item) {
     delete ngramviewer.alldata[ data.ngram ];
-    console.log( Object.keys(ngramviewer.alldata).length );
+    //console.log( Object.keys(ngramviewer.alldata).length );
     if( Object.keys(ngramviewer.alldata).length>0 ){
           ngramviewer.plot();
           ngramviewer.viewposts();
@@ -66,9 +66,23 @@ var ngramviewer = {
 
   init: function () {
     moment.locale('fr'); // 'fr'
+
+    if( typeof ngram_url !== 'undefined' ){
+      ngram_url = ngram_url.split(',');
+
+      var initvalues = [];
+      for(var i=0, len=ngram_url.length; i < len; i++){
+          //console.log( ngram_url[i] );
+          ngramviewer.query(ngram_url[i]);
+          initvalues.push( {'ngram':ngram_url[i]} );
+      }
+    }
+    manifest_config.values = initvalues;
     $('#ngraminput').manifest( manifest_config );
+
   },
   clear: function(){
+    ngramviewer.updateurl();
     ngramviewer.selecteddate = false;
     ngramviewer.graphic.markers = null;
     MG.data_graphic( ngramviewer.graphic );
@@ -91,8 +105,20 @@ var ngramviewer = {
       console.log( ngramviewer.alldata  );
     }
   },
+  updateurl: function() {
+    var stateObj = { 'ngrams': Object.keys(ngramviewer.alldata) };
+    if( Object.keys(ngramviewer.alldata).length>0 ){
+      var newUrl = '/freqs/'+Object.keys(ngramviewer.alldata).join();
+    } else {
+      console.log( Object.keys(ngramviewer.alldata).length );
+      var newUrl = '/freqs';
+    }
+    history.replaceState(stateObj, "Hello", newUrl);
+  },
   plot: function () {
+    ngramviewer.updateurl();
     console.log( '-- plot:')
+
     //console.log(ngramviewer.alldata);
     var data2plot = [];
     var legendLabels = [];
@@ -183,3 +209,13 @@ var navposts = {
 }
 
 $(document).ready( ngramviewer.init );
+
+// 
+// // handle the back and forward buttons
+// $(window).bind('popstate', function(event) {
+//     // if the event has our history data on it, load the page fragment with AJAX
+//     var state = event.originalEvent.state;
+//     if (state) {
+//         ngramviewer.init();
+//     }
+// });

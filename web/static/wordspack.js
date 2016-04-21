@@ -1,5 +1,7 @@
-var data_filename = $SCRIPT_ROOT+'static/data.json'
-$.getJSON(data_filename, function (data) {
+
+
+$.getJSON(urlfor_last10days, function (data) {
+	 data = data.data;
 		// get elements
 		var $frame  = $('#myTimeLine');
 		var $slidee = $frame.children('ul').eq(0);
@@ -20,21 +22,22 @@ $.getJSON(data_filename, function (data) {
 
     // data
 		$.each( data, function(i, d){
-			var day = d['day']
+			var day = d['date']
 			var blocks = d['mots']
 
 			$slidee.append( $('<li />')
 				.attr('id', day )
 				.css( {width:actualDayWidth, height:maxHeight} )
-				.html( '<h3>'+ d['labelDay'] +'</h3> <p></p>' )
+				.html( '<h3>'+ d['date'] +'</h3> <p></p>' )
 			);
 
 			fillAday( day, blocks, maxHeight  );
 		});
 		//console.log( $slidee.children('li').length );
 
-		/* - Param and call Sly  (scrolling lib) - */
-		$frame.sly({
+		/* - Call Sly  (scrolling lib) - */
+
+		var sly_config = {
 			horizontal: 1,
 			itemNav: 'basic',
 			smart: 1,
@@ -42,11 +45,11 @@ $.getJSON(data_filename, function (data) {
 			mouseDragging: 0,
 			touchDragging: 1,
 			releaseSwing: 1,
-			startAt: nFramesTot - nFramesVisibles,
+			//startAt: nFramesTot - nFramesVisibles,
 			scrollBar: $wrap.find('.scrollbar'),
 			scrollBy: 1,
-      scrollTrap: 1,
-      scrollSource:  $('body'),//$frame,
+			scrollTrap: 1,
+			scrollSource:  $('body'),//$frame,
 			pagesBar: $wrap.find('.pages'),
 			activatePageOn: 'click',
 			speed: 300,
@@ -55,7 +58,8 @@ $.getJSON(data_filename, function (data) {
 			dragHandle: 1,
 			dynamicHandle: 1,
 			clickBar: 1
-		});
+		};
+		$frame.sly( sly_config );
 });
 
 
@@ -89,7 +93,7 @@ function scaleFontSize(score){
 	$.each( blocks, function(i, d){
 		var $mot = $('<a />', {
 			id : d['id'],
-			href: 'post/'+d['label'],
+			href: 'freqs/'+d['label'],
 			css : { fontSize : scaleFontSize(d['score'])+"em"	, //d['score']+
 							padding: '0px 10px 0px 0px', // t r b l
 							'white-space': 'nowrap',

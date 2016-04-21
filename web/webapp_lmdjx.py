@@ -44,10 +44,10 @@ def plot_ngram(ngram='lundi'):
 @app.route('/freqs/')
 @app.route('/freqs/<ngram>')
 def freqs(ngram=None):
+
     return render_template('ngramviewer.html', ngram=ngram)
 
 @app.route('/getFreqs',  methods=['GET'])
-# @app.route('/getFreqs/<ngram>')
 def getFreqs():
     ngram = request.args.get('ngram', '', type=str)
 
@@ -157,6 +157,41 @@ def getSomePosts():
             'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
 
     return jsonify(posts=data, ngrams=ngrams,  date=date)
+
+
+@app.route('/last10days')
+def last10days():
+    cursor = get_db().cursor()
+
+    # liste des jours
+    cursor.execute( '''SELECT distinct date
+                        FROM stats
+                        ORDER By Date(date) DESC
+                        LIMIT 10  ''' )
+
+    all_dates = []
+    for line in cursor.fetchall():
+        all_dates.append( line[0] )
+
+    all_dates = all_dates[::-1]
+
+    data4web = []
+    for date in all_dates:
+        cursor.execute( '''SELECT rowid,  ngram, score
+                            FROM stats
+                            WHERE date=?
+                            ORDER BY score DESC
+                            LIMIT 15   ''', (date, ) )
+
+        ngrams4today = []
+        for line in cursor.fetchall():
+            ngram_dict = { 'label':line[1], 'score':line[2], 'id':line[0] }
+            ngrams4today.append( ngram_dict )
+
+        day_dict = {'mots':ngrams4today, 'date':date }
+        data4web.append( day_dict )
+
+    return jsonify(data=data4web)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888, debug=True)

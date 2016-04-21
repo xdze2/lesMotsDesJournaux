@@ -6,8 +6,8 @@
 	<title>my page</title>
 	<meta name="viewport" content="width=device-width">
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='js_files/normalize.css')}}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='js_files/horizontal.css')}}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/normalize.css')}}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='wordspack.css')}}">
 
 </head>
 <body>
@@ -25,18 +25,18 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+  //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
+  var urlfor_last10days = "{{ url_for('last10days') }}";
 
-	<!-- Scripts -->
-	<script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
 	<script src="{{ url_for('static', filename='lib/jquery.js')}}"></script>
-	<script src="{{ url_for('static', filename='js_files/plugins.js')}}"></script>
 
-	<script src="{{ url_for('static', filename='js_files/packer.js')}}"></script>
-	<script src="{{ url_for('static', filename='js_files/sly.js')}}"></script>
-	<script src="{{ url_for('static', filename='js_files/myScript.js')}}"></script>
+	<script src="{{ url_for('static', filename='lib/packer.js')}}"></script>
+	<script src="{{ url_for('static', filename='lib/sly.js')}}"></script>
+	<script src="{{ url_for('static', filename='wordspack.js')}}"></script>
 
 
 

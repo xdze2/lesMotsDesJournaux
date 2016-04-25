@@ -1,18 +1,27 @@
 # lesMotsDesJournaux
-news timeline word cloud
+ngramviewer pour la presse française
 
 
+ToDo
+====
+## ngramviewer
+* find jour max, et afficher les posts
+* highlight mot selectionné
+* nav using key <--> chg day
+
+## wordspack
+* Gestion max height
 
 
-TODO
-=====
+ToDo
+====
 
 * function getTopScore( start_date, end_date, step ), zoom ...
 
 * mouseOver.clik: painter0.1, change style des ngram=ngram
 * on click: time line en bas, skyline
 
-* cluster for each day, ngram similarity
+* cluster for each day, ngram similarity, cluster glissant ..
 
 * scroll bar joli
 

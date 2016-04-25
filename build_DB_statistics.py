@@ -27,7 +27,7 @@ cursor.execute( '''CREATE TABLE frequences AS
             JOIN ( SELECT date, count(*) daycount
                     FROM occurences
                     GROUP BY date
-                    HAVING daycount > 250 /*filtre sur le nbre min. de mots par jour*/
+                    HAVING daycount > 400 /*filtre sur le nbre min. de mots par jour*/
                 ) Td
             ON Td.date = Tdn.date
             ORDER BY date(Tdn.date) DESC ''')

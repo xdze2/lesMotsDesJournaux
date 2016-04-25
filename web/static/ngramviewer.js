@@ -61,7 +61,13 @@ var ngramviewer = {
       },
       mouseover: function(d, i) {
         ngramviewer.lastdateover = d.date;
-      }
+
+        var cejour = moment(d.date).format('dddd Do MMMM');
+
+        console.log( d3.select('#plotzone svg .mg-active-datapoint')
+                );
+      },
+      //colors: ['#377eb8', '#ff7f00', '#a6d854', '#f781bf', '#e41a1c']
     },
 
   init: function () {
@@ -177,7 +183,10 @@ var navposts = {
     var $result =  $('#postzone');
     navposts.clear();
     $('#postzone').append(
-      $('<h2 />').text( navposts.formatday( data.date )  )
+      $('<h2 />')
+        .append($('<a />',
+          {'href':'/', 'text':navposts.formatday( data.date )} ) )
+
     );
     if ( data.posts.length > 0 ) {
       $.each( data.posts, function(i, d){
@@ -210,7 +219,7 @@ var navposts = {
 
 $(document).ready( ngramviewer.init );
 
-// 
+//
 // // handle the back and forward buttons
 // $(window).bind('popstate', function(event) {
 //     // if the event has our history data on it, load the page fragment with AJAX

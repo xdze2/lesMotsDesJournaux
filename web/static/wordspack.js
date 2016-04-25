@@ -1,6 +1,11 @@
 
 
 $.getJSON(urlfor_last10days, function (data) {
+		moment.locale('fr'); // 'fr'
+		formatday = function (d){
+			return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
+		}
+
 	 data = data.data;
 		// get elements
 		var $frame  = $('#myTimeLine');
@@ -16,7 +21,7 @@ $.getJSON(urlfor_last10days, function (data) {
 		var maxHeight = windowHeight - 150;
 
 		var targetedDayWidth = 360;
-		var nFramesVisibles =Math.ceil( windowWidth/targetedDayWidth );
+		var nFramesVisibles = Math.ceil( windowWidth/targetedDayWidth );
 		var actualDayWidth = Math.round( windowWidth / nFramesVisibles );
 		var nFramesTot = data.length;
 
@@ -28,7 +33,7 @@ $.getJSON(urlfor_last10days, function (data) {
 			$slidee.append( $('<li />')
 				.attr('id', day )
 				.css( {width:actualDayWidth, height:maxHeight} )
-				.html( '<h3>'+ d['date'] +'</h3> <p></p>' )
+				.html( '<h3>'+ formatday(d['date']) +'</h3> <p></p>' )
 			);
 
 			fillAday( day, blocks, maxHeight  );
@@ -45,7 +50,7 @@ $.getJSON(urlfor_last10days, function (data) {
 			mouseDragging: 0,
 			touchDragging: 1,
 			releaseSwing: 1,
-			//startAt: nFramesTot - nFramesVisibles,
+			startAt: nFramesTot - nFramesVisibles,
 			scrollBar: $wrap.find('.scrollbar'),
 			scrollBy: 1,
 			scrollTrap: 1,

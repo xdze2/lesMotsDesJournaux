@@ -4,23 +4,26 @@
 <title>navigate posts</title>
 
 
-<link rel="stylesheet" href="{{ url_for('static', filename='ngramviewer.css')}}" />
+
 
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='lib/marcopolo.css')}}" /> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='lib/manifest.css')}}" />
 
 <link rel="stylesheet" href="{{ url_for('static', filename='lib/metricsgraphics.css')}}" />
 
-
+<link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='ngramviewer.css')}}" />
 </head>
 <body>
 
-
+<h1 id='doodle'>LMdJx</h1>
 
   <div id='plotzone'></div>
   <form>
+    chercher un mot
     <input type="text" name="ngram" id="ngraminput" placeholder="✚">
    <img src="{{ url_for('static', filename='busy.gif')}}">
+   ou choisir une date
   </form>
 
  <div id='postzone'></div>

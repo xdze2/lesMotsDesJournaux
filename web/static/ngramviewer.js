@@ -119,10 +119,10 @@ var ngramviewer = {
   updateurl: function() {
     var stateObj = { 'ngrams': Object.keys(ngramviewer.alldata) };
     if( Object.keys(ngramviewer.alldata).length>0 ){
-      var newUrl = '/freqs/'+Object.keys(ngramviewer.alldata).join();
+      var newUrl = '/'+Object.keys(ngramviewer.alldata).join();
     } else {
       console.log( Object.keys(ngramviewer.alldata).length );
-      var newUrl = '/freqs';
+      var newUrl = '/';
     }
     history.replaceState(stateObj, "Hello", newUrl);
   },

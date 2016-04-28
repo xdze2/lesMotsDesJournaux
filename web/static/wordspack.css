@@ -6,6 +6,8 @@ body {
 .wrap {
 	position: relative;
 	margin: 5px;
+
+	font-size: 90%
 }
 
 /* Frame */
@@ -44,14 +46,23 @@ body {
 	background: #F83;
 }
 
+.frame ul li h3 {
+	padding:0;
+	margin: 0;
+	padding-bottom: .5em;
+}
+.frame ul li p {
+	padding:0;
+	margin: 0;
+}
 /* Scrollbar */
 .scrollbar {
 	margin: 0 0 1em 0;
-	height: 2em;
+	height: 1em;
 	background: #ccc;
 	line-height: 0;
-	position:absolute;
-	bottom:0;
+	/*position:absolute;
+	bottom:0;*/
 	width:100%;
 }
 .scrollbar .handle {

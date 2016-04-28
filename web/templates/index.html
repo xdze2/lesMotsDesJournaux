@@ -3,43 +3,80 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>my page</title>
+	<title>LMdJx</title>
 	<meta name="viewport" content="width=device-width">
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='lib/normalize.css')}}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='wordspack.css')}}">
 
+	<link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/manifest.css')}}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='lib/metricsgraphics.css')}}" />
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='ngramviewer.css')}}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='datepicker.css')}}" />
 </head>
 <body>
+<div id='page'>
+	<h1 id='doodle'>LMdJx</h1>
+	<div id='plotzone'></div>
+	<form id='form'>
+		<span class='help'>Chercher un mot:</span>
+		<input type="text" name="ngram" id="ngraminput" placeholder="✚">
+		<img src="{{ url_for('static', filename='busy.gif')}}">
 
-
-<div class="wrap">
-	<div style="overflow: hidden;" class="frame" id="myTimeLine">
-		<ul style="transform: translateZ(0px) translateX(-228px); width: 6840px;" class="clearfix">
-			<!-- lili -->
-		</ul>
-	</div>
-	<div class="scrollbar">
-		<div style="transform: translateZ(0px) translateX(38px); width: 190px;" class="handle">
-		<div class="mousearea"></div>
+	</form>
+	<div id='postzone'></div>
+	<div class="wrap">
+		<div class="scrollbar">
+			<div style="transform: translateZ(0px) translateX(38px); width: 190px;" class="handle">
+				<div class="mousearea"></div>
+			</div>
+		</div>
+		<div style="overflow: hidden;" class="frame" id="myTimeLine">
+			<ul style="transform: translateZ(0px) translateX(-228px); width: 6840px;" class="clearfix">
+				<!-- lili -->
+			</ul>
+		</div>
 	</div>
 </div>
 
-<script type="text/javascript">
-  //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
-  var urlfor_last10days = "{{ url_for('last10days') }}";
 
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+<script type="text/javascript">
+//$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
+  var urlfor_getNgrams = "{{ url_for('getNgrams') }}";
+  var urlfor_getFreqs = "{{ url_for('getFreqs') }}";
+  var urlfor_getSomePosts = "{{ url_for('getSomePosts') }}";
+  var urlfor_getWeek = "{{ url_for('getWeek') }}";
+	var urlfor_last10days = "{{ url_for('last10days') }}";
+
 </script>
 
-	<script src="{{ url_for('static', filename='lib/jquery.js')}}"></script>
-	<script src="{{ url_for('static', filename='lib/plugins.js')}}"></script>
+<script type="text/javascript"
+	src="{{ url_for('static', filename='lib/jquery-1.11.3.min.js')}}"></script>
 
-	<script src="{{ url_for('static', filename='lib/packer.js')}}"></script>
-	<script src="{{ url_for('static', filename='lib/sly.js')}}"></script>
-	<script src="{{ url_for('static', filename='wordspack.js')}}"></script>
+<script src="{{ url_for('static', filename='lib/plugins.js')}}"></script>
+<script src="{{ url_for('static', filename='lib/packer.js')}}"></script>
+<script src="{{ url_for('static', filename='lib/sly.js')}}"></script>
 
-	<script type="text/javascript"
-		src="{{ url_for('static', filename='lib/moment-with-locales.min.js')}}"></script>
+<script type="text/javascript"
+src="{{ url_for('static', filename='lib/moment-with-locales.min.js')}}"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='lib/jquery.marcopolo.min.js')}}"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='lib/jquery.manifest.js')}}"></script>
+
+<script type="text/javascript"
+  src="{{ url_for('static', filename='lib/d3.v3.min.js')}}"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='lib/metricsgraphics.min.js')}}"></script>
+
+<script src="{{ url_for('static', filename='wordspack.js')}}"></script>
+<script type="text/javascript"
+  src="{{ url_for('static', filename='ngramviewer.js')}}"></script>
+<!-- <script type="text/javascript"
+  src="{{ url_for('static', filename='datepicker.js')}}"></script> -->
 
 </body></html>

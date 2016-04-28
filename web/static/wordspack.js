@@ -20,7 +20,7 @@ $.getJSON(urlfor_last10days, function (data) {
 
 		var maxHeight = windowHeight - 150;
 
-		var targetedDayWidth = 360;
+		var targetedDayWidth = 300;
 		var nFramesVisibles = Math.ceil( windowWidth/targetedDayWidth );
 		var actualDayWidth = Math.round( windowWidth / nFramesVisibles );
 		var nFramesTot = data.length;

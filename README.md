@@ -95,3 +95,12 @@ Lib
 * feedparser
 * ELeVE: see https://github.com/kodexlab/eleve
 * sqlite3
+
+## Rebus:
+Lé: vache ? robot ? (> about ?)
+dé: http://mathematiques.ac-dijon.fr/indunet3/ipr/brochure_2011/images/socle_2.png
+(> pick ngram random)
+m: http://img.over-blog.com/100x70/3/81/21/27/Gif/mal-de-tete-dessin.jpg
+(> Stats ?)
+Jx: http://www.lacoupedelinfo.org/wp-content/uploads/2012/10/9251285-pile-de-journaux-neerlandais-sur-fond-blanc.jpg
+(> list sources ?)

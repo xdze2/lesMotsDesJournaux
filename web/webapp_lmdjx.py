@@ -167,7 +167,7 @@ def last10days():
     cursor.execute( '''SELECT distinct date
                         FROM stats
                         ORDER By Date(date) DESC
-                        LIMIT 7  ''' )
+                        LIMIT 70  ''' )
 
     all_dates = []
     for line in cursor.fetchall():

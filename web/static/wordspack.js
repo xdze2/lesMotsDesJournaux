@@ -14,7 +14,7 @@ $.getJSON(urlfor_last10days, function (data) {
 
 		// window size
 		var windowHeight = $( window ).height();
-		var windowWidth = $( window ).width() - 5*2 ;// 5:margin
+		var windowWidth = $( '#page' ).width() - 5*2 ;// 5:margin
 
 		$wrap.css({ height : windowHeight - 10  }); // safety margin
 

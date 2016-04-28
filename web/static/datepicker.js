@@ -8,7 +8,6 @@ datepicker = {
 
     moment.locale('fr'); // 'fr'
 
-
     console.log( datepicker.startdate.week() );
     // datepicker.startdate.weekYear()
     // datepicker.addbar('months');
@@ -21,22 +20,25 @@ datepicker = {
     var n = w_end - w_start ;
     var $bar = $('<ul />', {'id':'weeks_bar'}).appendTo( $( '#datepicker' ) );
 
-    var w =  100.0/(n+1 )+"%";
     var date = moment(datepicker.startdate).startOf( 'weeks' );
 
     for( var iter = 0; iter < n+1; iter++ ){
       var startdate = date.format('YYYY-MM-DD');
       $bar.append( $('<li />')
                       .text( date.format('Do MMM') )
-                      .css( {'width':w} )
-                      .click( datepicker.click_event(startdate) )
+                      .addClass( 'week' )
+                      .click( startdate, datepicker.click_event )
       );
       date.add(1, 'weeks');
     }
 
   },
-  click_event: function( date ){
-    return function(){datepicker.query(date);}
+  click_event: function( event ){
+      $('li.week' ).removeClass('selected');
+      $(this).addClass('selected');
+    //    $('li.week').toggleClass('selected');
+        datepicker.query(event.data);
+
   },
   query: function( start ) {
     $.getJSON(urlfor_getWeek, { 'start': start  }, datepicker.printngrams );
@@ -52,7 +54,9 @@ datepicker = {
             $('<h3 />').text( moment(d.date, "YYYY-MM-DD").format('dddd Do MMMM') )
       );
       $.each(d.mots,  function(i, dd){
-          $day.append( $('<span />').text( dd.label+' ' ) ) ;
+          $day.append( $('<span />').text( dd.label+' ' )
+              .click( function(){ngramviewer.query(dd.label)} )
+            ) ;
       }  );
 
       $day.appendTo( $ngrams );

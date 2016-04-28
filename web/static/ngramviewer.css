@@ -26,6 +26,9 @@ body {
   font-size: 90%;
   color: #A9A9A9;
 }
+form {
+  width: 100%;
+}
 #postzone {
   margin-top:1em;
   margin-bottom: 2em;

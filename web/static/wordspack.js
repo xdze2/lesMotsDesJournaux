@@ -54,7 +54,7 @@ $.getJSON(urlfor_last10days, function (data) {
 			scrollBar: $wrap.find('.scrollbar'),
 			scrollBy: 1,
 			scrollTrap: 1,
-			scrollSource:  $('body'),//$frame,
+			scrollSource:  $('.wrap'),//$frame,
 			pagesBar: $wrap.find('.pages'),
 			activatePageOn: 'click',
 			speed: 300,
@@ -105,7 +105,7 @@ function scaleFontSize(score){
 							position : 'absolute',
 							'line-height': '95%'
 						 }
-		});
+		}).click( d['label'], function(event){ngramviewer.addngram(event.data); return false;} );
 		var label = arrangeLabel( d['label'] )
 		$mot.html( label ); // insert html: pas cool ??
 		$mot.appendTo( $mardi )

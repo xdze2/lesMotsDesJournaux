@@ -48,7 +48,7 @@ var ngramviewer = {
   graphic_init: {
       target: '#plotzone',
       full_width: true,
-      height: 250,
+      height: 230,
       top: 50,
       right:100,
       left: 80,
@@ -95,6 +95,12 @@ var ngramviewer = {
     $('#plotzone').empty();
     $('#doodle').show();
     $('.help').show();
+  },
+  addngram: function(ngram){
+    ngramviewer.query(ngram);
+
+    $('#ngraminput').manifest('add', {'ngram':ngram});
+    return false;
   },
   query: function ( ngram ) {
     $.getJSON(urlfor_getFreqs, { ngram: ngram  }, ngramviewer.adddata );
@@ -183,15 +189,15 @@ var navposts = {
   },
   clear: function (){
     $('#postzone').empty();
+    return false;
   },
   print: function (data) {
     var $result =  $('#postzone');
     navposts.clear();
     $('#postzone').append(
-      $('<h2 />')
+      $('<h2 />').text( navposts.formatday( data.date ) )
         .append($('<a />',
-          {'href':'/', 'text':navposts.formatday( data.date )} ) )
-
+          {'href':'/', 'text':'✖', 'class':'close'} ) ).on('click', navposts.clear )
     );
     if ( data.posts.length > 0 ) {
       $.each( data.posts, function(i, d){

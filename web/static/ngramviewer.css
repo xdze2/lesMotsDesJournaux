@@ -67,3 +67,13 @@ form {
   margin-right:5em;
 
 }
+.close {
+  text-decoration: none;
+  color:#A9A9A9;
+  padding-left: .5em;
+  font-size:75%;
+}
+.close:hover {
+  text-decoration: none;
+  color:#de2d26;
+}

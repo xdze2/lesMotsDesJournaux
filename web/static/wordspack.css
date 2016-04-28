@@ -60,7 +60,7 @@ body {
 /* Scrollbar */
 .scrollbar {
 	margin: 0;
-	height: .8em;
+	height: .4em;
 	background: #bdbdbd;
 	line-height: 0;
 	border: solid black 1px;

@@ -88,7 +88,7 @@ var ngramviewer = {
 
   },
   clear: function(){
-    ngramviewer.updateurl();
+    //ngramviewer.updateurl();
     ngramviewer.selecteddate = false;
     ngramviewer.graphic.markers = null;
     MG.data_graphic( ngramviewer.graphic );
@@ -133,7 +133,7 @@ var ngramviewer = {
     history.replaceState(stateObj, "Hello", newUrl);
   },
   plot: function () {
-    ngramviewer.updateurl();
+    //ngramviewer.updateurl();
     console.log( '-- plot:')
 
     //console.log(ngramviewer.alldata);
@@ -195,7 +195,7 @@ var navposts = {
     var $result =  $('#postzone');
     navposts.clear();
     $('#postzone').append(
-      $('<h2 />').text( navposts.formatday( data.date ) )
+      $('<h2 />').text( 'Titres du '+navposts.formatday( data.date ) )
         .append($('<a />',
           {'href':'/', 'text':'✖', 'class':'close'} ) ).on('click', navposts.clear )
     );

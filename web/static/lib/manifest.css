@@ -6,14 +6,11 @@ div.mf_container {
     padding: 0.1em;
     /*padding-left: .5em;*/
     border: 1px solid black;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
-#plotzone {
-  width: 75%;
-  margin: auto;
-}
+
 
 input.mp_input, input.mf_input {
   font-size: 100%;
@@ -26,6 +23,7 @@ input.mp_input, input.mf_input {
 
   outline: none;
   padding-left: .5em;
+
   /*padding: 0.1em;
   padding-left: .5em;*/
   /*width: 30em;*/
@@ -42,7 +40,7 @@ ol.mp_list {
   z-index: 99999;
   font-size: 150%;
   padding: 0;
-  width: 80%;
+  width: 100%;
   margin: auto;
   list-style-type: none;
 }

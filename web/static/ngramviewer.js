@@ -93,6 +93,8 @@ var ngramviewer = {
     ngramviewer.graphic.markers = null;
     MG.data_graphic( ngramviewer.graphic );
     $('#plotzone').empty();
+    $('#doodle').show();
+    $('.help').show();
   },
   query: function ( ngram ) {
     $.getJSON(urlfor_getFreqs, { ngram: ngram  }, ngramviewer.adddata );
@@ -110,6 +112,9 @@ var ngramviewer = {
       var max = 1;
       console.log( ngramviewer.alldata  );
     }
+    $('#doodle').hide();
+    $('.help').hide();
+
   },
   updateurl: function() {
     var stateObj = { 'ngrams': Object.keys(ngramviewer.alldata) };

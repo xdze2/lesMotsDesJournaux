@@ -167,7 +167,7 @@ def last10days():
     cursor.execute( '''SELECT distinct date
                         FROM stats
                         ORDER By Date(date) DESC
-                        LIMIT 10  ''' )
+                        LIMIT 7  ''' )
 
     all_dates = []
     for line in cursor.fetchall():
@@ -181,7 +181,7 @@ def last10days():
                             FROM stats
                             WHERE date=?
                             ORDER BY score DESC
-                            LIMIT 15   ''', (date, ) )
+                            LIMIT 25   ''', (date, ) )
 
         ngrams4today = []
         for line in cursor.fetchall():
@@ -192,6 +192,48 @@ def last10days():
         data4web.append( day_dict )
 
     return jsonify(data=data4web)
+
+@app.route('/week')
+def getWeek():
+    start = request.args.get('start', '', type=str)
+
+    cursor = get_db().cursor()
+    print( start )
+    # liste des jours
+    cursor.execute( '''SELECT distinct date
+                        FROM stats
+                        WHERE Date(date)>=Date(?)
+                        ORDER By Date(date)
+                        LIMIT 7  ''', (start, ))
+
+    all_dates = []
+    for line in cursor.fetchall():
+        all_dates.append( line[0] )
+
+    # all_dates = all_dates[::-1]
+    print( all_dates)
+    data4web = []
+    for date in all_dates:
+        cursor.execute( '''SELECT rowid,  ngram, score
+                            FROM stats
+                            WHERE date=?
+                            ORDER BY score DESC
+                            LIMIT 30   ''', (date, ) )
+
+        ngrams4today = []
+        for line in cursor.fetchall():
+            ngram_dict = { 'label':line[1], 'score':line[2], 'id':line[0] }
+            ngrams4today.append( ngram_dict )
+
+        day_dict = {'mots':ngrams4today, 'date':date }
+        data4web.append( day_dict )
+
+    return jsonify(data=data4web)
+
+@app.route('/date')
+def datepicker():
+    return render_template('datepicker.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8890, debug=True)

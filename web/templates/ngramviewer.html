@@ -16,19 +16,21 @@
 </head>
 <body>
 
+<div id='page'>
 <h1 id='doodle'>LMdJx</h1>
 
-  <div id='plotzone'></div>
-  <form>
-    chercher un mot
-    <input type="text" name="ngram" id="ngraminput" placeholder="✚">
-   <img src="{{ url_for('static', filename='busy.gif')}}">
-   ou choisir une date
-  </form>
+<div id='plotzone'></div>
 
- <div id='postzone'></div>
+<form id='form'>
+  <span class='help'>Chercher un mot</span>
+  <input type="text" name="ngram" id="ngraminput" placeholder="✚">
+ <img src="{{ url_for('static', filename='busy.gif')}}">
+ <span class='help'>ou choisir une date</span>
+</form>
 
+<div id='postzone'></div>
 
+</div>
 <script type="text/javascript">
   //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
   var urlfor_getNgrams = "{{ url_for('getNgrams') }}";

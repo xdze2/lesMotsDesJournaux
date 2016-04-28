@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Test date picker</title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='datepicker.css')}}" />
+</head>
+<body>
+
+
+  <div id='datepicker'></div>
+
+ <div id='ngrams'></div>
+  <script type="text/javascript">
+    //var $SCRIPT_ROOT = "{{ request.script_root|tojson|safe }}";
+    var urlfor_getWeek = "{{ url_for('getWeek') }}";
+  </script>
+
+  <script type="text/javascript"
+    src="{{ url_for('static', filename='lib/jquery-1.11.3.min.js')}}"></script>
+
+
+    <script type="text/javascript"
+      src="{{ url_for('static', filename='lib/moment-with-locales.min.js')}}"></script>
+
+
+      <script type="text/javascript"
+      src="{{ url_for('static', filename='datepicker.js')}}"></script>
+
+
+
+</body>
+</html>

@@ -49,9 +49,10 @@ var ngramviewer = {
       target: '#plotzone',
       full_width: true,
       height: 230,
-      top: 50,
+      top: 20,
       right:100,
-      left: 80,
+      left: 50,
+      bottom: 35,
       x_extended_ticks: true,
       interpolate: 'basic',
       area:false,
@@ -64,8 +65,7 @@ var ngramviewer = {
 
         var cejour = moment(d.date).format('dddd Do MMMM');
 
-        console.log( d3.select('#plotzone svg .mg-active-datapoint')
-                );
+        //console.log( d3.select('#plotzone svg .mg-active-datapoint')  );
       },
       //colors: ['#377eb8', '#ff7f00', '#a6d854', '#f781bf', '#e41a1c']
     },
@@ -156,6 +156,9 @@ var ngramviewer = {
     this.graphic.chart_type = 'line';
     this.graphic.legend = legendLabels;
     MG.data_graphic( this.graphic );
+    d3.selectAll("text.label") // hack
+      .attr('dominant-baseline', 'hanging')
+      .attr("y", 0);
 
     $('#plotzone svg').click( function(){
       ngramviewer.addmarkers( ngramviewer.lastdateover );
@@ -163,8 +166,7 @@ var ngramviewer = {
       ngramviewer.selecteddate = day;
       ngramviewer.viewposts( );
 
-      }
-      );
+      });
   },
   viewposts: function (){
     var ngrams = Object.keys(ngramviewer.alldata);
@@ -178,6 +180,9 @@ var ngramviewer = {
    }];
     this.graphic.markers = markers;
     MG.data_graphic( this.graphic );
+    d3.selectAll("text.label")  // hack
+      .attr('dominant-baseline', 'hanging')
+      .attr("y", 0);
   }
 }
 

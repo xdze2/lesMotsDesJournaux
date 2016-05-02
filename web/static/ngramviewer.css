@@ -4,7 +4,10 @@ body {
   margin-top: 1em;
   font-family: serif;
 }
+svg:not(:root) {
+  overflow: visible;
 
+}
 #doodle {
   font-size: 150px;
   font-family: 'Permanent Marker', cursive;

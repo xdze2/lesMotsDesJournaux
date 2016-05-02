@@ -48,15 +48,16 @@ var ngramviewer = {
   graphic_init: {
       target: '#plotzone',
       full_width: true,
-      height: 230,
+      height: 195,
       top: 20,
       right:100,
       left: 50,
-      bottom: 35,
+      bottom: 28,
       x_extended_ticks: true,
       interpolate: 'basic',
       area:false,
       y_label: 'freq. ‰',
+      show_secondary_x_label: false,
       xax_format:  function (d){
             return  moment(d).format('Do MMM');
       },

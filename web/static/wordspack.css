@@ -1,21 +1,18 @@
 body {
 	font-family: serif;
-
 }
 /*  wrapper */
 .wrap {
 	position: relative;
-	margin: 5px;
+	/*margin: 5px;*/
 
 	font-size: 90%
 }
 
 /* Frame */
 .frame {
-/*	height: 300px; *//*default*/
-	/*line-height: 250px;*/
-	/*overflow: hidden;*/
-		margin-top:.8em;
+	margin-top:.8em;
+	margin-bottom:.8em;
 }
 .frame ul {
 	list-style: none;
@@ -24,13 +21,9 @@ body {
 }
 .frame ul li {
 	float: left;
-	width: 600px; /* default */
-	height: 300px;
-
-	padding: 0 5px 0 0;
 	margin: 0;
+	padding:0;
 }
-
 
 /*
 .frame ul li.active {
@@ -38,25 +31,31 @@ body {
 	background: #a03232;
 } */
 
-.frame ul li a {
-	color: black;
-	text-decoration:none;
-
-}
-
-.frame ul li a:hover {
-	background: #F83;
-}
 
 .frame ul li h3 {
 	padding:0;
-	margin: 0;
+	margin:0;
 	padding-bottom: .4em;
 }
-.frame ul li p {
+.frame ul li p  {
+	position:relative;
 	padding:0;
 	margin: 0;
 }
+.frame ul li p span { /* mot */
+	padding: 0;
+
+	margin-right: 9px;
+	white-space: nowrap;
+	position : absolute;
+	line-height: 95%;
+	cursor: pointer;
+}
+.frame ul li p span:hover {
+	background: #F83;
+}
+
+
 /* Scrollbar */
 .scrollbar {
 	margin: 0;

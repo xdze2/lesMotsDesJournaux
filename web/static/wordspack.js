@@ -1,172 +1,156 @@
+var wp = {
+	sly_config: {
+		horizontal: 1,
+		itemNav: 'basic',
+		smart: 1,
+		activateOn: null, //'click',
+		mouseDragging: 0,
+		touchDragging: 1,
+		releaseSwing: 1,
+		scrollBy: 1,
+		scrollTrap: 1,
+		// scrollSource:  $('.wrap'),//$frame,
+		activatePageOn: 'click',
+		speed: 300,
+		elasticBounds: 1,
+		easing: 'easeOutExpo',
+		dragHandle: 1,
+		dynamicHandle: 1,
+		clickBar: 1
+	},
+	targetedDayWidth: 300, // px
+	dayMargin: 5, // px
+	fontSizeMax: 4, // em
+	init: function(data) {
+		console.log('Hello / init');
 
+		moment.locale('fr');
 
-$.getJSON(urlfor_last10days, function (data) {
-		moment.locale('fr'); // 'fr'
-		formatday = function (d){
-			return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
-		}
-
-	 data = data.data;
 		// get elements
 		var $frame  = $('#myTimeLine');
 		var $slidee = $frame.children('ul').eq(0);
 		var $wrap   = $frame.parent();
 
-		// window size
-		var windowHeight = $( window ).height();
-		var windowWidth = $( '#page' ).width() - 5*2 ;// 5:margin
+		// get size
+		var fullWidth = $( '#page' ).width() ;
 
-		$wrap.css({ height : windowHeight - 10  }); // safety margin
+		var maxHeight = 3000; // :(
 
-		var maxHeight = windowHeight - 150;
-
-		var targetedDayWidth = 300;
-		var nFramesVisibles = Math.ceil( windowWidth/targetedDayWidth );
-		var actualDayWidth = Math.round( windowWidth / nFramesVisibles );
 		var nFramesTot = data.length;
+		var nFramesVisibles = Math.ceil( fullWidth / wp.targetedDayWidth );
+		var dayWidth = Math.round( (fullWidth - (nFramesVisibles-1)*wp.dayMargin ) / nFramesVisibles );
 
-    // data
-		$.each( data, function(i, d){
-			var day = d['date']
-			var blocks = d['mots']
 
-			$slidee.append( $('<li />')
-				.attr('id', day )
-				.css( {width:actualDayWidth, height:maxHeight} )
-				.html( '<h3>'+ formatday(d['date']) +'</h3> <p></p>' )
+		// dynamic sly config
+		wp.sly_config.pagesBar = $wrap.find('.pages');
+		wp.sly_config.scrollBar = $wrap.find('.scrollbar');
+		wp.sly_config.startAt = nFramesTot - nFramesVisibles;
+
+		// data
+		for (var i = 0; i < nFramesTot; i++) {
+			$slidee.append(
+				$('<li />')
+					.attr('id', data[i]['date'] )
+					.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
+					.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' )
 			);
-
-			fillAday( day, blocks, maxHeight  );
-		});
-		//console.log( $slidee.children('li').length );
-
-		/* - Call Sly  (scrolling lib) - */
-
-		var sly_config = {
-			horizontal: 1,
-			itemNav: 'basic',
-			smart: 1,
-			activateOn: null, //'click',
-			mouseDragging: 0,
-			touchDragging: 1,
-			releaseSwing: 1,
-			startAt: nFramesTot - nFramesVisibles,
-			scrollBar: $wrap.find('.scrollbar'),
-			scrollBy: 1,
-			scrollTrap: 1,
-			scrollSource:  $('.wrap'),//$frame,
-			pagesBar: $wrap.find('.pages'),
-			activatePageOn: 'click',
-			speed: 300,
-			elasticBounds: 1,
-			easing: 'easeOutExpo',
-			dragHandle: 1,
-			dynamicHandle: 1,
-			clickBar: 1
+			wp.fillAday( data[i].date, data[i].mots, maxHeight  );
 		};
-		$frame.sly( sly_config );
-});
 
+		$frame.sly( wp.sly_config );
+	},
+	formatday: function(d){
+		return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
+	},
 
-function fillAday( id, blocks, maxHeight  ){
-	// selectionne le jour
-	var $mardi = $( '#' + id + ' p' );
-	$mardi.css({ position:'relative', height:maxHeight});
+	clickNgram: function(event){
+		ngramviewer.addngram(event.data); return false;
+	},
+	fillAday: function( idDate, blocks, maxHeight ){
 
-	// Scale score -> size
-	var scoreMin = blocks[0].score;
-  var scoreMax = blocks[0].score;
-
-	 blocks.forEach(function (mot, index, blocks) {
-		 if(index > 0) {
-			 if(mot.score < scoreMin){
-				 scoreMin = mot.score;
-			 }
-			 if(mot.score > scoreMax) {
-				 scoreMax = mot.score;
-			 }
-		 }
-	 });
-
-function scaleFontSize(score){
-				 var sizeMax = 4;
- 					var scoreNormed =  (score-scoreMin)/( 1.0*scoreMax - scoreMin );
-          var size = Math.round(  scoreNormed*(sizeMax - 1)  ) + 1;
-					return size;
- }
-	// insert les mots dans le DOM pour avoir leurs taille
-	$.each( blocks, function(i, d){
-		var $mot = $('<a />', {
-			id : d['id'],
-			href: 'freqs/'+d['label'],
-			css : { fontSize : scaleFontSize(d['score'])+"em"	, //d['score']+
-							padding: '0px 10px 0px 0px', // t r b l
-							'white-space': 'nowrap',
-							position : 'absolute',
-							'line-height': '95%'
-						 }
-		}).click( d['label'], function(event){ngramviewer.addngram(event.data); return false;} );
-		var label = arrangeLabel( d['label'] )
-		$mot.html( label ); // insert html: pas cool ??
-		$mot.appendTo( $mardi )
-
-		d['w'] = $mot.outerWidth();
-		d['h'] = $mot.outerHeight();
-
+		var $mardi = $( '#' + idDate + ' p' );
 		var maxWidth = $mardi.width();
 
-		if (d['w']>maxWidth ){
-		/* ReScale la taille de police, si mot trop long */
-			var newSize = scaleFontSize(d['score'])/d['w']*maxWidth*0.97;
-			$mot.css( {'fontSize': newSize+'em' } ); //, "font-weight":"bold"
-			d['w'] = $mot.outerWidth();
-			d['h'] = $mot.outerHeight();
-			//console.log( 'not fit '+d['label']+' '+newSize );
+		var scoreRange = wp.getRangeScore( blocks );
+
+		// Insert les mots dans le DOM pour avoir leurs taille
+		$.each( blocks, function(i, d){
+			var $mot = $('<span />')
+				.attr('id', d['id'] )
+				.css({ fontSize : wp.scaleFontSize(d['score'], scoreRange)+"em" })
+				.click( d['label'], wp.clickNgram );
+
+			//var label = wp.arrangeNgram( d['label'] )
+			$mot.html( d['label'] );
+			$mot.appendTo( $mardi );
+
+			d['w'] = $mot.outerWidth(true);
+			d['h'] = $mot.outerHeight(true);
+
+			// Modifie la taille de police si le mot est trop long
+			if (d['w']>maxWidth ){
+				var newSize = wp.scaleFontSize(d['score'], scoreRange)/d['w']*maxWidth*0.97;
+				$mot.css( {'fontSize': newSize+'em' } ); //, "font-weight":"bold"
+				d['w'] = $mot.outerWidth(true);
+				d['h'] = $mot.outerHeight(true);
+			};
+		});
+
+		// Go for Packer
+		blocks.sort( function(a, b){
+			return b.w*b.h - a.w*a.h; // Aire
+		});
+		packer = new Packer( maxWidth, 4000 ); // w=Width, h=Infini
+		packer.fit(blocks);
+
+		// Move the blocks
+		var maxHeight = 0;
+		$.each( blocks, function(i, d){
+			var $mot = $( '#'+d['id'] );
+			if (d.fit){
+				$mot.css( {  top:d.fit.y, left:d.fit.x, position:'absolute' } );
+				if( d.fit.y+d.h > maxHeight  ){maxHeight = d.fit.y+d.h};
+			}
+			else { console.log( ' no fit.packer '+d.h ); }
+
+		});
+		$mardi.css({height:maxHeight});
+
+	},
+	getRangeScore: function(blocks){
+		var scoreMin = blocks[0].score;
+		var scoreMax = blocks[0].score;
+		var score;
+		for (var i = 0; i < blocks.length; i++) {
+			score = blocks[i].score;
+			if( score < scoreMin){
+				scoreMin = score;
+			}
+			if( score > scoreMax) {
+				scoreMax = score;
+			}
+		};
+		return {'min':scoreMin, 'max':scoreMax};
+	},
+	scaleFontSize: function(score, range){
+		var scoreNormed =  (score-range.min)/( range.max - range.min );
+		var size = Math.round(  scoreNormed*(wp.fontSizeMax - 1)  ) + 1;
+		return size;
+	},
+	arrangeNgram: function( ngram ){
+		// pour les 2-grams:
+		// ajoute un retour a la ligne quand mots de la même longueur
+		var ngram = ngram.split(" ");
+		if( ngram.length === 2 && Math.abs(ngram[0].length - ngram[1].length)<3 ){
+			ngram = ngram[0]+'<br />'+ngram[1];
 		}
-
-	});
-
-	// go for Packer
-	var wFrame = $mardi.width();
-	var hFrame = 10*$mardi.height();
-
-	blocks.sort( function(a, b){
-		var aire = b.w*b.h - a.w*a.h;
-		return aire;
-	});
-	packer = new Packer( wFrame, hFrame );
-	packer.fit(blocks);
-
-	// move the blocks
-	$.each( blocks, function(i, d){
-		var $mot = $( '#'+d['id'] );
-
-		if (d.fit){
-			$mot.css( {  top:d.fit.y, left:d.fit.x } );
-		} else { console.log( ' no fit.packer '+d['label'] ); }
-
-	});
+		return ngram;
+	}
 
 
 };
 
 
-function arrangeLabel( label ){
-// ajoute un retour a la ligne quand mots de la même longueur
-	var mots = label.split(" ");
-
-	if( mots.length === 2 && Math.abs(mots[0].length - mots[1].length)<3 ){
-		// console.log( label );
-		return mots[0]+'<br />'+mots[1];
-	} else { 	return label;  }
-}
-
-function dayLabel( day ){
-// formate le 'jour' en français
-	var chiffres = day.split("-");
-
-	if( mots.length === 2 && Math.abs(mots[0].length - mots[1].length)<3 ){
-		// console.log( label );
-		return mots[0]+'<br />'+mots[1];
-	} else { 	return label;  }
-}
+$.getJSON( urlfor_last10days,
+	function(data){ wp.init(data.data); }
+);

@@ -167,7 +167,7 @@ def last10days():
     cursor.execute( '''SELECT distinct date
                         FROM stats
                         ORDER By Date(date) DESC
-                        LIMIT 70  ''' )
+                        LIMIT 40  ''' )
 
     all_dates = []
     for line in cursor.fetchall():
@@ -181,7 +181,7 @@ def last10days():
                             FROM stats
                             WHERE date=?
                             ORDER BY score DESC
-                            LIMIT 25   ''', (date, ) )
+                            LIMIT 30   ''', (date, ) )
 
         ngrams4today = []
         for line in cursor.fetchall():

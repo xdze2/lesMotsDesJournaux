@@ -35,8 +35,8 @@ form {
   width: 100%;
 }
 #postzone {
-  margin-top:1em;
-  margin-bottom: 2em;
+  margin:0;
+  padding:0;
 }
 
 #plotzone svg path, #plotzone svg rect  {
@@ -45,11 +45,11 @@ form {
 #postzone h2 {
   margin:0;
   padding: 0;
-  margin-bottom: 0.6em;
-  margin-top: 1.2em;
+  margin-bottom: 0.2em;
+  margin-top: 0.4em;
 }
 .post {
-  margin-bottom: 0.6em;
+  margin-bottom: 0.2em;
 }
 .post h3 {
   margin:0;
@@ -66,9 +66,8 @@ form {
   color: #ff9900;
 }
 .post div {
-  margin-left:1.2em;
+  margin-left:1.1em;
   margin-right:5em;
-
 }
 .close {
   text-decoration: none;

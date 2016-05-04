@@ -148,7 +148,7 @@ def getSomePosts():
                             ORDER BY date( date ) DESC ) Toc
                         JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
                         ON Tp.rowid = Toc.postid
-                        LIMIT 15
+                        LIMIT 60
                         '''%','.join(['?']*len(ngrams)), tuple(queryparams) )
 
     data = []

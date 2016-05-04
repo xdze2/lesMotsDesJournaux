@@ -201,7 +201,7 @@ var navposts = {
     var $result =  $('#postzone');
     navposts.clear();
     $('#postzone').append(
-      $('<h2 />').text( navposts.formatday( data.date ) )
+      $('<h2 />').text( navposts.formatday( data.date )+' ('+data.posts.length+')' )
         .append($('<a />',
           {'href':'/', 'text':'✖', 'class':'close'} ) ).on('click', navposts.clear )
     );

@@ -55,14 +55,16 @@ cursor.execute('SELECT date, source, title, summary, rowid FROM posts')
 for line in cursor.fetchall():
     date = line[0]
     source = line[1]
+    postid = line[4]
+
 
     segmentedPhrase = []
     for phrase in line[2:3]:
         formattedtext = lmdjxtools.format( phrase   )
         segmentedPhrase += s.segment( formattedtext.split(' ') )
 
-    postid = line[4]
 
+    ngramAdded = set()
     for ngram in segmentedPhrase:
 
         if len( ngram ) > 1:
@@ -88,8 +90,10 @@ for line in cursor.fetchall():
             ngram = ngram.lower()
 
         # Insert a row of data
-        cursor.execute("INSERT INTO occurences VALUES \
-                (?, ?, ?, ?)", (date, ngram, source, postid))
+        if ngram not in ngramAdded:
+            ngramAdded.add( ngram )
+            cursor.execute("INSERT INTO occurences VALUES \
+                    (?, ?, ?, ?)", (date, ngram, source, postid))
 
     lmdjxtools.progressbar(i, nPosts) # print la bar de progression
     i += 1

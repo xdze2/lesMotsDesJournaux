@@ -61,12 +61,8 @@ var ngramviewer = {
       xax_format:  function (d){
             return  moment(d).format('Do MMM');
       },
-      mouseover: function(d, i) {
-        ngramviewer.lastdateover = d.date;
-
-        var cejour = moment(d.date).format('dddd Do MMMM');
-
-        //console.log( d3.select('#plotzone svg .mg-active-datapoint')  );
+      mouseover: function(d, i){
+            ngramviewer.lastdateover = d.date;
       },
       //colors: ['#377eb8', '#ff7f00', '#a6d854', '#f781bf', '#e41a1c']
     },
@@ -108,34 +104,27 @@ var ngramviewer = {
   },
   adddata: function( data ){
     data.data  = MG.convert.date(data.data, 'date')
-    // console.log( this ) ... query
-    ngramviewer.alldata[ data.ngram ] = data ;
-    console.log(ngramviewer.alldata)
 
-    ngramviewer.plot();
+    ngramviewer.alldata[ data.ngram ] = data ;
+    //console.log(ngramviewer.alldata)
+
+    // mise à jour des posts:
     if( ngramviewer.selecteddate ){
       ngramviewer.viewposts();
-    } else {
-      var max = 1;
-      console.log( ngramviewer.alldata  );
-    }
+    };
+
+    ngramviewer.plot();
+
+
+    // } else {
+    //   var max = 1;
+    //   console.log( ngramviewer.alldata  );
+    // }
     $('#doodle').hide();
     $('.help').hide();
 
   },
-  updateurl: function() {
-    var stateObj = { 'ngrams': Object.keys(ngramviewer.alldata) };
-    if( Object.keys(ngramviewer.alldata).length>0 ){
-      var newUrl = '/'+Object.keys(ngramviewer.alldata).join();
-    } else {
-      console.log( Object.keys(ngramviewer.alldata).length );
-      var newUrl = '/';
-    }
-    history.replaceState(stateObj, "Hello", newUrl);
-  },
   plot: function () {
-    //ngramviewer.updateurl();
-    console.log( '-- plot:')
 
     //console.log(ngramviewer.alldata);
     var data2plot = [];
@@ -156,34 +145,41 @@ var ngramviewer = {
     this.graphic.y_accessor = 'freq';
     this.graphic.chart_type = 'line';
     this.graphic.legend = legendLabels;
+
+    if( ngramviewer.selecteddate ){
+      ngramviewer.addmarkers(ngramviewer.selecteddate);
+    }else{
+      this.loadPlot();
+    }
+
+
+  },
+  loadPlot: function(){
     MG.data_graphic( this.graphic );
-    d3.selectAll("text.label") // hack
+    d3.selectAll("text.label") // hack pour le yLabel
       .attr('dominant-baseline', 'hanging')
       .attr("y", 0);
 
-    $('#plotzone svg').click( function(){
-      ngramviewer.addmarkers( ngramviewer.lastdateover );
-      var day = moment(ngramviewer.lastdateover).format('YYYY-MM-DD');
-      ngramviewer.selecteddate = day;
-      ngramviewer.viewposts( );
-
-      });
+    $('#plotzone svg').click( ngramviewer.clickOnPlot );
+  },
+  clickOnPlot: function(){
+    ngramviewer.selecteddate = moment( ngramviewer.lastdateover );
+    ngramviewer.addmarkers( ngramviewer.selecteddate );
+    ngramviewer.viewposts( );
   },
   viewposts: function (){
     var ngrams = Object.keys(ngramviewer.alldata);
     navposts.query( ngramviewer.selecteddate, ngrams.join() )
   },
   addmarkers: function( date ){
-    formatdate = d3.time.format("%d/%m");
+
     var markers = [{
        'date': date,
-       'label': formatdate(date)
+       'label': date.format('ddd Do MMM')
    }];
     this.graphic.markers = markers;
-    MG.data_graphic( this.graphic );
-    d3.selectAll("text.label")  // hack
-      .attr('dominant-baseline', 'hanging')
-      .attr("y", 0);
+    this.loadPlot();
+
   }
 }
 
@@ -191,7 +187,7 @@ var navposts = {
   query: function (  date, ngrams ) {
     console.log( date );
     console.log( ngrams );
-    $.getJSON(urlfor_getSomePosts, { ngrams: ngrams, date:date  }, navposts.print );
+    $.getJSON(urlfor_getSomePosts, { ngrams: ngrams, date:date.format('YYYY-MM-DD')  }, navposts.print );
   },
   clear: function (){
     $('#postzone').empty();

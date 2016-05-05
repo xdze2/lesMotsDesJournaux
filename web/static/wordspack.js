@@ -64,7 +64,9 @@ var wp = {
 	},
 
 	clickNgram: function(event){
-		ngramviewer.addngram(event.data); return false;
+		ngramviewer.selecteddate = moment(event.data.date, "YYYY-MM-DD");
+		ngramviewer.addngram(event.data.ngram);
+		return false;
 	},
 	fillAday: function( idDate, blocks, maxHeight ){
 
@@ -78,7 +80,7 @@ var wp = {
 			var $mot = $('<span />')
 				.attr('id', d['id'] )
 				.css({ fontSize : wp.scaleFontSize(d['score'], scoreRange)+"em" })
-				.click( d['label'], wp.clickNgram );
+				.click( {ngram:d['label'], date:idDate}, wp.clickNgram );
 
 			//var label = wp.arrangeNgram( d['label'] )
 			$mot.html( d['label'] );

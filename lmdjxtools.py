@@ -6,7 +6,7 @@ blacklist_beforeEleve =  [u'LE SCAN SPORT', u'EN IMAGES', u'LE SCAN POLITIQUE',\
     u'LE SCAN TÉLÉ', u'LIRE AUSSI' , u'LE SCAN TÉLÉ', u'LE SCAN ÉCO', u'LE SCAN ECO',\
     u"Toute l'actualité", u"Le Point", u'INFO LE FIGARO', 'Le Monde', \
     'EN DIRECT', 'CARTE INTERACTIVE', 'FIGAROVOX TRIBUNE', u'VIDÉOS', \
-    'MILLIONS DE DOLLARS', 'INTERVIEW', 'ENTRETIEN', u'VIDÉO', 'INFOGRAPHIE', \
+    'MILLIONS DE DOLLARS', 'INTERVIEW', 'ENTRETIEN', u'VIDÉO', u'VIDEO', 'INFOGRAPHIE', \
     'FIGAROVOX', 'TRIBUNE', 'REPORTAGE', 'FOCUS',  \
     'entre eux', 'Top 14', 'Zapping du Point', 'noTitle']
 
@@ -24,7 +24,7 @@ def format( texte ):
     texte = re.sub(myRe, u' ', texte)
 
     # enleve les points en gardant ceux des initials:
-    texte = re.sub(r'(?<!h[A-Z0])\.', u'', texte)
+    texte = re.sub(r'(?<!h[A-Z])\.\s', u'', texte)
 
     # espace des milliers 10_000->10000:
     texte = re.sub(r'([0-9]+)\s([0-9]+)', r'\1\2', texte)
@@ -62,8 +62,8 @@ def getDicoFr():
 
 def blacklist_afterEleve():
     # en minuscule
-    blacklist = ['etat', 'etats', 'euros', u'est-il', 'actu', u'a-t-il', 'ont-ils', 'a-t-on', 'va-t-il', u'elle-même']
-    blacklist.extend( [ u'après-midi', 'a-t-elle', 'faut-il', u'peut-être', 'sont-elles'] )
+    blacklist = [ 'euros', u'est-il', 'actu', u'a-t-il', 'ont-ils', 'a-t-on', 'va-t-il', u'elle-même']
+    blacklist.extend( [ u'après-midi', 'a-t-elle', 'faut-il', 'sont-elles'] )
     blacklist.extend([ u'lui-même', u"qu'on", 'celle-ci', 'celui-ci', u'au-delà', 'est-elle', 'sont-ils'])
     blacklist.extend([ 'aura-t-il'])
 

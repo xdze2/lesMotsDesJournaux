@@ -37,6 +37,8 @@ form {
 #postzone {
   margin:0;
   padding:0;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 #plotzone svg path, #plotzone svg rect  {

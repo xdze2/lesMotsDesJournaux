@@ -191,11 +191,14 @@ var navposts = {
   },
   clear: function (){
     $('#postzone').empty();
+    $('#postzone').hide();
     return false;
   },
   print: function (data) {
     var $result =  $('#postzone');
     navposts.clear();
+
+    $result.show();
     $('#postzone').append(
       $('<h2 />').text( navposts.formatday( data.date )+' ('+data.posts.length+')' )
         .append($('<a />',

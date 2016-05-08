@@ -35,9 +35,12 @@ form {
 }
 #postzone {
   margin:0;
-  padding:0;
-  max-height: 300px;
+  padding:.2em;
+  margin-top:.6em;
+  max-height: 320px;
   overflow-y: scroll;
+  display:none;
+  background-color: #f9f9fa;
 }
 
 #plotzone svg path, #plotzone svg rect  {
@@ -47,13 +50,13 @@ form {
   margin:0;
   padding: 0;
   margin-bottom: 0.2em;
-  margin-top: 0.4em;
 }
 .post {
-  margin-bottom: 0.2em;
+  margin-bottom: 0.3em;
 }
 .post h3 {
   margin:0;
+  font-size: 98%;
 }
 .post h3 a {
   text-decoration: none;
@@ -69,6 +72,7 @@ form {
 .post div {
   margin-left:1.1em;
   margin-right:5em;
+  margin-bottom: 0.4em;
 }
 .close {
   text-decoration: none;

@@ -266,7 +266,7 @@ tspan.hist-symbol {
     text-
     opacity: 0.85;
     text-anchor:start;
-    alignment-baseline: text-before-edge;
+    dominant-baseline: text-before-edge;
 
 }
 .mg-markers text::before {

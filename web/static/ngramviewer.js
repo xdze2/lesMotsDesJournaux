@@ -94,8 +94,6 @@ var ngramviewer = {
     $('.help').show();
   },
   addngram: function(ngram){
-    ngramviewer.query(ngram);
-
     $('#ngraminput').manifest('add', {'ngram':ngram});
     return false;
   },
@@ -110,6 +108,7 @@ var ngramviewer = {
 
     // mise à jour des posts:
     if( ngramviewer.selecteddate ){
+      console.log('addData: update posts view')
       ngramviewer.viewposts();
     };
 
@@ -152,7 +151,6 @@ var ngramviewer = {
       this.loadPlot();
     }
 
-
   },
   loadPlot: function(){
     MG.data_graphic( this.graphic );
@@ -160,21 +158,23 @@ var ngramviewer = {
       .attr('dominant-baseline', 'hanging')
       .attr("y", 0);
 
-    $('#plotzone svg').click( ngramviewer.clickOnPlot );
+    $('#plotzone svg').unbind().click( ngramviewer.clickOnPlot );
   },
   clickOnPlot: function(){
     ngramviewer.selecteddate = moment( ngramviewer.lastdateover );
     ngramviewer.addmarkers( ngramviewer.selecteddate );
+    // console.log('Click plot: update posts')
     ngramviewer.viewposts( );
   },
   viewposts: function (){
+    console.log('view posts')
     var ngrams = Object.keys(ngramviewer.alldata);
     navposts.query( ngramviewer.selecteddate, ngrams.join() )
   },
   addmarkers: function( date ){
     var markers = [{
        'date': date,
-       'label': "\u00A0\u00A0"+date.format('ddd Do MMM') //space: hack pour le style
+       'label': "\u00A0\u00A0"+date.format('ddd Do MMM') //spaces: hack pour le style
      }];
     this.graphic.markers = markers;
     this.loadPlot();
@@ -187,8 +187,6 @@ var ngramviewer = {
 
 var navposts = {
   query: function (  date, ngrams ) {
-    // console.log( date );
-    // console.log( ngrams );
     $.getJSON(urlfor_getSomePosts, { ngrams: ngrams, date:date.format('YYYY-MM-DD')  }, navposts.print );
   },
   clear: function (){
@@ -201,7 +199,7 @@ var navposts = {
     var $result =  $('#postzone');
     $result.empty();
     $result.show();
-    
+
     $('#postzone').append(
       $('<h2 />').text( navposts.formatday( data.date )+' ('+data.posts.length+')' )
         .append($('<a />',

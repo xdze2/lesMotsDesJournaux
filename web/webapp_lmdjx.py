@@ -36,17 +36,8 @@ def close_connection(exception):
 def index():
     return render_template('index.html')
 
-@app.route('/plot/<ngram>')
-def plot_ngram(ngram='lundi'):
 
-    return render_template('plot.html', ngram=ngram)
-
-@app.route('/freqs/')
-@app.route('/freqs/<ngram>')
-def freqs(ngram=None):
-
-    return render_template('ngramviewer.html', ngram=ngram)
-
+# Pour ngramviewer:
 @app.route('/getFreqs',  methods=['GET'])
 def getFreqs():
     ngram = request.args.get('ngram', '', type=str)
@@ -68,44 +59,13 @@ def getFreqs():
                         ORDER BY date(Tf.date)
                         ''', (ngram, ) )
 
-
     data = []
 
     for line in cursor.fetchall():
         data.append( {'date':line[0], 'freq':line[1]  } )
 
-
     return jsonify(data=data, ngram=ngram)
 
-@app.route('/post/')
-@app.route('/post/<ngram>')
-def post(ngram=None):
-    return render_template('post.html', ngram=ngram)
-
-@app.route('/post/getPosts')
-def getPosts():
-    ngram = request.args.get('ngram', '', type=str)
-    date = '2016-04-02'
-
-    cursor = get_db().cursor()
-    cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source, Tp.link FROM
-                        ( SELECT date, ngram, postid
-                            FROM occurences
-                            WHERE ngram = ?
-                            GROUP BY postid
-                            ORDER BY date( date ) DESC ) Toc
-                        JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
-                        ON Tp.rowid = Toc.postid
-                        LIMIT 100
-                        ''', ( ngram, ) )
-
-    data = []
-    for line in cursor.fetchall():
-        data.append( {'date':line[0], 'title':line[1], \
-            'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
-
-    # print('request posts for %s'%ngram)
-    return jsonify(posts=data, ngram=ngram)
 
 
 @app.route('/ngrams/search')
@@ -131,13 +91,13 @@ def getNgrams():
 
 
 
-@app.route('/freqs/getSomePosts')
+@app.route('/getSomePosts')
 def getSomePosts():
     ngrams = request.args.get('ngrams', '', type=str)
     date = request.args.get('date', '', type=str)
     ngrams = ngrams.split(',')
 
-    queryparams = [date] + ngrams
+    queryparams = tuple( [date] + ngrams )
     # print(queryparams)
     cursor = get_db().cursor()
     cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source, Tp.link FROM
@@ -149,7 +109,7 @@ def getSomePosts():
                         JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
                         ON Tp.rowid = Toc.postid
                         LIMIT 100
-                        '''%','.join(['?']*len(ngrams)), tuple(queryparams) )
+                        '''%','.join(['?']*len(ngrams)), queryparams )
 
     data = []
     for line in cursor.fetchall():
@@ -158,7 +118,7 @@ def getSomePosts():
 
     return jsonify(posts=data, ngrams=ngrams,  date=date)
 
-
+# Pour packedWall:
 @app.route('/last10days')
 def last10days():
     cursor = get_db().cursor()
@@ -193,6 +153,8 @@ def last10days():
 
     return jsonify(data=data4web)
 
+
+# Work in progress:
 @app.route('/week')
 def getWeek():
     start = request.args.get('start', '', type=str)
@@ -229,10 +191,6 @@ def getWeek():
         data4web.append( day_dict )
 
     return jsonify(data=data4web)
-
-@app.route('/date')
-def datepicker():
-    return render_template('datepicker.html')
 
 
 if __name__ == '__main__':

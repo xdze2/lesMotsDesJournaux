@@ -22,7 +22,7 @@ var wp = {
 	dayMargin: 5, // px
 	fontSizeMax: 4, // em
 	init: function(data) {
-		console.log('Hello / init');
+		// console.log('Hello / init');
 
 		moment.locale('fr');
 

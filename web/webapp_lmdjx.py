@@ -51,7 +51,7 @@ def freqs(ngram=None):
 def getFreqs():
     ngram = request.args.get('ngram', '', type=str)
 
-    print( 'get ngram: %s'%ngram )
+    # print( 'get ngram: %s'%ngram )
     cursor = get_db().cursor()
     cursor.execute( '''SELECT Td.date, IFNULL(Tf.freq, 0 )
                         FROM
@@ -104,7 +104,7 @@ def getPosts():
         data.append( {'date':line[0], 'title':line[1], \
             'summary':line[2].replace('\n' ,''), 'source':line[3], 'link':line[4] })
 
-    print('request posts for %s'%ngram)
+    # print('request posts for %s'%ngram)
     return jsonify(posts=data, ngram=ngram)
 
 
@@ -138,7 +138,7 @@ def getSomePosts():
     ngrams = ngrams.split(',')
 
     queryparams = [date] + ngrams
-    print(queryparams)
+    # print(queryparams)
     cursor = get_db().cursor()
     cursor.execute( '''SELECT Toc.date, Tp.title, Tp.summary, Tp.source, Tp.link FROM
                         ( SELECT date, ngram, postid
@@ -148,7 +148,7 @@ def getSomePosts():
                             ORDER BY date( date ) DESC ) Toc
                         JOIN ( SELECT ROWID, title, summary, source, link FROM posts ) Tp
                         ON Tp.rowid = Toc.postid
-                        LIMIT 60
+                        LIMIT 100
                         '''%','.join(['?']*len(ngrams)), tuple(queryparams) )
 
     data = []
@@ -211,7 +211,7 @@ def getWeek():
         all_dates.append( line[0] )
 
     # all_dates = all_dates[::-1]
-    print( all_dates)
+    # print( all_dates)
     data4web = []
     for date in all_dates:
         cursor.execute( '''SELECT rowid,  ngram, score

@@ -153,6 +153,34 @@ def last10days():
 
     return jsonify(data=data4web)
 
+# Stats on DB:
+@app.route('/stats')
+def someStats():
+    cursor = get_db().cursor()
+    cursor.execute( '''SELECT count(*) FROM posts  ''' )
+    nPosts = cursor.fetchone()[0]
+
+    cursor.execute( '''SELECT count(*) FROM occurences  ''' )
+    nNgramsNonUnique = cursor.fetchone()[0]
+
+    cursor.execute( '''SELECT count(*) FROM
+                    (SELECT Distinct ngram FROM occurences) ''' )
+    nNgramsUnique = cursor.fetchone()[0]
+
+    return render_template('stats.html', nPosts=nPosts,
+        nNgramsNonUnique=nNgramsNonUnique, nNgramsUnique=nNgramsUnique)
+
+@app.route('/stats/nPostsByDay')
+def nPostsByDay():
+    cursor = get_db().cursor()
+    cursor.execute( '''SELECT date, count(*) c FROM posts GROUP BY date HAVING c>10 ''' )
+
+    data = []
+    for line in cursor.fetchall():
+        data.append( {'date':line[0], 'count':line[1]} )
+
+    return jsonify(data=data)
+
 
 # Work in progress:
 @app.route('/week')

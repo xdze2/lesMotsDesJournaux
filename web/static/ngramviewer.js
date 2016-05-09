@@ -28,8 +28,9 @@ var manifest_config = {
           ngramviewer.plot();
           ngramviewer.viewposts();
     } else {
-      ngramviewer.clear();
+
       navposts.clear();
+      ngramviewer.clear();
     }
 
   },
@@ -192,6 +193,9 @@ var navposts = {
   clear: function (){
     $('#postzone').empty();
     $('#postzone').hide();
+  },
+  clickRemove: function (){
+    navposts.clear();
     ngramviewer.clearmarkers();
     return false;
   },
@@ -203,7 +207,7 @@ var navposts = {
     $('#postzone').append(
       $('<h2 />').text( navposts.formatday( data.date )+' ('+data.posts.length+')' )
         .append($('<a />',
-          {'href':'/', 'text':'✖', 'class':'close'} ) ).on('click', navposts.clear )
+          {'href':'/', 'text':'✖', 'class':'close'} ) ).on('click', navposts.clickRemove )
     );
     if ( data.posts.length > 0 ) {
       $.each( data.posts, function(i, d){

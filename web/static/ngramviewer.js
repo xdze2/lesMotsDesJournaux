@@ -172,33 +172,36 @@ var ngramviewer = {
     navposts.query( ngramviewer.selecteddate, ngrams.join() )
   },
   addmarkers: function( date ){
-
     var markers = [{
        'date': date,
-       'label': date.format('ddd Do MMM')
-   }];
+       'label': "\u00A0\u00A0"+date.format('ddd Do MMM') //space: hack pour le style
+     }];
     this.graphic.markers = markers;
     this.loadPlot();
-
+  },
+  clearmarkers: function( date ){
+    this.graphic.markers = null;
+    this.loadPlot();
   }
 }
 
 var navposts = {
   query: function (  date, ngrams ) {
-    console.log( date );
-    console.log( ngrams );
+    // console.log( date );
+    // console.log( ngrams );
     $.getJSON(urlfor_getSomePosts, { ngrams: ngrams, date:date.format('YYYY-MM-DD')  }, navposts.print );
   },
   clear: function (){
     $('#postzone').empty();
     $('#postzone').hide();
+    ngramviewer.clearmarkers();
     return false;
   },
   print: function (data) {
     var $result =  $('#postzone');
-    navposts.clear();
-
+    $result.empty();
     $result.show();
+    
     $('#postzone').append(
       $('<h2 />').text( navposts.formatday( data.date )+' ('+data.posts.length+')' )
         .append($('<a />',

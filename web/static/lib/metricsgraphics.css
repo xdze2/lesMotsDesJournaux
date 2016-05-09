@@ -253,20 +253,28 @@ tspan.hist-symbol {
 }
 
 .mg-markers line {
-    opacity: 1;
+    opacity: .65;
     shape-rendering: auto;
-    stroke: #b3b2b2;
-    stroke-width: 1px;
+    stroke-dasharray: 0;
+    stroke: #feb24c;
+    stroke-width: 5px;
 }
 
 .mg-markers text {
-    fill: black;
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
+    fill: #feb24c;
+    font-size: 0.9rem;
+    text-
+    opacity: 0.85;
+    text-anchor:start;
+    alignment-baseline: text-before-edge;
 
+}
+.mg-markers text::before {
+  content: "> ";
+ }
 .mg-missing-text {
     opacity: 0.9;
+
 }
 
 .mg-missing-background {

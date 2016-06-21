@@ -24,7 +24,7 @@ def format( texte ):
     texte = re.sub(myRe, u' ', texte)
 
     # enleve les points en gardant ceux des initials:
-    texte = re.sub(r'(?<!h[A-Z])\.\s', u'', texte)
+    texte = re.sub(r'(?<!h[A-Z])\.\s', u' ', texte)
 
     # espace des milliers 10_000->10000:
     texte = re.sub(r'([0-9]+)\s([0-9]+)', r'\1\2', texte)

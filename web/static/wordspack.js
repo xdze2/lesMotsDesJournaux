@@ -44,21 +44,52 @@ var wp = {
 		// dynamic sly config
 		wp.sly_config.pagesBar = $wrap.find('.pages');
 		wp.sly_config.scrollBar = $wrap.find('.scrollbar');
-		wp.sly_config.startAt = nFramesTot - nFramesVisibles;
+		//wp.sly_config.startAt = nFramesTot - nFramesVisibles;
 
-		// data
-		for (var i = 0; i < nFramesTot; i++) {
-			$slidee.append(
-				$('<li />')
-					.attr('id', data[i]['date'] )
-					.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
-					.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' )
-			);
-			wp.fillAday( data[i].date, data[i].mots, maxHeight  );
-		};
+		function add5days(iStart){
+			for (var i = iStart; i < Math.min( nFramesTot, iStart+5); i++) {
+				var $page = $slidee.prepend(
+					$('<li />')
+						.attr('id', data[i]['date'] )
+						.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
+						.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' )
+				);
+				wp.fillAday( data[i].date, data[i].mots, maxHeight  );
+			};
+			sly.reload();
+			return i;
+		}
+		function pump( i ){
+			i = add5days( i );
+	    if (i < nFramesTot)
+	    {
+	       setTimeout(function(){ pump(i) }, 103);
+	    }
+			else {
+				sly.toEnd();
+			}
+		}
 
-		$frame.sly( wp.sly_config );
+		var sly = new Sly($frame, wp.sly_config).init();
+		sly.toEnd();
+
+		pump( 0 );
+
+
+		// // loop on every day:
+		// for (var i = 0; i < nFramesTot-5; i++) {
+		// 	$el = $('<li />')
+		// 			.attr('id', data[i]['date'] )
+		// 			.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
+		// 			.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' );
+		// 	sly.add($el, 0);
+		//
+		// 	wp.fillAday( data[i].date, data[i].mots, maxHeight  );
+		// };
+
+
 	},
+
 	formatday: function(d){
 		return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
 	},

@@ -48,7 +48,7 @@ var wp = {
 
 		function add5days(iStart){
 			for (var i = iStart; i < Math.min( nFramesTot, iStart+5); i++) {
-				var $page = $slidee.prepend(
+				var $page = $slidee.append(
 					$('<li />')
 						.attr('id', data[i]['date'] )
 						.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
@@ -57,6 +57,7 @@ var wp = {
 				wp.fillAday( data[i].date, data[i].mots, maxHeight  );
 			};
 			sly.reload();
+			//sly.toEnd();
 			return i;
 		}
 		function pump( i ){

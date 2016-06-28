@@ -45,7 +45,7 @@ all_dates = []
 for line in cursor.fetchall():
     all_dates.append( line[0] )
 
-# all_dates = all_dates[::-1]
+all_dates = all_dates[::-1]
 
 print( 'nombres de jours: %i' % len(all_dates) )
 

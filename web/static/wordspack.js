@@ -64,7 +64,7 @@ var wp = {
 			i = add5days( i );
 	    if (i < nFramesTot)
 	    {
-	       setTimeout(function(){ pump(i) }, 103);
+	       setTimeout(function(){ pump(i) }, 33);
 	    }
 			else {
 				sly.toEnd();

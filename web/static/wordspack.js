@@ -68,11 +68,13 @@ var wp = {
 	    }
 			else {
 				sly.toEnd();
+				document.body.style.cursor='default';
 			}
 		}
 
+		document.body.style.cursor='wait';
 		var sly = new Sly($frame, wp.sly_config).init();
-		sly.toEnd();
+		sly.toStart();
 
 		pump( 0 );
 

@@ -153,6 +153,6 @@ var wp = {
 };
 
 
-$.getJSON( urlfor_last10days,
-	function(data){ wp.init(data.data); }
+$.getJSON( 'static/data4alldays.json', //urlfor_last10days,
+	function(data){ wp.init(data); } //wp.init(data.data);
 );

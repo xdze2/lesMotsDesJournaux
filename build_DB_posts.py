@@ -37,6 +37,7 @@ with open(feedinfo_filename, 'r') as file:
 
 for name, feed_info in allfeeds_info.items():
 
+    print(feed_info['filename'])
     # load rss data
     dataRss_filename = feed_info['filename']
     with open(dataRss_filename, 'r') as file:

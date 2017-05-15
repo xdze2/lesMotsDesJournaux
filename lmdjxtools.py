@@ -19,6 +19,8 @@ def format( texte ):
 
     #texte = texte.replace(u'\xa0', u' ') # espace insécable
 
+    
+
     # Ponctuation:
     myRe = u"""[,;:«»"?!\n\r…©“”()]"""
     texte = re.sub(myRe, u' ', texte)

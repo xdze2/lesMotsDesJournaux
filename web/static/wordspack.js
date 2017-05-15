@@ -1,4 +1,8 @@
 var wp = {
+	firstdayloaded: undefined,
+	sly: undefined,
+	data: undefined,
+	dayWidth: undefined,
 	sly_config: {
 		horizontal: 1,
 		itemNav: 'basic',
@@ -18,14 +22,16 @@ var wp = {
 		dynamicHandle: 1,
 		clickBar: 1
 	},
+	maxHeight: 3000, // :(
 	targetedDayWidth: 300, // px
 	dayMargin: 5, // px
 	fontSizeMax: 4, // em
+
 	init: function(data) {
-		// console.log('Hello / init');
 
 		moment.locale('fr');
 
+		wp.data = data;
 		// get elements
 		var $frame  = $('#myTimeLine');
 		var $slidee = $frame.children('ul').eq(0);
@@ -34,50 +40,37 @@ var wp = {
 		// get size
 		var fullWidth = $( '#page' ).width() ;
 
-		var maxHeight = 3000; // :(
-
 		var nFramesTot = data.length;
 		var nFramesVisibles = Math.ceil( fullWidth / wp.targetedDayWidth );
 		var dayWidth = Math.round( (fullWidth - (nFramesVisibles-1)*wp.dayMargin ) / nFramesVisibles );
-
+		wp.dayWidth = dayWidth;
 
 		// dynamic sly config
 		wp.sly_config.pagesBar = $wrap.find('.pages');
 		wp.sly_config.scrollBar = $wrap.find('.scrollbar');
 		//wp.sly_config.startAt = nFramesTot - nFramesVisibles;
 
-		function add5days(iStart){
-			for (var i = iStart; i < Math.min( nFramesTot, iStart+5); i++) {
-				var $page = $slidee.append(
-					$('<li />')
-						.attr('id', data[i]['date'] )
-						.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
-						.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' )
-				);
-				wp.fillAday( data[i].date, data[i].mots, maxHeight  );
-			};
-			sly.reload();
-			//sly.toEnd();
-			return i;
-		}
-		function pump( i ){
-			i = add5days( i );
-	    if (i < nFramesTot)
-	    {
-	       setTimeout(function(){ pump(i) }, 33);
-	    }
-			else {
-				sly.toEnd();
-				document.body.style.cursor='default';
-			}
-		}
 
-		document.body.style.cursor='wait';
-		var sly = new Sly($frame, wp.sly_config).init();
-		sly.toStart();
 
-		pump( 0 );
+		// function pump( i ){
+		// 	i = add5days( i );
+	  //   if (i < nFramesTot)
+	  //   {
+	  //      setTimeout(function(){ pump(i) }, 33);
+	  //   }
+		// 	else {
+		// 		sly.toEnd();
+		// 		document.body.style.cursor='default';
+		// 	}
+		// }
 
+		//document.body.style.cursor='wait';
+		wp.sly = new Sly($frame, wp.sly_config).init();
+
+
+		//pump( 0 );
+		wp.firstdayloaded = wp.addNdays(nFramesTot);
+		wp.sly.toEnd();
 
 		// // loop on every day:
 		// for (var i = 0; i < nFramesTot-5; i++) {
@@ -92,7 +85,28 @@ var wp = {
 
 
 	},
+	addNdays: function(iEnd){
+		// ajoute N jours avant i End (après le bouton PLUS)
+		// retourne le nouveau iEnd
 
+		var $plusbutton = $('#plusbutton');
+
+		var N = 7;
+		var data = wp.data;
+		var iStart = Math.max( iEnd-N, 0 )
+		for (var i = iEnd-1; i >= iStart; i--) {
+			console.log(i);
+			var $page = $plusbutton.after(
+				$('<li />')
+					.attr('id', data[i]['date'] )
+					.css( {width: wp.dayWidth,  'margin-left':wp.dayMargin} )
+					.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' )
+			);
+			wp.fillAday( data[i].date, data[i].mots, wp.maxHeight  );
+		}
+		wp.sly.reload();
+		return iStart;
+	},
 	formatday: function(d){
 		return moment(d, "YYYY-MM-DD").format('dddd Do MMMM');
 	},
@@ -104,7 +118,7 @@ var wp = {
 	},
 	fillAday: function( idDate, blocks, maxHeight ){
 
-		var $mardi = $( '#' + idDate + ' p' );
+		var $mardi = $( '#' + idDate + ' p' ); //li elt.
 		var maxWidth = $mardi.width();
 
 		var scoreRange = wp.getRangeScore( blocks );
@@ -181,8 +195,13 @@ var wp = {
 			ngram = ngram[0]+'<br />'+ngram[1];
 		}
 		return ngram;
+	},
+	afficherplus(){
+		/* Affiche plus de jours, après le clic sur le lien */
+		console.log('Plus?');
+		console.log(wp.firstdayloaded);
+		wp.firstdayloaded = wp.addNdays(wp.firstdayloaded);
 	}
-
 
 };
 

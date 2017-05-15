@@ -81,3 +81,15 @@
 .scrollbar .handle:hover {
 	background-color: #3E3E3E;
 }
+
+#plusbutton {
+	padding: .2em;
+	margin-top: 3em;
+}
+
+#plusbutton img:hover {
+		width: 105%;
+}
+#plusbutton img:active {
+		width: 102%;
+}

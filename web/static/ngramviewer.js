@@ -10,6 +10,7 @@ var marcopolo_config = {
   minChars: 1,
   required: true
 };
+
 var manifest_config = {
   marcoPolo: marcopolo_config,
   formatDisplay: function (data, $item, $mpItem) {
@@ -115,11 +116,6 @@ var ngramviewer = {
 
     ngramviewer.plot();
 
-
-    // } else {
-    //   var max = 1;
-    //   console.log( ngramviewer.alldata  );
-    // }
     $('#doodle').hide();
     $('.help').hide();
 
@@ -239,13 +235,3 @@ var navposts = {
 }
 
 $(document).ready( ngramviewer.init );
-
-//
-// // handle the back and forward buttons
-// $(window).bind('popstate', function(event) {
-//     // if the event has our history data on it, load the page fragment with AJAX
-//     var state = event.originalEvent.state;
-//     if (state) {
-//         ngramviewer.init();
-//     }
-// });

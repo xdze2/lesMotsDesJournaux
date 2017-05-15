@@ -32,6 +32,7 @@ var wp = {
 		moment.locale('fr');
 
 		wp.data = data;
+
 		// get elements
 		var $frame  = $('#myTimeLine');
 		var $slidee = $frame.children('ul').eq(0);
@@ -48,54 +49,26 @@ var wp = {
 		// dynamic sly config
 		wp.sly_config.pagesBar = $wrap.find('.pages');
 		wp.sly_config.scrollBar = $wrap.find('.scrollbar');
-		//wp.sly_config.startAt = nFramesTot - nFramesVisibles;
 
 
-
-		// function pump( i ){
-		// 	i = add5days( i );
-	  //   if (i < nFramesTot)
-	  //   {
-	  //      setTimeout(function(){ pump(i) }, 33);
-	  //   }
-		// 	else {
-		// 		sly.toEnd();
-		// 		document.body.style.cursor='default';
-		// 	}
-		// }
-
-		//document.body.style.cursor='wait';
 		wp.sly = new Sly($frame, wp.sly_config).init();
 
 
-		//pump( 0 );
 		wp.firstdayloaded = wp.addNdays(nFramesTot);
 		wp.sly.toEnd();
-
-		// // loop on every day:
-		// for (var i = 0; i < nFramesTot-5; i++) {
-		// 	$el = $('<li />')
-		// 			.attr('id', data[i]['date'] )
-		// 			.css( {width:dayWidth,  'margin-left':wp.dayMargin} )
-		// 			.html( '<h3>'+ wp.formatday(data[i]['date']) +'</h3> <p></p>' );
-		// 	sly.add($el, 0);
-		//
-		// 	wp.fillAday( data[i].date, data[i].mots, maxHeight  );
-		// };
 
 
 	},
 	addNdays: function(iEnd){
-		// ajoute N jours avant i End (après le bouton PLUS)
-		// retourne le nouveau iEnd
-
+		/* ajoute N jours avant i End (après le bouton PLUS)
+		   retourne le nouveau iEnd
+		*/
 		var $plusbutton = $('#plusbutton');
 
 		var N = 7;
 		var data = wp.data;
 		var iStart = Math.max( iEnd-N, 0 )
 		for (var i = iEnd-1; i >= iStart; i--) {
-			console.log(i);
 			var $page = $plusbutton.after(
 				$('<li />')
 					.attr('id', data[i]['date'] )
@@ -112,6 +85,7 @@ var wp = {
 	},
 
 	clickNgram: function(event){
+		// action sur le clic d'un mot
 		ngramviewer.selecteddate = moment(event.data.date, "YYYY-MM-DD");
 		ngramviewer.addngram(event.data.ngram);
 		return false;
@@ -197,7 +171,7 @@ var wp = {
 		return ngram;
 	},
 	afficherplus(){
-		/* Affiche plus de jours, après le clic sur le lien */
+		/* Action du bouton Plus, affiche plus de jours */
 		console.log('Plus?');
 		console.log(wp.firstdayloaded);
 		wp.firstdayloaded = wp.addNdays(wp.firstdayloaded);
